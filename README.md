@@ -16,6 +16,12 @@ Three inspectable 30-second scenes, their original text prompts, and small templ
 
 The boat is a compact subject/action/camera prompt. The car adds moving reflections and a changing viewpoint. The courier asks for several timed story beats, which creates more opportunities for missed details. Treat the complex scene as something to evaluate, rather than a template that guarantees every requested action.
 
+## Budget for footage you can use
+
+[Open the free usable-footage calculator](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/). Enter charged paid attempts, confirmed restored credits and the unique seconds you approved. It reports allocated generation cost, cost per approved second, minimum whole-pack cash and unused credits separately. Creative rejects stay in the budget; a credit restoration is not a cash refund. Free trials and editing costs are excluded.
+
+Choose a current SeedanceCheap pack or a custom provider rate. Calculations stay in your browser: no login, uploads, analytics or external scripts. The calculator is an educational companion to this cookbook, with [inspectable source](docs/); the preset prices were checked October 6, 2026. Minimum pack cash assumes no starting balance and completed restorations; actual receipts, timing, taxes and fees can differ.
+
 ## Plan a small pilot
 
 1. Write one sentence describing what the audience must understand. Pick the subject, visible action, setting and camera move using [the scene brief](templates/scene-brief.txt).
