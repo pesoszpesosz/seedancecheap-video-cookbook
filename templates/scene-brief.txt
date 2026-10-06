@@ -1,0 +1,18 @@
+SCENE BRIEF — fill this before spending a generation credit
+
+Scene / shot ID:
+Audience must understand:
+Subject (one clear description):
+Visible action:
+Setting and time of day:
+Camera framing and movement:
+Beginning / middle / ending:
+Required words, if any:
+Required sound, if any:
+Must stay consistent:
+Optional permitted references:
+Requested format (confirm in the live Studio):
+Acceptance checks:
+What could be added or repaired in the edit:
+
+Give each new scene complete context. A model does not necessarily remember the previous prompt. Text instructions do not guarantee exact identity, motion, speech or scene timing.
