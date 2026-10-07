@@ -24,6 +24,14 @@ Choose a current SeedanceCheap pack or a custom provider rate. Calculations stay
 
 Use **Share this budget** to create a link that opens the same numbers and selected rate. [Open the six-attempt, two-restoration example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/#budget=1&credits=5&cents=1125&attempts=6&restored=2&seconds=18&duration=30): $9 allocated usage, $11.25 minimum cash at that selected pack, and $0.50 per approved second. Links preserve the rate snapshot rather than promising it will remain the live offer. Share only budget numbers you want others to see.
 
+## Plan a music-video chorus
+
+[Open the free chorus-pilot worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/chorus-pilot.html). Map 12–15 seconds of your own recording into three visible beats, review a still animatic, then decide which shots need animation. Edit the plan in your browser and download your notes, or use the [blank text template](docs/chorus-pilot.txt). No account, media upload or generation is required.
+
+The café example is a hypothetical plan, not tested footage or a tested song. Keep original vocals and picture separate, check lip-sync only when it is essential, and count creative rejects and editing costs before commissioning the full song. A finished pilot's duration does not establish the generation request length.
+
+[Our free character prompt builder](https://seedancecheap.com/characters?utm_source=github&utm_medium=cookbook&utm_campaign=chorus_pilot&utm_content=readme#builder) helps write the text character sheet and scene instructions. Video generation is separate; check live availability before attempting a generation or purchasing.
+
 ## Plan a small pilot
 
 1. Write one sentence describing what the audience must understand. Pick the subject, visible action, setting and camera move using [the scene brief](templates/scene-brief.txt).
