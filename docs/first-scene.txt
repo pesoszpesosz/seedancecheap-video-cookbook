@@ -1,0 +1,47 @@
+FIRST AI SCENE — SeedanceCheap starter checklist
+
+Plan one scene before generating. Basic text prompt writing is free:
+https://seedancecheap.com/characters
+Video generation is separate. Check live availability and offers before
+generating or purchasing.
+
+ORIGINAL PAPER-BOAT EXAMPLE
+A small paper boat glides across a calm lake at dawn, sunlight reflects on the water, gentle camera dolly, coherent motion, no text.
+
+Historical complete output and original prompt:
+https://seedancecheap.com/examples/paper-boat
+A new attempt can differ. Inspect boat shape, water contact and camera motion.
+
+YOUR SCENE
+Meaning: [one sentence the audience should understand]
+Subject: [one object or fictional adult character]
+Visible action: [one main action]
+Setting and light: [...]
+Camera: [...]
+Dialogue or sound, if needed: [...]
+Prompt: [...]
+
+BEFORE GENERATING
+Live availability, request length and format checked: [...]
+Maximum spend: [...]
+Pass/fail checks: [...]
+
+REVIEW THE ENTIRE RESULT
+Beginning, middle, end and motion between them: [...]
+Action and geometry: [...]
+Camera and continuity: [...]
+Sound or exact spoken words: [...]
+Unique seconds you can use: [...]
+One instruction to change next: [...]
+Decision: [keep / edit / revise / stop]
+
+FINISH AND PUBLISH
+Keep the original source and project.
+Record source dimensions and export dimensions separately.
+Add captions, a readable website credit and the final sound mix.
+Inspect the finished file before upload.
+Keep the confirmed public or scheduled copy and its release time.
+Improve titles, descriptions and comments in place.
+
+Published by SeedanceCheap, an independent studio. Prepared with Codex.
+This planning template does not generate or upload a video.

@@ -16,6 +16,12 @@ Three inspectable 30-second scenes, their original text prompts, and small templ
 
 The boat is a compact subject/action/camera prompt. The car adds moving reflections and a changing viewpoint. The courier asks for several timed story beats, which creates more opportunities for missed details. Treat the complex scene as something to evaluate, rather than a template that guarantees every requested action.
 
+## Make your first AI scene
+
+[Open the free beginner guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/first-scene.html). Inspect our original paper-boat prompt and complete historical output, plan one visible action, then review the full result before editing and publishing. Download the [starter checklist](docs/first-scene.txt) or edit and download your own notes in the guide. No account, uploads or generation is required to use the guide.
+
+[The free text prompt builder](https://seedancecheap.com/characters?utm_source=github&utm_medium=cookbook&utm_campaign=first_scene_guide&utm_content=readme) helps organize fictional characters and scene instructions. Video generation is separate; check live availability and offers before generating or purchasing. Historical examples do not promise identical results on a new attempt.
+
 ## Budget for footage you can use
 
 [Open the free usable-footage calculator](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/). Enter charged paid attempts, confirmed restored credits and the unique seconds you approved. It reports allocated generation cost, cost per approved second, minimum whole-pack cash and unused credits separately. Creative rejects stay in the budget; a credit restoration is not a cash refund. Free trials and editing costs are excluded.
