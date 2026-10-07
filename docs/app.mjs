@@ -1,5 +1,6 @@
 import { packs, calculate } from './cost.mjs';
 import { worksheetLink } from './links.mjs';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs';
 
 for (const link of document.querySelectorAll('[data-site-link]')) {
   link.href = worksheetLink(link.href, location.search);
@@ -9,6 +10,7 @@ const $ = id => document.getElementById(id);
 const money = cents => cents > 0 && cents < 0.01 ? '<$0.0001' : new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(cents / 100);
 const form = $('calculator');
 const number = id => $(id).value.trim() === '' ? NaN : Number($(id).value);
+let currentBudget = null;
 
 function render() {
   const custom = $('pack').value === 'custom';
@@ -16,10 +18,16 @@ function render() {
   const pack = custom ? { credits: number('pack-credits'), cents: Math.round(number('pack-price') * 100) } : packs[Number($('pack').value)];
   $('duration').readOnly = !custom;
   if (!custom) $('duration').value = '30';
+  $('shared-budget').hidden = true;
+  currentBudget = null;
+  $('share-budget').disabled = true;
   try {
     if (custom && Math.abs(number('pack-price') * 100 - pack.cents) > 0.000001)
       throw new Error('Enter the pack total with at most two decimal places.');
-    const result = calculate({ ...pack, attempts: number('attempts'), restored: number('restored'), seconds: number('seconds'), duration: number('duration') });
+    const budget = { ...pack, attempts: number('attempts'), restored: number('restored'), seconds: number('seconds'), duration: number('duration') };
+    const result = calculate(budget);
+    currentBudget = budget;
+    $('share-budget').disabled = false;
     $('error').hidden = true;
     $('results').hidden = false;
     $('allocated').textContent = money(result.allocatedCents);
@@ -46,4 +54,39 @@ $('example').addEventListener('click', () => {
   render();
 });
 $('restore-defaults').addEventListener('click', () => { form.reset(); render(); });
+$('share-budget').addEventListener('click', () => {
+  if (!currentBudget) return;
+  $('budget-link').value = sharedBudgetLink(location.href, currentBudget);
+  $('shared-budget').hidden = false;
+  $('budget-link').focus();
+  $('budget-link').select();
+});
+
+function loadSharedBudget() {
+  form.reset();
+  $('shared-notice').hidden = true;
+  try {
+    const shared = readSharedBudget(location.hash);
+    if (shared) {
+      const preset = packs.findIndex(pack => pack.credits === shared.credits && pack.cents === shared.cents && shared.duration === 30);
+      $('pack').value = preset < 0 ? 'custom' : String(preset);
+      $('pack-credits').value = shared.credits;
+      $('pack-price').value = (shared.cents / 100).toFixed(2);
+      $('attempts').value = shared.attempts;
+      $('restored').value = shared.restored;
+      $('seconds').value = shared.seconds;
+      $('duration').value = shared.duration;
+      $('shared-notice').textContent = 'Shared budget loaded. The link preserves the selected rate and numbers; check the current offer before purchasing.';
+      $('shared-notice').hidden = false;
+    }
+  } catch {
+    $('shared-notice').textContent = 'This shared budget could not be loaded. The worksheet is using its defaults; enter your numbers below.';
+    $('shared-notice').hidden = false;
+  }
+}
+form.addEventListener('input', () => { $('shared-notice').hidden = true; });
+form.addEventListener('change', () => { $('shared-notice').hidden = true; });
+for (const id of ['example', 'restore-defaults']) $(id).addEventListener('click', () => { $('shared-notice').hidden = true; });
+window.addEventListener('hashchange', () => { loadSharedBudget(); render(); });
+loadSharedBudget();
 render();

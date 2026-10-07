@@ -22,6 +22,8 @@ The boat is a compact subject/action/camera prompt. The car adds moving reflecti
 
 Choose a current SeedanceCheap pack or a custom provider rate. Calculations stay in your browser: no login, uploads, analytics or external scripts. The calculator is an educational companion to this cookbook, with [inspectable source](docs/); the preset prices were checked October 6, 2026. Minimum pack cash assumes no starting balance and completed restorations; actual receipts, timing, taxes and fees can differ.
 
+Use **Share this budget** to create a link that opens the same numbers and selected rate. [Open the six-attempt, two-restoration example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/#budget=1&credits=5&cents=1125&attempts=6&restored=2&seconds=18&duration=30): $9 allocated usage, $11.25 minimum cash at that selected pack, and $0.50 per approved second. Links preserve the rate snapshot rather than promising it will remain the live offer. Share only budget numbers you want others to see.
+
 ## Plan a small pilot
 
 1. Write one sentence describing what the audience must understand. Pick the subject, visible action, setting and camera move using [the scene brief](templates/scene-brief.txt).
