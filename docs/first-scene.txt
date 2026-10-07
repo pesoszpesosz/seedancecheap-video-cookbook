@@ -1,6 +1,7 @@
 FIRST AI SCENE — SeedanceCheap starter checklist
 
-Plan one scene before generating. Basic text prompt writing is free:
+Plan one scene before generating. This checklist works for object or character
+scenes. For fictional characters, our free text builder adds a character sheet:
 https://seedancecheap.com/characters
 Video generation is separate. Check live availability and offers before
 generating or purchasing.
