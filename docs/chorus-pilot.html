@@ -22,12 +22,12 @@
 </head>
 <body>
 <div class="shell">
-  <header><a class="brand" href="https://seedancecheap.com/characters?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=chorus_pilot&amp;utm_content=header#builder">SeedanceCheap.com</a><span class="tag">Free chorus worksheet</span></header>
+  <header><a class="brand" data-site-link href="https://seedancecheap.com/characters?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=chorus_pilot&amp;utm_content=header#builder">SeedanceCheap.com</a><span class="tag">Free chorus worksheet</span></header>
   <main>
     <div class="tag" style="text-align:left;max-width:none">Music-video planning · no login</div>
     <h1>Plan the chorus <span>before you animate it.</span></h1>
     <p class="intro">Start with 12–15 seconds of your own recording and three clear visual moments. Make a still animatic, then decide which movement is worth generating.</p>
-    <div class="actions"><a class="button" href="https://seedancecheap.com/characters?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=chorus_pilot&amp;utm_content=free_builder#builder">Open the free character prompt builder →</a><a class="button secondary" href="./chorus-pilot.txt" download>Download the blank worksheet</a><a class="button secondary" href="./">Budget the usable footage</a></div>
+    <div class="actions"><a class="button" data-site-link href="https://seedancecheap.com/characters?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=chorus_pilot&amp;utm_content=free_builder#builder">Open the free character prompt builder →</a><a class="button secondary" href="./chorus-pilot.txt" download>Download the blank worksheet</a><a class="button secondary" data-companion-link href="./">Budget the usable footage</a></div>
     <p class="muted">Prompt writing is free. Video generation is a separate step; check live availability before attempting a generation or purchasing. This worksheet works independently of the generation service.</p>
     <section class="card" aria-labelledby="start-heading">
       <h2 id="start-heading">1. Pick the smallest useful pilot</h2>
@@ -88,12 +88,14 @@ Next decision: [animate / revise the animatic / stop]</textarea>
     <section class="card" aria-labelledby="review-heading">
       <h2 id="review-heading">4. Judge the pilot in the actual edit</h2>
       <div class="columns"><div><h3>Review picture and sound separately</h3><ul><li>Check the intended action in moving frames, not just a thumbnail.</li><li>Compare face, wardrobe, props and location separately between cuts.</li><li>Review any lip-sync against the original vocal timing. Test a short portion before relying on it for an entire song.</li><li>Keep approved picture and audio; repair the smallest failed section when your editor permits.</li></ul></div><div><h3>Budget for what survives</h3><ul><li>Count paid creative rejects in the production budget.</li><li>Record unique seconds kept in the edit, plus editing and any licensed media costs.</li><li>A 12-second finished pilot is not necessarily a 12-second generation request. Check the tool’s request length and editing options.</li><li>For SeedanceCheap, a credit covers a 30-second request. Face/person reference images and input video are unsupported; text descriptions can drift.</li></ul></div></div>
-      <p class="notice" style="margin-top:20px">The example describes intended beats. It does not guarantee exact timing, faces, singing or choreography. Use the <a href="https://seedancecheap.com/characters?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=chorus_pilot&amp;utm_content=review_builder#builder">free prompt builder</a> to refine a text character sheet and scene instructions; it does not generate the music video.</p>
+      <p class="notice" style="margin-top:20px">The example describes intended beats. It does not guarantee exact timing, faces, singing or choreography. Use the <a data-site-link href="https://seedancecheap.com/characters?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=chorus_pilot&amp;utm_content=review_builder#builder">free prompt builder</a> to refine a text character sheet and scene instructions; it does not generate the music video.</p>
     </section>
   </main>
   <footer>Published by SeedanceCheap, an independent studio. Prepared with Codex. This free planning resource does not accept payment or submit generations. <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">Inspect the cookbook and original sample prompts</a>.</footer>
 </div>
-<script>
+<script type="module">
+  import { applyWorksheetLinks } from './links.mjs';
+  applyWorksheetLinks(document, location.search);
   const plan = document.getElementById('pilot-plan');
   const status = document.getElementById('copy-status');
   document.getElementById('download-plan').addEventListener('click', () => {

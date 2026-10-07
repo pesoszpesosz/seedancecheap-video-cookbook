@@ -1,10 +1,8 @@
 import { packs, calculate } from './cost.mjs';
-import { worksheetLink } from './links.mjs';
+import { applyWorksheetLinks } from './links.mjs';
 import { readSharedBudget, sharedBudgetLink } from './share.mjs';
 
-for (const link of document.querySelectorAll('[data-site-link]')) {
-  link.href = worksheetLink(link.href, location.search);
-}
+applyWorksheetLinks(document, location.search);
 
 const $ = id => document.getElementById(id);
 const money = cents => cents > 0 && cents < 0.01 ? '<$0.0001' : new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(cents / 100);

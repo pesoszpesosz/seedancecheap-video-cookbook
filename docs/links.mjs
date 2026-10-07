@@ -7,3 +7,15 @@ export function worksheetLink(href, search = '') {
   url.searchParams.set('utm_source', channels.has(requested) ? requested : 'github');
   return url.href;
 }
+
+export function applyWorksheetLinks(root, search = '') {
+  const source = new URL(worksheetLink('https://seedancecheap.com/', search)).searchParams.get('utm_source');
+  for (const link of root.querySelectorAll('[data-site-link]')) {
+    link.href = worksheetLink(link.href, search);
+  }
+  for (const link of root.querySelectorAll('[data-companion-link]')) {
+    const url = new URL(link.href);
+    url.searchParams.set('from', source);
+    link.href = url.href;
+  }
+}
