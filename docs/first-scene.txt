@@ -24,8 +24,19 @@ Prompt: [...]
 
 BEFORE GENERATING
 Live availability, request length and format checked: [...]
+Original scene and permission to use any references checked: [...]
 Maximum spend: [...]
 Pass/fail checks: [...]
+
+REQUEST STATUS
+Keep the existing job while processing. A page delay alone is not a reason to
+submit it again. If refused, read the reason and review your scene and references
+before deciding on a revised request. SeedanceCheap leaves prompt and reference
+refusals for you to review instead of automatically generating again. A failed
+free attempt returns its entitlement; eligibility and the three-attempt limit
+per 24 hours still apply. Check the current entitlement or credits before retrying.
+When Ready, save the MP4 within SeedanceCheap's 24-hour window from delivery.
+Current request, retry and download limits: https://seedancecheap.com/api
 
 REVIEW THE ENTIRE RESULT
 Beginning, middle, end and motion between them: [...]
