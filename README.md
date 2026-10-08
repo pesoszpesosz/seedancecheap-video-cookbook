@@ -42,6 +42,12 @@ Choose a current SeedanceCheap pack or a custom provider rate. Calculations stay
 
 Use **Share this budget** to create a link that opens the same numbers and selected rate. [Open the six-attempt, two-restoration example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/#budget=1&credits=5&cents=1125&attempts=6&restored=2&seconds=18&duration=30): $9 allocated usage, $11.25 minimum cash at that selected pack, and $0.50 per approved second. Links preserve the rate snapshot rather than promising it will remain the live offer. Share only budget numbers you want others to see.
 
+## Recover the same API job
+
+[Open the free API request guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html). Prepare a text-only pilot JSON locally, save its request ID, and use the create, recovery, status and download examples in Bash or Windows PowerShell. A lost create response is a reason to look up the saved request, rather than start a new request ID.
+
+The builder asks for no API key and sends no generation request. Its proposed pilot selects the eligible free-trial route and opts out of automatic service retries. Run commands separately with your own account and applicable entitlement. API commands were checked against the [live documentation](https://seedancecheap.com/api?utm_source=github&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=readme) on October 8, 2026; no generation was performed for this guide.
+
 ## Plan a music-video chorus
 
 [Open the free chorus-pilot worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/chorus-pilot.html). Map 12–15 seconds of your own recording into three visible beats, review a still animatic, then decide which shots need animation. Edit the plan in your browser and download your notes, or use the [blank text template](docs/chorus-pilot.txt). No account, media upload or generation is required.
