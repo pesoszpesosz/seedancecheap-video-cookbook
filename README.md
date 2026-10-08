@@ -22,6 +22,12 @@ The boat is a compact subject/action/camera prompt. The car adds moving reflecti
 
 [The free text prompt builder](https://seedancecheap.com/characters?utm_source=github&utm_medium=cookbook&utm_campaign=first_scene_guide&utm_content=readme) helps organize fictional characters and scene instructions. Video generation is separate; check live availability and offers before generating or purchasing. Historical examples do not promise identical results on a new attempt.
 
+## Connect two AI shots
+
+[Open the free two-shot continuity worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/continuity.html). Keep shared character and scene details, write the end-to-start handoff, and review the actual moving pair in your editor. Edit and download your plan or use the [blank text worksheet](docs/continuity.txt). No sign-in, uploads or generation is required.
+
+The doorway example is a proposed plan, not tested footage. Reference-image and frame controls depend on your chosen tool; text descriptions and reused frames cannot guarantee identical faces or a seamless cut. The linked SeedanceCheap builder is for text planning of fictional adult characters; video generation is separate, and face/person image references and input-video continuation are unsupported in our generation service.
+
 ## Plan an AI car shot
 
 [Plan and review an AI car shot](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/car-shot.html). Inspect the complete fictional concept-car example and its original prompt, choose one camera instruction, and record geometry, reflections and continuous-motion checks. Edit and download your prompt and review notes without signing in or uploading anything. These starter instructions are proposed plans, not newly tested footage or a guarantee of an exact product match.

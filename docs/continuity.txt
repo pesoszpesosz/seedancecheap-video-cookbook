@@ -1,0 +1,45 @@
+TWO-SHOT CONTINUITY PLAN
+Free planning worksheet from SeedanceCheap, prepared with Codex.
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/continuity.html
+
+SHARED DETAILS
+Scene meaning: [what the viewer should understand]
+Character or subject description: [...]
+Wardrobe and props: [...]
+Location and lighting: [...]
+Direction of movement / eyeline: [...]
+Dialogue, voice or continuous ambience: [...]
+Reference files, if my tool supports them: [...]
+Tool, model, request length and maximum spend: [...]
+
+SHOT A
+Start state: [...]
+One visible action: [...]
+Camera and framing: [...]
+End state / intended cut: [...]
+Dialogue or sound: [...]
+Reference or first-frame file, if supported: [...]
+Prompt: [...]
+
+SHOT B
+Start state matching A's end: [...]
+One visible action: [...]
+Camera and framing: [...]
+End state: [...]
+Dialogue or sound: [...]
+Reference or first-frame file, if supported: [...]
+Prompt: [...]
+
+REVIEW AND DECISION
+Shared details that matched / drifted: [...]
+Cut timing and pose or prop handoff: [...]
+Continuous motion and geometry: [...]
+Dialogue, voice and ambience: [...]
+Useful seconds and actual cost: [...]
+Decision and one next change: [...]
+Saved source files and editor project: [...]
+
+Check the actual controls and limits of your chosen tool. Text descriptions,
+references and reused frames still require review of the complete moving output.
+These are proposed planning suggestions, not tested footage or an identity guarantee.
+Writing this plan does not start or pay for a video generation.
