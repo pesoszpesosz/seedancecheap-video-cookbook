@@ -34,6 +34,12 @@ The doorway example is a proposed plan, not tested footage. Reference-image and 
 
 [The free product prompt builder](https://seedancecheap.com/product-videos?utm_source=github&utm_medium=cookbook&utm_campaign=car_shot_guide&utm_content=readme#builder) helps organize a product scene. Copy your own draft manually; the guide does not send it to the builder or submit a generation. Video generation is separate, with live prices and availability to check before requesting it.
 
+## Keep product labels readable
+
+[Open the free product-shot planner](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/product-label.html). Plan a trackable product view, keep approved artwork separate, and review lettering, tracking, occlusion and product geometry in the moving edit. Choose flat, curved or fabric-surface guidance, edit a proposed prompt and prepare copyable shot notes without an account or upload. A separate text-download link is also offered.
+
+The diagrams and prompt are planning exercises, not generated footage or a tested repair. A simple planar corner pin does not wrap curved surfaces or follow fabric folds. The guide links to official Adobe and Boris FX editing references and to our [free product prompt builder](https://seedancecheap.com/product-videos?utm_source=github&utm_medium=cookbook&utm_campaign=product_label_guide&utm_content=readme#builder). Generation is separate; check live availability, entitlement and pricing before submitting a request.
+
 ## Budget for footage you can use
 
 [Open the free usable-footage calculator](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/). Enter charged paid attempts, confirmed restored credits and the unique seconds you approved. It reports allocated generation cost, cost per approved second, minimum whole-pack cash and unused credits separately. Creative rejects stay in the budget; a credit restoration is not a cash refund. Free trials and editing costs are excluded.
