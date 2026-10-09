@@ -46,7 +46,10 @@
     <section class="card" aria-labelledby="prepare-heading">
       <h2 id="prepare-heading">Prepare a small text-only pilot</h2>
       <p>Define what a usable result must show before trying it. The proposed paper-boat test below is a simple geometry, water-contact and camera-motion exercise; this particular request has not been generated.</p>
-      <span class="pill">30-second request · 16:9 · 1280×720</span>
+      <label for="pilot-model">Model and length</label>
+      <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option></select>
+      <p style="margin-top:12px"><span id="pilot-terms" class="pill">30-second request · 1 credit if paid · 16:9 · requested 1280×720</span></p>
+      <p class="muted">This helper explicitly selects the model and its supported duration. One eligible introductory trial is shared across both models. These are request settings, not a guarantee of delivery, visual quality or exact output dimensions.</p>
       <label for="request-id">Request ID</label>
       <input id="request-id" value="paper_boat_pilot_001" maxlength="80" spellcheck="false" autocomplete="off" aria-describedby="id-help">
       <small id="id-help">For these command examples, use 1–80 letters, digits, underscores or hyphens. Choose an ID unused in your account for a new pilot. Keep it with the exact JSON.</small>
@@ -57,7 +60,7 @@
       <pre id="request-json" aria-label="Prepared request JSON"></pre>
       <button type="button" id="download-request">Download request.json</button>
       <p id="request-status" class="status" role="status" aria-live="polite"></p>
-      <p class="muted">Edits update the preview. Save your chosen version before submitting. If you change the prompt or settings for another attempt, use a new ID and keep both records.</p>
+      <p class="muted">Edits update the preview. Save your chosen version before submitting. If you change the model, prompt or settings for another attempt, use a new ID and keep both records. Changing this local preview does not change a previously submitted job.</p>
     </section>
 
     <section class="card" aria-labelledby="commands-heading">
@@ -89,12 +92,12 @@
         <tr><td>429 or 503</td><td>Read the response, wait, and check the existing request before retrying.</td></tr>
         <tr><td>Ready</td><td>Save the MP4 and review it against your checks before using or publishing it.</td></tr>
       </tbody></table>
-      <p>Service timing and available formats can change. The live documentation and your actual receipt take precedence over this example. A free trial is separate from paid packs: $2.50 for one generation, or $30 for twenty ($1.50 each), with no subscription.</p>
+      <p>Service timing and available formats can change. The live documentation and your actual receipt take precedence over this example. One-time packs cost $2.50 for 1 credit or $30 for 20 credits, with no subscription. Seedance 2.0 uses 0.5 credit per 15-second request; Seedance 2.5 uses 1 credit per 30-second request. The $30 pack can fund 40 shorter requests, 20 longer requests or a mix. The starter keeps <code>free_trial: true</code> and never silently falls back to paid generation.</p>
       <p><a data-companion-link href="./">Count paid attempts and approved seconds with the free calculator →</a><br><a data-companion-link href="./first-scene.html">New to prompts? Plan your first scene →</a></p>
       <div class="actions"><a class="button" data-site-link href="https://seedancecheap.com/?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=closing_offer">Inspect the examples and current offer →</a></div>
     </section>
   </main>
-  <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. API commands were checked against the <a data-site-link href="https://seedancecheap.com/api?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> on October 8, 2026; no live generation was run for this guide. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
+  <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. Model and duration fields were checked against the <a data-site-link href="https://seedancecheap.com/api?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> on October 9, 2026; no live generation was run for this guide. The historical video examples elsewhere in this cookbook use Seedance 2.5 and do not verify Seedance 2.0 output. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
 </div>
 <script type="module" src="./api-request.mjs"></script>
 </body>

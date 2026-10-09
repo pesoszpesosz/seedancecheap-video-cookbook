@@ -52,7 +52,9 @@ Use **Share this budget** to create a link that opens the same numbers and selec
 
 [Open the free API request guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html). Prepare a text-only pilot JSON locally, save its request ID, and use the create, recovery, status and download examples in Bash or Windows PowerShell. A lost create response is a reason to look up the saved request, rather than start a new request ID.
 
-The builder asks for no API key and sends no generation request. Its proposed pilot selects the eligible free-trial route and opts out of automatic service retries. Run commands separately with your own account and applicable entitlement. API commands were checked against the [live documentation](https://seedancecheap.com/api?utm_source=github&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=readme) on October 8, 2026; no generation was performed for this guide.
+Choose Seedance 2.0 for a 15-second request at 0.5 credit, or Seedance 2.5 for a 30-second request at 1 credit. The downloaded JSON includes the selected model and matching duration. Save a new request ID for changed inputs; switching the local preview never changes an existing job.
+
+The builder asks for no API key and sends no generation request. Its proposed pilot selects the eligible free-trial route and opts out of automatic service retries. One successful introductory trial is shared across both models. Run commands separately with your own account and applicable entitlement. Model and duration fields were checked against the [live documentation](https://seedancecheap.com/api?utm_source=github&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=readme) on October 9, 2026; no generation was performed for this guide. The historical scenes in this cookbook are Seedance 2.5 examples, not proof of Seedance 2.0 output.
 
 ## Plan a music-video chorus
 
@@ -76,7 +78,7 @@ For recurring fictional characters, keep a fixed text description and restate ea
 
 [Inspect the examples and open the Studio](https://seedancecheap.com/?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_start). Eligible new accounts can try one generation without a card. Further generations use one-time packs, paid by card or crypto, with no subscription:
 
-| Credits | Pack total (USD) | Per generation (USD) |
+| Credits | Pack total (USD) | Per 30-second Seedance 2.5 request (USD) |
 | --- | ---: | ---: |
 | 1 | 2.50 | 2.50 |
 | 2 | 5.00 | 2.50 |
@@ -84,7 +86,7 @@ For recurring fictional characters, keep a fixed text description and restate ea
 | 10 | 20.00 | 2.00 |
 | 20 | 30.00 | 1.50 |
 
-The $1.50 rate requires the $30 pack. One credit pays for one 30-second request. Check [the current offer](https://seedancecheap.com/price-guide?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_pricing) before purchasing; this snapshot was checked October 6, 2026.
+The $1.50 rate requires the $30 pack. One credit pays for one 30-second Seedance 2.5 request or two 15-second Seedance 2.0 requests. The $30 pack can fund 20 longer requests, 40 shorter requests or a mix. Check [the current offer](https://seedancecheap.com/price-guide?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_pricing) before purchasing; this snapshot was checked October 9, 2026.
 
 Current input limits: optional still references may show objects, products, clothing alone, scenery or locations. Face/person images and input video are unsupported. Fictional people can be described in text; exact likeness, voices and choreography are not guaranteed. Check the live format choices; historical sample dimensions do not establish current availability. Generation may take 10–50 minutes or longer. Delivered private MP4s have a 24-hour download window. Confirmed technical failures restore the original generation credit or charge, rather than automatically refunding a pack purchase in cash.
 
