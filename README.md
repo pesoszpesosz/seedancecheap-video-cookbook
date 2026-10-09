@@ -50,6 +50,8 @@ Use **Share this budget** to create a link that opens the same numbers and selec
 
 [Open a hypothetical half-credit batch](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/#budget=2&credits=5&cents=1125&attempts=6&restored=1&seconds=18&duration=15&creditsPerClip=0.5): six 15-second attempts, one credit restored for two attempts and 18 approved seconds allocate $4.50, or $0.25 per approved second. Minimum cash at the selected five-credit pack remains $11.25. These examples assume equal approved seconds; they do not establish equal model quality. Old shared links retain their original one-credit-per-clip assumption, including custom durations.
 
+For alternatives you have already reviewed, [compare up to three workflows with editing time](https://seedancecheap.com/calculator?utm_source=github&utm_medium=cookbook&utm_campaign=usable_footage_calculator&utm_content=reviewed_costs#usable-costs). Our separate free worksheet uses actual consumed request cost, accepted shots/seconds and optional editing minutes at your hourly rate. Download a CSV without signing up. Entered figures stay in the page and are not sent to us; optional action measurement follows that site's privacy choices. It does not predict the next take or establish equivalent quality.
+
 ## Recover the same API job
 
 [Open the free API request guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html). Prepare a text-only pilot JSON locally, save its request ID, and use the create, recovery, status and download examples in Bash or Windows PowerShell. A lost create response is a reason to look up the saved request, rather than start a new request ID.
