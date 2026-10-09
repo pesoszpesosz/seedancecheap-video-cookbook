@@ -1,4 +1,4 @@
-import { calculate } from './cost.mjs';
+import { calculate } from './cost.mjs?v=20261009-half-credit';
 
 const fields = ['credits', 'cents', 'attempts', 'restored', 'seconds', 'duration'];
 
