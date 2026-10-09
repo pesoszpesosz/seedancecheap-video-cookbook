@@ -50,6 +50,7 @@ if (typeof document !== 'undefined') {
   const prompt = document.getElementById('pilot-prompt');
   const shell = document.getElementById('command-shell');
   const model = document.getElementById('pilot-model');
+  const availability = document.getElementById('model-availability');
   const terms = document.getElementById('pilot-terms');
   const preview = document.getElementById('request-json');
   const download = document.getElementById('download-request');
@@ -60,6 +61,9 @@ if (typeof document !== 'undefined') {
     try {
       prepared = makeRequest(prompt.value, requestId.value, model.value);
       const credit=pilotModels[model.value].credits;
+      const availabilityUrl = new URL(availability.href);
+      availabilityUrl.searchParams.set('model', model.value);
+      availability.href = availabilityUrl.toString();
       terms.textContent=`${prepared.duration}-second request · ${credit} credit if paid · 16:9 · requested 1280×720`;
       preview.textContent = JSON.stringify(prepared, null, 2);
       const commands = commandExamples(prepared.request_id, shell.value);

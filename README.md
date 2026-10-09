@@ -54,6 +54,8 @@ Use **Share this budget** to create a link that opens the same numbers and selec
 
 Choose Seedance 2.0 for a 15-second request at 0.5 credit, or Seedance 2.5 for a 30-second request at 1 credit. The downloaded JSON includes the selected model and matching duration. Save a new request ID for changed inputs; switching the local preview never changes an existing job.
 
+Use the guide’s model-specific studio link to check live availability before submitting or buying credits. Capacity changes independently of the supported request format. If availability is unavailable or unknown, wait before starting a new job and keep any existing request ID unchanged.
+
 The builder asks for no API key and sends no generation request. Its proposed pilot selects the eligible free-trial route and opts out of automatic service retries. One successful introductory trial is shared across both models. Run commands separately with your own account and applicable entitlement. Model and duration fields were checked against the [live documentation](https://seedancecheap.com/api?utm_source=github&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=readme) on October 9, 2026; no generation was performed for this guide. The historical scenes in this cookbook are Seedance 2.5 examples, not proof of Seedance 2.0 output.
 
 ## Plan a music-video chorus
