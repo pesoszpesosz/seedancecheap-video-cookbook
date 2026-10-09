@@ -23,7 +23,7 @@ function render() {
   }
   $('restored').step = terms ? String(terms.creditsPerClip) : 'any';
   $('model-availability').hidden = !terms;
-  if (terms) $('model-availability').href = worksheetLink(`https://seedancecheap.com/?model=${$('model').value}&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability#studio`, location.search);
+  if (terms) $('model-availability').href = worksheetLink(`https://seedancecheap.com/app.html?model=${$('model').value}&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability`, location.search);
   $('shared-budget').hidden = true;
   currentBudget = null;
   $('share-budget').disabled = true;
