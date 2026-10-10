@@ -88,9 +88,19 @@ if (typeof document !== 'undefined') {
   for (const field of [requestId, prompt]) field.addEventListener('input', render);
   shell.addEventListener('change', render);
   model.addEventListener('change', render);
+  function rememberRequestId() {
+    try { history.replaceState({...history.state, seedancecheapPilotRequestId:requestId.value}, ''); }
+    catch {} // A browser restriction must not prevent local request preparation.
+  }
+  requestId.addEventListener('input', rememberRequestId);
+  window.addEventListener('pagehide', rememberRequestId);
   // History can restore form controls after the initial module render.
-  // Reconcile the JSON and links after that restoration finishes.
-  window.addEventListener('pageshow', () => setTimeout(render, 0));
+  // The ID has autocomplete off, so preserve it in this page's history entry.
+  window.addEventListener('pageshow', () => setTimeout(() => {
+    const savedId = history.state?.seedancecheapPilotRequestId;
+    if (typeof savedId === 'string' && savedId.length <= 80) requestId.value = savedId;
+    render();
+  }, 0));
   download.addEventListener('click', () => {
     render();
     if (!prepared) return;
