@@ -88,6 +88,9 @@ if (typeof document !== 'undefined') {
   for (const field of [requestId, prompt]) field.addEventListener('input', render);
   shell.addEventListener('change', render);
   model.addEventListener('change', render);
+  // History can restore form controls after the initial module render.
+  // Reconcile the JSON and links after that restoration finishes.
+  window.addEventListener('pageshow', () => setTimeout(render, 0));
   download.addEventListener('click', () => {
     render();
     if (!prepared) return;
