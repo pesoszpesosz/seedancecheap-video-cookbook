@@ -5,7 +5,7 @@ export const pilotModels = {
   'seedance-2.0': {duration:15, credits:0.5}
 };
 
-export function makeRequest(prompt, requestId, model='seedance-2.5') {
+export function makeRequest(prompt, requestId, model='seedance-2.5', funding='') {
   if (!/^[A-Za-z0-9_-]{1,80}$/.test(requestId)) {
     throw new Error('Use 1–80 letters, digits, underscores or hyphens for this example ID.');
   }
@@ -13,6 +13,7 @@ export function makeRequest(prompt, requestId, model='seedance-2.5') {
     throw new Error('Write a scene prompt of 1–3000 characters.');
   }
   if (!Object.hasOwn(pilotModels, model)) throw new Error('Choose Seedance 2.0 or Seedance 2.5.');
+  if (!['trial','paid'].includes(funding)) throw new Error('Choose trial or paid funding after checking the live terms.');
   return {
     model,
     duration:pilotModels[model].duration,
@@ -20,7 +21,7 @@ export function makeRequest(prompt, requestId, model='seedance-2.5') {
     ratio: '16:9',
     size: '1280x720',
     request_id: requestId,
-    free_trial: true,
+    free_trial: funding === 'trial',
     auto_retry: false
   };
 }
@@ -50,6 +51,7 @@ if (typeof document !== 'undefined') {
   const prompt = document.getElementById('pilot-prompt');
   const shell = document.getElementById('command-shell');
   const model = document.getElementById('pilot-model');
+  const funding = document.getElementById('pilot-funding');
   const availability = document.getElementById('model-availability');
   const terms = document.getElementById('pilot-terms');
   const preview = document.getElementById('request-json');
@@ -59,12 +61,14 @@ if (typeof document !== 'undefined') {
 
   function render() {
     try {
-      prepared = makeRequest(prompt.value, requestId.value, model.value);
-      const credit=pilotModels[model.value].credits;
+      const details=pilotModels[model.value];
+      if (!details) throw new Error('Choose Seedance 2.0 or Seedance 2.5.');
+      const credit=details.credits;
       const availabilityUrl = new URL(availability.href);
       availabilityUrl.searchParams.set('model', model.value);
       availability.href = availabilityUrl.toString();
-      terms.textContent=`${prepared.duration}-second request · ${credit} credit if paid · 16:9 · requested 1280×720`;
+      terms.textContent=`${details.duration}-second request · ${credit} credit if paid · 16:9 · requested 1280×720`;
+      prepared = makeRequest(prompt.value, requestId.value, model.value, funding.value);
       preview.textContent = JSON.stringify(prepared, null, 2);
       const commands = commandExamples(prepared.request_id, shell.value);
       for (const name of Object.keys(commands)) {
@@ -72,7 +76,9 @@ if (typeof document !== 'undefined') {
       }
       download.disabled = false;
       status.classList.remove('error');
-      status.textContent = 'Prepared locally. Download the exact JSON before submitting.';
+      status.textContent = funding.value === 'paid'
+        ? 'Prepared locally for paid funding. Running the submit command can use your credits or balance. Save the exact JSON first.'
+        : 'Prepared locally for a trial. Trials must be enabled and your account eligible; this route never falls back to paid funding.';
     } catch (error) {
       prepared = null;
       preview.textContent = '';
@@ -88,6 +94,7 @@ if (typeof document !== 'undefined') {
   for (const field of [requestId, prompt]) field.addEventListener('input', render);
   shell.addEventListener('change', render);
   model.addEventListener('change', render);
+  funding.addEventListener('change', render);
   function rememberRequestId() {
     try { history.replaceState({...history.state, seedancecheapPilotRequestId:requestId.value}, ''); }
     catch {} // A browser restriction must not prevent local request preparation.

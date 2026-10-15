@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Submit once, recover the same AI video job | SeedanceCheap</title>
-  <meta name="description" content="Prepare a free-trial AI video request, save its request ID, recover a lost response, and download a ready result. Free local JSON builder and curl examples.">
+  <meta name="description" content="Choose trial or paid funding, prepare AI video JSON locally, save its request ID, recover a lost response, and download a ready result. Free guide and curl examples.">
   <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html">
   <style>
     :root{color-scheme:light;--ink:#152d30;--muted:#52676a;--line:#d7e3dc;--paper:#f4f7f2;--green:#c5ef6b}
@@ -32,7 +32,7 @@
     <h1>Submit once.<br><span>Recover the same job.</span></h1>
     <p class="intro">A lost HTTP response should leave you with a recovery path. Prepare your request before sending it, keep the receipt, and use the same job while you wait.</p>
     <div class="actions">
-      <a class="button" data-site-link href="https://seedancecheap.com/?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=trial_offer">Check the eligible free-trial offer →</a>
+      <a class="button" data-site-link href="https://seedancecheap.com/?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=trial_offer">Check live generation and funding terms →</a>
       <a class="button secondary" data-site-link href="https://seedancecheap.com/api?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=api_docs">Read the live API documentation</a>
     </div>
     <p class="muted">This page prepares text locally. It does not ask for a key, sign in, send API requests or generate a video. The commands are examples for you to run separately.</p>
@@ -50,13 +50,16 @@
       <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option></select>
       <p style="margin-top:12px"><span id="pilot-terms" class="pill">30-second request · 1 credit if paid · 16:9 · requested 1280×720</span></p>
       <p><strong>Before submitting or buying credits:</strong> <a id="model-availability" data-site-link href="https://seedancecheap.com/api?model=seedance-2.5&amp;utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=availability#availability">Check this model’s live availability without signing in →</a> Availability changes; this builder prepares requests locally. If capacity is unavailable or cannot be verified, wait before starting a new request. Keep any existing job’s request ID and settings unchanged.</p>
-      <p class="muted">This helper explicitly selects the model and its supported duration. One eligible introductory trial is shared across both models. These are request settings, not a guarantee of delivery, visual quality or exact output dimensions.</p>
+      <p class="muted">Model and duration choices describe the request contract; new requests depend on current admission. Check current trial availability separately from capacity. These settings do not guarantee delivery, visual quality or exact output dimensions.</p>
+      <label for="pilot-funding">Funding route</label>
+      <select id="pilot-funding"><option value="" selected>Choose funding</option><option value="trial">Trial: if enabled and eligible</option><option value="paid">Paid: credits or balance</option></select>
+      <p class="muted">This free builder prepares JSON only after you choose. Trial mode never falls back to paid funding. Paid mode can use your credits or balance when you run the command separately.</p>
       <label for="request-id">Request ID</label>
       <input id="request-id" value="paper_boat_pilot_001" maxlength="80" spellcheck="false" autocomplete="off" aria-describedby="id-help">
       <small id="id-help">For these command examples, use 1–80 letters, digits, underscores or hyphens. Choose an ID unused in your account for a new pilot. Keep it with the exact JSON.</small>
       <label for="pilot-prompt">Your proposed scene prompt</label>
       <textarea id="pilot-prompt" maxlength="3000" spellcheck="false">A single folded paper boat moves slowly across a calm pond at dawn. Keep the boat shape stable and its base in contact with the water. One gentle camera push, soft reflected light, no cuts or on-screen text.</textarea>
-      <p class="muted" style="margin-top:12px">This starter sets <code>free_trial: true</code> and <code>auto_retry: false</code>. Eligibility is checked by the service. Automatic service retries are opted out for this pilot; review the live documentation if you want them before your first submission.</p>
+      <p class="muted" style="margin-top:12px">Your choice sets <code>free_trial</code> explicitly: <code>true</code> for a trial or <code>false</code> for paid funding. Trials require both live availability and account eligibility. This pilot sets <code>auto_retry: false</code>; review retry terms before your first submission.</p>
       <h3>The JSON you will save</h3>
       <pre id="request-json" aria-label="Prepared request JSON"></pre>
       <button type="button" id="download-request">Download request.json</button>
@@ -88,18 +91,18 @@
       <h2 id="decisions-heading">Make the next decision from the receipt</h2>
       <table><thead><tr><th>What you see</th><th>Next step</th></tr></thead><tbody>
         <tr><td>Active or uncertain</td><td>Keep the same job and inspect its status. A slow request is not finished footage.</td></tr>
-        <tr><td>403 on the trial</td><td>Stop and review eligibility. This starter does not fall back to paid generation.</td></tr>
+        <tr><td>403 on the trial</td><td>Stop and review whether trials are enabled and your account is eligible. Trial mode does not fall back to paid generation.</td></tr>
         <tr><td>409 conflict</td><td>Compare your saved JSON. Reusing an ID with changed inputs is not a new pilot.</td></tr>
         <tr><td>429 or 503</td><td>Read the response, wait, and check the existing request before retrying.</td></tr>
         <tr><td>Ready</td><td>Save the MP4 and review it against your checks before using or publishing it.</td></tr>
       </tbody></table>
-      <p>Service timing and available formats can change. The live documentation and your actual receipt take precedence over this example. One-time packs cost $2.50 for 1 credit or $30 for 20 credits, with no subscription. Seedance 2.0 uses 0.5 credit per 15-second request; Seedance 2.5 uses 1 credit per 30-second request. The $30 pack can fund 40 shorter requests, 20 longer requests or a mix. The starter keeps <code>free_trial: true</code> and never silently falls back to paid generation.</p>
+      <p>Service timing and available formats can change. The live documentation and your actual receipt take precedence over this example. One-time packs cost $2.50 for 1 credit or $30 for 20 credits, with no subscription. Seedance 2.0 uses 0.5 credit per 15-second request; Seedance 2.5 uses 1 credit per 30-second request. These are request budgets subject to current model admission. Review your selected funding route in the saved JSON. One successful introductory trial, when enabled and eligible, is shared across both models.</p>
       <p><a data-companion-link href="./">Count paid attempts and approved seconds with the free calculator →</a><br><a data-companion-link href="./first-scene.html">New to prompts? Plan your first scene →</a></p>
       <div class="actions"><a class="button" data-site-link href="https://seedancecheap.com/?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=closing_offer">Inspect the examples and current offer →</a></div>
     </section>
   </main>
   <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. Model and duration fields were checked against the <a data-site-link href="https://seedancecheap.com/api?utm_source=github&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> on October 9, 2026; no live generation was run for this guide. The historical video examples elsewhere in this cookbook use Seedance 2.5 and do not verify Seedance 2.0 output. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
 </div>
-<script type="module" src="./api-request.mjs?v=20261010history2"></script>
+<script type="module" src="./api-request.mjs?v=20261016funding1"></script>
 </body>
 </html>
