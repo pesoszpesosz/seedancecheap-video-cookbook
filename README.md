@@ -62,6 +62,10 @@ Use the guide’s model-specific studio link to check live availability before s
 
 The builder asks for no API key and sends no generation request. Choose trial or paid funding explicitly before JSON is prepared; no funding route is selected by default. Trial mode requires trials to be enabled and your account eligible, and never falls back to paid funding. Paid mode can use your credits or balance when you run the command separately. The pilot opts out of automatic service retries. One successful introductory trial, when available, is shared across both models. Check current funding terms and model admission in the [live documentation](https://seedancecheap.com/api?utm_source=github&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=readme). No generation was performed for this guide. The historical scenes in this cookbook are Seedance 2.5 examples, not proof of Seedance 2.0 output.
 
+## Check admission before requesting a video
+
+[Download the Python preflight example and 20 synthetic decision cases](examples/admission-preflight/). Run the checks with Python's standard library, then read the [original guide](https://seedancecheap.gitbook.io/seedancecheap-docs/) for the response fields and limitations. This code handles already-loaded dictionaries locally; it does not check live capacity, submit a request, charge an account or retry a job.
+
 ## Plan a music-video chorus
 
 [Open the free chorus-pilot worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/chorus-pilot.html). Map 12–15 seconds of your own recording into three visible beats, review a still animatic, then decide which shots need animation. Edit the plan in your browser and download your notes, or use the [blank text template](docs/chorus-pilot.txt). No account, media upload or generation is required.
@@ -82,7 +86,7 @@ For recurring fictional characters, keep a fixed text description and restate ea
 
 ## Try a scene in SeedanceCheap
 
-[Inspect the examples and open the Studio](https://seedancecheap.com/?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_start). Eligible new accounts can try one generation without a card. Further generations use one-time packs, paid by card or crypto, with no subscription:
+[Inspect the examples and open the Studio](https://seedancecheap.com/?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_start). Introductory trials are temporarily paused at our 16 October 2026 native check. Check current Studio admission before purchasing or submitting a new generation. When available, funded requests use one-time packs, paid by card or crypto, with no subscription:
 
 | Credits | Pack total (USD) | Per 30-second Seedance 2.5 request (USD) |
 | --- | ---: | ---: |
