@@ -66,6 +66,10 @@ The builder asks for no API key and sends no generation request. Choose trial or
 
 [Download the Python preflight example and 20 synthetic decision cases](examples/admission-preflight/). Run the checks with Python's standard library, then read the [original guide](https://seedancecheap.gitbook.io/seedancecheap-docs/) for the response fields and limitations. This code handles already-loaded dictionaries locally; it does not check live capacity, submit a request, charge an account or retry a job.
 
+## Count original requests separately from retries
+
+[Run the SQLite counting experiment](examples/original-request-metrics/). Four invented original requests and six execution attempts demonstrate how a join can inflate completed-file counts. Seven tests cover retries, expiry, account-scoped request keys and unstarted jobs. The example uses Python's standard library and makes no network or generation calls; completed-file records do not establish downloads, creative acceptance or sales.
+
 ## Plan a music-video chorus
 
 [Open the free chorus-pilot worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/chorus-pilot.html). Map 12–15 seconds of your own recording into three visible beats, review a still animatic, then decide which shots need animation. Edit the plan in your browser and download your notes, or use the [blank text template](docs/chorus-pilot.txt). No account, media upload or generation is required.
