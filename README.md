@@ -112,6 +112,8 @@ The car and boat prompts are copied from the original public example pages linke
 
 With Node.js installed, run `npm start` and open `http://localhost:8080`. This dependency-free preview serves the existing calculator and guides from `docs/`; it does not submit API requests, collect API keys, install dependencies or generate media. Run `npm test` to check the examples. The same launch command is suitable for a public StackBlitz import.
 
+[Open the editable calculator on StackBlitz](https://stackblitz.com/edit/seedancecheap-usable-video-cost?file=index.html). This standalone copy reuses the calculator above and links to the existing public guides; it does not generate footage or establish current model availability.
+
 ## Maintaining public page discovery
 
 Run `node scripts/update-discovery.mjs` after adding or changing a page's title or description. It updates canonical URLs, share metadata and the [seven-page sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap.xml) from the actual HTML pages, without changing their bodies or inventing modification dates. The shared image is the existing SeedanceCheap logo.
