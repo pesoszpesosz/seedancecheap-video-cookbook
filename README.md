@@ -107,3 +107,9 @@ Start with text-to-video and check live image-input availability before planning
 ## Sources
 
 The car and boat prompts are copied from the original public example pages linked above. The [courier prompt](https://seedancecheap.com/showcase/rooftop-courier-prompt.txt) was already public. The templates contain planning suggestions; they have not been tested against a new generation.
+
+## Maintaining public page discovery
+
+Run `node scripts/update-discovery.mjs` after adding or changing a page's title or description. It updates canonical URLs, share metadata and the [seven-page sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap.xml) from the actual HTML pages, without changing their bodies or inventing modification dates. The shared image is the existing SeedanceCheap logo.
+
+This is a GitHub project site. A `robots.txt` inside this project would not control crawling of the host. Sitemap availability and share metadata do not prove search-engine indexing, ranking, qualified visitors or purchases.
