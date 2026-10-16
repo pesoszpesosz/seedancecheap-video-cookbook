@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { calculate } from '../docs/cost.mjs';
 import { readSharedBudget, sharedBudgetLink } from '../docs/share.mjs';
-import { worksheetLink } from '../docs/links.mjs';
+import { worksheetLink, applyWorksheetLinks } from '../docs/links.mjs';
 
 const example = { credits: 5, cents: 1125, attempts: 6, restored: 2, seconds: 18, duration: 30 };
 const page = 'https://pesoszpesosz.github.io/seedancecheap-video-cookbook/';
@@ -70,6 +70,29 @@ test('itch.io budgets retain their numbers and source through sharing and websit
   assert.equal(site.searchParams.get('model'), 'seedance-2.5');
   assert.equal(site.hash, '#availability');
   assert.equal(shared.href.includes('secret'), false);
+});
+
+test('Postman readers retain their source through a shared budget without private query data', () => {
+  const shared = new URL(sharedBudgetLink(page + '?from=postman&private_note=do-not-share&token=secret', example));
+  assert.equal(shared.search, '?from=postman');
+  assert.deepEqual(readSharedBudget(shared.hash), example);
+  const site = new URL(worksheetLink('https://seedancecheap.com/api?model=seedance-2.5#availability', shared.search));
+  assert.equal(site.searchParams.get('utm_source'), 'postman');
+  assert.equal(site.searchParams.get('model'), 'seedance-2.5');
+  assert.equal(site.hash, '#availability');
+  assert.equal(shared.href.includes('secret'), false);
+});
+
+test('a Postman request-planner visit keeps its source through another guide and the website', () => {
+  const siteLinks = [{ href: 'https://seedancecheap.com/?utm_source=github&utm_medium=cookbook' }];
+  const companions = [{ href: page + 'first-scene.html' }];
+  const root = { querySelectorAll: selector => selector === '[data-site-link]' ? siteLinks : companions };
+  applyWorksheetLinks(root, '?from=postman&private_note=do-not-share&token=secret');
+  assert.equal(new URL(siteLinks[0].href).searchParams.get('utm_source'), 'postman');
+  assert.equal(new URL(siteLinks[0].href).searchParams.get('utm_medium'), 'cookbook');
+  assert.equal(new URL(companions[0].href).search, '?from=postman');
+  assert.equal(new URL(worksheetLink('https://seedancecheap.com/characters', new URL(companions[0].href).search)).searchParams.get('utm_source'), 'postman');
+  assert.equal(JSON.stringify([siteLinks, companions]).includes('secret'), false);
 });
 
 test('incomplete, repeated, impossible and unsupported budgets are rejected', () => {
