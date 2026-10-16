@@ -1,4 +1,5 @@
 import { calculate } from './cost.mjs?v=20261009-half-credit';
+import { isWorksheetChannel } from './links.mjs?v=20261016flipboard1';
 
 const fields = ['credits', 'cents', 'attempts', 'restored', 'seconds', 'duration'];
 
@@ -26,7 +27,7 @@ export function sharedBudgetLink(pageUrl, budget) {
   const url = new URL(pageUrl);
   const channel = url.searchParams.get('from');
   url.search = '';
-  if (['facebook', 'reddit', 'youtube', 'github'].includes(channel)) url.searchParams.set('from', channel);
+  if (isWorksheetChannel(channel)) url.searchParams.set('from', channel);
   const version = budget.creditsPerClip === undefined ? '1' : '2';
   const parameters = new URLSearchParams({ budget: version });
   for (const field of fields) parameters.set(field, String(budget[field]));

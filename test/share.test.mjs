@@ -39,6 +39,16 @@ test('only the known channel is retained, not arbitrary URL data', () => {
   assert.equal(new URL(sharedBudgetLink(page + '?from=unknown', example)).search, '');
 });
 
+test('Flipboard readers keep their source through a shared budget and the website route', () => {
+  const shared = new URL(sharedBudgetLink(page + '?from=flipboard&private_note=do-not-share&token=secret', example));
+  assert.equal(shared.search, '?from=flipboard');
+  const site = new URL(worksheetLink('https://seedancecheap.com/api?model=seedance-2.5#availability', shared.search));
+  assert.equal(site.searchParams.get('utm_source'), 'flipboard');
+  assert.equal(site.searchParams.get('model'), 'seedance-2.5');
+  assert.equal(site.hash, '#availability');
+  assert.equal(shared.href.includes('secret'), false);
+});
+
 test('incomplete, repeated, impossible and unsupported budgets are rejected', () => {
   const valid = new URL(sharedBudgetLink(page, example)).hash;
   for (const invalid of [
