@@ -108,6 +108,10 @@ Start with text-to-video and check live image-input availability before planning
 
 The car and boat prompts are copied from the original public example pages linked above. The [courier prompt](https://seedancecheap.com/showcase/rooftop-courier-prompt.txt) was already public. The templates contain planning suggestions; they have not been tested against a new generation.
 
+## Run the tools locally
+
+With Node.js installed, run `npm start` and open `http://localhost:8080`. This dependency-free preview serves the existing calculator and guides from `docs/`; it does not submit API requests, collect API keys, install dependencies or generate media. Run `npm test` to check the examples. The same launch command is suitable for a public StackBlitz import.
+
 ## Maintaining public page discovery
 
 Run `node scripts/update-discovery.mjs` after adding or changing a page's title or description. It updates canonical URLs, share metadata and the [seven-page sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap.xml) from the actual HTML pages, without changing their bodies or inventing modification dates. The shared image is the existing SeedanceCheap logo.

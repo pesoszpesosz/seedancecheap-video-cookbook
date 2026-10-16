@@ -1,0 +1,9 @@
+{
+  "name": "seedancecheap-video-cookbook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve-cookbook.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}
