@@ -49,6 +49,18 @@ test('Flipboard readers keep their source through a shared budget and the websit
   assert.equal(shared.href.includes('secret'), false);
 });
 
+test('StackBlitz readers retain only their reviewed source in a stable public budget link', () => {
+  const shared = new URL(sharedBudgetLink(page + '?from=stackblitz&private_note=do-not-share&token=secret', example));
+  assert.equal(shared.origin, 'https://pesoszpesosz.github.io');
+  assert.equal(shared.search, '?from=stackblitz');
+  assert.deepEqual(readSharedBudget(shared.hash), example);
+  const site = new URL(worksheetLink('https://seedancecheap.com/api?model=seedance-2.5#availability', shared.search));
+  assert.equal(site.searchParams.get('utm_source'), 'stackblitz');
+  assert.equal(site.searchParams.get('model'), 'seedance-2.5');
+  assert.equal(site.hash, '#availability');
+  assert.equal(shared.href.includes('secret'), false);
+});
+
 test('incomplete, repeated, impossible and unsupported budgets are rejected', () => {
   const valid = new URL(sharedBudgetLink(page, example)).hash;
   for (const invalid of [
