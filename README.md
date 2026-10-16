@@ -70,6 +70,12 @@ The builder asks for no API key and sends no generation request. Choose trial or
 
 [Run the SQLite counting experiment](examples/original-request-metrics/). Four invented original requests and six execution attempts demonstrate how a join can inflate completed-file counts. Seven tests cover retries, expiry, account-scoped request keys and unstarted jobs. The example uses Python's standard library and makes no network or generation calls; completed-file records do not establish downloads, creative acceptance or sales.
 
+## Inspect a delivered video locally
+
+[Download the video-metadata example](examples/video-delivery-check/). Use an existing ffprobe installation to write a local JSON report, then summarize its encoded dimensions, rotation metadata, duration and audio-stream count with Python's standard library. A synthetic report is included for a quick offline run; no footage upload, API request or generation is required.
+
+The code preserves unknown values and skips an attached cover image. Metadata does not prove native generation resolution, audible or synchronized audio, or creative quality. Read the [complete inspection guide](https://seedancecheap.wordpress.com/2026/10/16/check-an-ai-videos-resolution-duration-and-audio-before-you-use-it/) and watch and listen to the entire result before accepting a shot.
+
 ## Plan a music-video chorus
 
 [Open the free chorus-pilot worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/chorus-pilot.html). Map 12–15 seconds of your own recording into three visible beats, review a still animatic, then decide which shots need animation. Edit the plan in your browser and download your notes, or use the [blank text template](docs/chorus-pilot.txt). No account, media upload or generation is required.
