@@ -1,5 +1,6 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
+import { realpathSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const root = new URL('../docs/', import.meta.url);
@@ -28,7 +29,8 @@ export function cookbookServer() {
   });
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const port = Number(process.env.PORT || 8080);
-  cookbookServer().listen(port, '0.0.0.0', () => console.log(`Cookbook preview: http://localhost:${port}`));
+  const server = cookbookServer();
+  server.listen(port, '0.0.0.0', () => console.log(`Cookbook preview: http://localhost:${server.address().port}`));
 }
