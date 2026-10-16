@@ -1,6 +1,6 @@
 import { packs, clipTerms, calculate } from './cost.mjs?v=20261009-half-credit';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=20261016stackblitz1';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=20261016stackblitz1';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=20261016itchio1';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=20261016itchio1';
 
 applyWorksheetLinks(document, location.search);
 

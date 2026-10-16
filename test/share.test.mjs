@@ -61,6 +61,17 @@ test('StackBlitz readers retain only their reviewed source in a stable public bu
   assert.equal(shared.href.includes('secret'), false);
 });
 
+test('itch.io budgets retain their numbers and source through sharing and website navigation', () => {
+  const shared = new URL(sharedBudgetLink(page + '?from=itchio&private_note=do-not-share&token=secret', example));
+  assert.equal(shared.search, '?from=itchio');
+  assert.deepEqual(readSharedBudget(shared.hash), example);
+  const site = new URL(worksheetLink('https://seedancecheap.com/api?model=seedance-2.5#availability', shared.search));
+  assert.equal(site.searchParams.get('utm_source'), 'itchio');
+  assert.equal(site.searchParams.get('model'), 'seedance-2.5');
+  assert.equal(site.hash, '#availability');
+  assert.equal(shared.href.includes('secret'), false);
+});
+
 test('incomplete, repeated, impossible and unsupported budgets are rejected', () => {
   const valid = new URL(sharedBudgetLink(page, example)).hash;
   for (const invalid of [

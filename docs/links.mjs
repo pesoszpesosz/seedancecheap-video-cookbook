@@ -1,4 +1,4 @@
-const channels = new Set(['facebook', 'reddit', 'youtube', 'github', 'flipboard', 'stackblitz']);
+const channels = new Set(['facebook', 'reddit', 'youtube', 'github', 'flipboard', 'stackblitz', 'itchio']);
 
 export function isWorksheetChannel(channel) {
   return channels.has(channel);
