@@ -1,0 +1,53 @@
+ONE IDEA. THREE DIRECTIONS.
+Free scene-testing recipe from SeedanceCheap, prepared with Codex.
+
+This prompt is a planning exercise, not a newly tested result or guarantee.
+The worksheet is free. Video generation is separate and can consume paid credits.
+
+BASE SCENE
+A small glass city beside calm water. The camera slowly moves forward.
+One continuous shot. No people. No on-screen text.
+
+CHOOSE ONE LIGHTING LINE
+A - Warm sunrise, soft amber reflections, gentle mist above the water.
+B - Cool blue-hour light, pale cyan reflections, a quiet evening atmosphere.
+C - Soft pink clouds, rosy reflections, a luminous dreamlike atmosphere.
+
+FAIR COMPARISON
+- Keep the same model, supported format and duration.
+- Keep the seed fixed only if that control is available.
+- Start with one short request. Review it before deciding to make another.
+- Change one lighting line, not the subject, action and camera together.
+- Check available tools and current costs before any request or purchase.
+
+YOUR REVIEW
+Scene/project:
+Model and format:
+Spending limit in credits:
+
+For each delivered take:
+Subject stays recognizable:
+Camera follows the intended move:
+Lighting matches the chosen mood:
+Motion is clean enough to use:
+Usable section is worth keeping:
+Exact issue to fix, if any:
+
+COST OF THE KEEPER
+Requests:
+Total charged credits, including creative rejects:
+Confirmed credit restorations:
+Net credits consumed:
+Number of keepers:
+
+NEXT DECISION
+Use the keeper, make one specific adjustment, or stop.
+A technically completed clip may still miss your creative brief.
+
+Printable PDF:
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea-three-directions-worksheet.pdf
+
+Explore current Studio tools and costs:
+https://seedancecheap.com/?utm_source=github&utm_medium=cookbook&utm_campaign=one_idea_oct22&utm_content=text_recipe
+
+One-time credits. No subscription. Published October 22, 2026.

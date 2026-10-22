@@ -6,6 +6,12 @@ Three inspectable 30-second scenes, their original text prompts, and small templ
 
 ![Existing AI-generated rooftop courier sample](https://seedancecheap.com/showcase/rooftop-courier.webp)
 
+## One idea. Three directions.
+
+[Download the free two-page scene worksheet (PDF)](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea-three-directions-worksheet.pdf), or copy the [plain-text recipe](docs/one-idea-three-directions.txt). Keep a simple scene fixed, try one lighting direction at a time, and review the camera move, subject, motion and full credit cost before requesting another take. No email, account or upload is needed to read or download it.
+
+The glass-city prompt is a planning exercise, not a newly tested output. Generation is a separate paid activity where applicable; check your selected tool's current availability, input support and credit cost. Published October 22, 2026 by the SeedanceCheap team with Codex AI assistance.
+
 ## Pick one scene
 
 | Scene | Original prompt | Complete output | What to inspect |
