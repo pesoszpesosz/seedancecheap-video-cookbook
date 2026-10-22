@@ -6,6 +6,10 @@ Three inspectable 30-second scenes, their original text prompts, and small templ
 
 ![Existing AI-generated rooftop courier sample](https://seedancecheap.com/showcase/rooftop-courier.webp)
 
+## Seedance 2.5 in motion
+
+[Watch the fight, drama and product showcase](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html). Play existing team footage, inspect the original prompt where available, and edit a short starter for your next scene. The new delivery scene is a complete15-second internal Seedance2.5 model test, native720×1280 with generated audio, first take. The earlier fight study is an8.4-second cut from a historical30-second generation, with upscaling and sound editing disclosed. The new model test does not include Studio checkout/customer delivery. Current request lengths, modes and prices are separate from these examples; check Studio before purchasing or generating.
+
 ## One idea. Three directions.
 
 [Try the free interactive scene planner](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea.html): edit one scene, choose warm sunrise, blue hour or pink clouds, and copy your prompt. [Download the two-page worksheet (PDF)](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea-three-directions-worksheet.pdf), or copy the [plain-text recipe](docs/one-idea-three-directions.txt). Keep a simple scene fixed, try one lighting direction at a time, and review the camera move, subject, motion and full credit cost before requesting another take. No email, account or upload is needed to plan, read or download. The planner does not submit a generation.
