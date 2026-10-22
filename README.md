@@ -1,4 +1,4 @@
-# Seedance 2.5 video prompt cookbook
+# AI video prompt cookbook from SeedanceCheap
 
 Three inspectable 30-second scenes, their original text prompts, and small templates for deciding what to generate next.
 
@@ -32,7 +32,7 @@ The boat is a compact subject/action/camera prompt. The car adds moving reflecti
 
 [Open the free two-shot continuity worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/continuity.html). Keep shared character and scene details, write the end-to-start handoff, and review the actual moving pair in your editor. Edit and download your plan or use the [blank text worksheet](docs/continuity.txt). No sign-in, uploads or generation is required.
 
-The doorway example is a proposed plan, not tested footage. Reference-image and frame controls depend on your chosen tool; text descriptions and reused frames cannot guarantee identical faces or a seamless cut. The linked SeedanceCheap builder is for text planning of fictional adult characters; video generation is separate, and face/person image references and input-video continuation are unsupported in our generation service.
+The doorway example is a proposed plan, not tested footage. Reference-image and frame controls depend on your chosen tool; text descriptions and reused frames cannot guarantee identical faces or a seamless cut. The linked SeedanceCheap builder is for text planning of fictional adult characters; video generation is separate. Face/person image references are unsupported. Selected Omni modes accept private reference video; check the exact input mode in Studio. A reference is not a guarantee of a seamless continuation.
 
 ## Plan an AI car shot
 
@@ -50,7 +50,7 @@ The diagrams and prompt are planning exercises, not generated footage or a teste
 
 [Open the free usable-footage calculator](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/). Enter charged paid attempts, confirmed restored credits and the unique seconds you approved. It reports allocated generation cost, cost per approved second, minimum whole-pack cash and unused credits separately. Creative rejects stay in the budget; a credit restoration is not a cash refund. Free trials and editing costs are excluded.
 
-Choose Seedance 2.5 (30 seconds, one credit), Seedance 2.0 (15 seconds, half a credit), or custom clip terms, then a pack or custom provider rate. Use separate batches for different clip rates. Calculations stay in your browser: no login, uploads, analytics or external scripts. The calculator is an educational companion to this cookbook, with [inspectable source](docs/); prices and clip terms were checked October 9, 2026. Minimum pack cash assumes no starting balance and completed restorations; actual receipts, timing, taxes and fees can differ.
+Choose example terms for Seedance 2.5 (30 seconds, one credit), Seedance 2.0 (15 seconds, half a credit), Veo 3.1 text (8 seconds, quarter credit), or custom clip terms, then a pack or custom provider rate. Presets record request terms, not current availability; check the selected mode in Studio. Use separate batches for different clip rates. Calculations stay in your browser: no login, uploads, analytics or external scripts. The calculator is an educational companion to this cookbook, with [inspectable source](docs/); pack prices and these example clip terms were checked October 22, 2026. Minimum pack cash assumes no starting balance and completed restorations; actual receipts, timing, taxes and fees can differ.
 
 Use **Share this budget** to create a link that opens the same numbers and selected rate. [Open the six-attempt, two-restoration example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/#budget=1&credits=5&cents=1125&attempts=6&restored=2&seconds=18&duration=30): $9 allocated usage, $11.25 minimum cash at that selected pack, and $0.50 per approved second. Links preserve the rate snapshot rather than promising it will remain the live offer. Share only budget numbers you want others to see.
 
@@ -102,19 +102,20 @@ For recurring fictional characters, keep a fixed text description and restate ea
 
 ## Try a scene in SeedanceCheap
 
-[Inspect the examples and open the Studio](https://seedancecheap.com/?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_start). Introductory trials are temporarily paused at our 16 October 2026 native check. Check current Studio admission before purchasing or submitting a new generation. When available, funded requests use one-time packs, paid by card or crypto, with no subscription:
+[Inspect the examples and open the Studio](https://seedancecheap.com/?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_start). Check the selected model, input mode, exact format and credit cost in Studio before purchasing or submitting a new generation. Trial access, where offered, depends on current availability and account eligibility. Funded requests use one-time packs, paid by card or crypto, with no subscription:
 
-| Credits | Pack total (USD) | Per 30-second Seedance 2.5 request (USD) |
+| Credits | Pack total (USD) | Price per credit (USD) |
 | --- | ---: | ---: |
 | 1 | 2.50 | 2.50 |
 | 2 | 5.00 | 2.50 |
 | 5 | 11.25 | 2.25 |
 | 10 | 20.00 | 2.00 |
 | 20 | 30.00 | 1.50 |
+| 100 | 99.00 | 0.99 |
 
-The $1.50 rate requires the $30 pack. One credit pays for one 30-second Seedance 2.5 request or two 15-second Seedance 2.0 requests. The $30 pack can fund 20 longer requests, 40 shorter requests or a mix. Check [the current offer](https://seedancecheap.com/price-guide?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_pricing) before purchasing; this snapshot was checked October 9, 2026.
+The $0.99 rate is per credit and requires the $99 pack. A credit is not a fixed number of videos: each selected mode has its own charge. New Veo 3.1 and Omni Flash tools are listed from 0.25 credit, with availability checked separately. Start with one short request and review the actual result before deciding to make another. Check [the current offer](https://seedancecheap.com/buy?utm_source=github&utm_medium=cookbook&utm_campaign=one_idea_oct22&utm_content=cookbook_pricing) before purchasing; this pack-price snapshot was checked October 22, 2026.
 
-Start with text-to-video and check live image-input availability before planning around a reference. When image inputs are enabled, permitted subjects include objects, products, clothing alone, scenery or locations. Face/person images and input video are unsupported. Fictional people can be described in text; exact likeness, voices and choreography are not guaranteed. Check current formats, funding terms and wait estimates in Studio; historical samples do not establish current availability. Delivered private MP4s are available for 48 hours after delivery; check the exact expiry timestamp in your studio. Reference images expire separately after 24 hours. Confirmed technical failures restore the original generation credit or charge, rather than automatically refunding a pack purchase in cash.
+Start with text-to-video and check live input availability before planning around a reference. Permitted image subjects include objects, products, clothing alone, scenery or locations. Face/person reference images are unsupported. Veo modes can offer start frames, start/end frames or ingredient images; selected Omni modes accept a private reference video. Check the selected mode and supported inputs in Studio. Fictional people can be described in text; exact likeness, voices and choreography are not guaranteed. Check current formats, funding terms and wait estimates in Studio; historical samples do not establish current availability. Delivered private MP4s are available for 48 hours after delivery; check the exact expiry timestamp in your studio. Reference uploads expire separately after 24 hours. Confirmed technical failures restore the original generation credit or charge, rather than automatically refunding a pack purchase in cash.
 
 ## Sources
 

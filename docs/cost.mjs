@@ -1,12 +1,13 @@
 export const packs = [
   { credits: 1, cents: 250 }, { credits: 2, cents: 500 },
   { credits: 5, cents: 1125 }, { credits: 10, cents: 2000 },
-  { credits: 20, cents: 3000 },
+  { credits: 20, cents: 3000 }, { credits: 100, cents: 9900 },
 ];
 
 export const clipTerms = {
   'seedance-2.5': { duration: 30, creditsPerClip: 1 },
   'seedance-2.0': { duration: 15, creditsPerClip: 0.5 },
+  'veo31-text-8s-720': { duration: 8, creditsPerClip: 0.25 },
 };
 
 export function calculate({ credits, cents, attempts, restored, seconds, duration, creditsPerClip = 1 }) {

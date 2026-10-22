@@ -1,9 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { calculate } from '../docs/cost.mjs';
+import { calculate, packs, clipTerms } from '../docs/cost.mjs';
 import { readSharedBudget, sharedBudgetLink } from '../docs/share.mjs';
 
 const halfCredit = { credits:5, cents:1125, attempts:6, restored:1, seconds:18, duration:15, creditsPerClip:0.5 };
+
+test('quarter-credit shared budgets preserve restored attempts and distinguish the $99 pack from usage', () => {
+  const budget = { ...packs.find(pack => pack.credits === 100), ...clipTerms['veo31-text-8s-720'], attempts:4, restored:0.25, seconds:8 };
+  const shared = readSharedBudget(new URL(sharedBudgetLink('https://example.com/', budget)).hash);
+  assert.deepEqual(shared, budget);
+  const result = calculate(shared);
+  assert.equal(result.netAttempts, 3);
+  assert.equal(result.netCredits, 0.75);
+  assert.equal(result.generatedSeconds, 24);
+  assert.equal(result.allocatedCents, 74.25);
+  assert.equal(result.minimumCashCents, 9900);
+  assert.equal(result.unusedCredits, 99.25);
+  assert.throws(() => calculate({ ...budget, restored:0.1 }));
+});
 
 test('half-credit attempts separate net usage, generated seconds and whole-pack cash', () => {
   const result = calculate(halfCredit);
