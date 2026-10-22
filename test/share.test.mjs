@@ -4,6 +4,18 @@ import { calculate } from '../docs/cost.mjs';
 import { readSharedBudget, sharedBudgetLink } from '../docs/share.mjs';
 import { worksheetLink, applyWorksheetLinks } from '../docs/links.mjs';
 
+test('campaign readers keep a coarse channel through sharing without forwarding private query data', () => {
+  for (const channel of ['mastodon', 'blogger', 'wordpress']) {
+    const destination = new URL(worksheetLink('https://seedancecheap.com/?utm_campaign=one_idea_oct22#draft', `?from=${channel}&email=private@example.test&token=secret`));
+    assert.equal(destination.searchParams.get('utm_source'), channel);
+    assert.equal(destination.searchParams.get('utm_campaign'), 'one_idea_oct22');
+    assert.equal(destination.hash, '#draft');
+    assert.equal(destination.searchParams.has('email'), false);
+    assert.equal(destination.searchParams.has('token'), false);
+  }
+  assert.equal(new URL(worksheetLink('https://seedancecheap.com/', '?from=wordpress.evil.test')).searchParams.get('utm_source'), 'github');
+});
+
 const example = { credits: 5, cents: 1125, attempts: 6, restored: 2, seconds: 18, duration: 30 };
 const page = 'https://pesoszpesosz.github.io/seedancecheap-video-cookbook/';
 

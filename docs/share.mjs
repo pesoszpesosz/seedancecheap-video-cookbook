@@ -1,5 +1,5 @@
 import { calculate } from './cost.mjs?v=20261009-half-credit';
-import { isWorksheetChannel } from './links.mjs?v=20261017postman1';
+import { isWorksheetChannel } from './links.mjs?v=20261022campaign';
 
 const fields = ['credits', 'cents', 'attempts', 'restored', 'seconds', 'duration'];
 

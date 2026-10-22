@@ -1,4 +1,4 @@
-import { applyWorksheetLinks } from './links.mjs?v=20261017postman1';
+import { applyWorksheetLinks } from './links.mjs?v=20261022campaign';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},

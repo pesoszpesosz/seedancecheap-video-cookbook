@@ -8,7 +8,7 @@ Three inspectable 30-second scenes, their original text prompts, and small templ
 
 ## One idea. Three directions.
 
-[Download the free two-page scene worksheet (PDF)](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea-three-directions-worksheet.pdf), or copy the [plain-text recipe](docs/one-idea-three-directions.txt). Keep a simple scene fixed, try one lighting direction at a time, and review the camera move, subject, motion and full credit cost before requesting another take. No email, account or upload is needed to read or download it.
+[Try the free interactive scene planner](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea.html): edit one scene, choose warm sunrise, blue hour or pink clouds, and copy your prompt. [Download the two-page worksheet (PDF)](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea-three-directions-worksheet.pdf), or copy the [plain-text recipe](docs/one-idea-three-directions.txt). Keep a simple scene fixed, try one lighting direction at a time, and review the camera move, subject, motion and full credit cost before requesting another take. No email, account or upload is needed to plan, read or download. The planner does not submit a generation.
 
 The glass-city prompt is a planning exercise, not a newly tested output. Generation is a separate paid activity where applicable; check your selected tool's current availability, input support and credit cost. Published October 22, 2026 by the SeedanceCheap team with Codex AI assistance.
 
@@ -129,6 +129,6 @@ With Node.js installed, run `npm start` and open `http://localhost:8080`. This d
 
 ## Maintaining public page discovery
 
-Run `node scripts/update-discovery.mjs` after adding or changing a page's title or description. It updates canonical URLs, share metadata and the [seven-page sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap.xml) from the actual HTML pages, without changing their bodies or inventing modification dates. The shared image is the existing SeedanceCheap logo.
+Run `node scripts/update-discovery.mjs` after adding or changing a page's title or description. It updates canonical URLs, share metadata and the [sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap.xml) from the actual HTML pages, without changing their bodies or inventing modification dates. Pages use the existing SeedanceCheap logo by default; the scene-planner campaign declares its original candy artwork and explicit artwork disclosure for sharing.
 
 This is a GitHub project site. A `robots.txt` inside this project would not control crawling of the host. Sitemap availability and share metadata do not prove search-engine indexing, ranking, qualified visitors or purchases.

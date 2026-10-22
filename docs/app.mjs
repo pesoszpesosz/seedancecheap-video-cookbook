@@ -1,6 +1,6 @@
 import { packs, clipTerms, calculate } from './cost.mjs?v=20261022-quarter-credit';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=20261017postman1';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=20261017postman1';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=20261022campaign';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=20261022campaign';
 
 applyWorksheetLinks(document, location.search);
 
