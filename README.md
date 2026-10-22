@@ -14,6 +14,8 @@ The glass-city prompt is a planning exercise, not a newly tested output. Generat
 
 ## Pick one scene
 
+[Watch a complete 15-second Seedance 2.0 model test](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/paper-boat-test.html), generated October 19, 2026 for our internal evaluation. The page includes the exact submitted prompt, original received file, actual 720×1204 dimensions and quiet-audio limitation. It does not demonstrate a customer purchase or end-to-end Studio delivery. The older 30-second examples below remain separate.
+
 | Scene | Original prompt | Complete output | What to inspect |
 | --- | --- | --- | --- |
 | Paper boat at dawn | [Copy the prompt](prompts/paper-boat.txt) | [Watch the whole scene](https://seedancecheap.com/examples/paper-boat?utm_source=github&utm_medium=cookbook&utm_campaign=creator_value_oct06&utm_content=cookbook_boat) | Boat shape, water interaction and camera motion throughout the shot. |

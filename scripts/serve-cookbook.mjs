@@ -4,7 +4,7 @@ import { realpathSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const root = new URL('../docs/', import.meta.url);
-const types = { html: 'text/html; charset=utf-8', mjs: 'text/javascript; charset=utf-8', txt: 'text/plain; charset=utf-8', png: 'image/png', xml: 'application/xml; charset=utf-8' };
+const types = { html: 'text/html; charset=utf-8', mjs: 'text/javascript; charset=utf-8', txt: 'text/plain; charset=utf-8', png: 'image/png', jpg: 'image/jpeg', mp4: 'video/mp4', xml: 'application/xml; charset=utf-8' };
 
 export function cookbookServer() {
   return createServer(async (request, response) => {
@@ -15,7 +15,7 @@ export function cookbookServer() {
     try {
       const path = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
       // The public docs are flat. Never expose repository or local workspace files.
-      if (!/^\/[a-z0-9-]+\.(html|mjs|txt|png|xml)$/.test(path) && path !== '/') {
+      if (!/^\/[a-z0-9-]+\.(html|mjs|txt|png|jpg|mp4|xml)$/.test(path) && path !== '/') {
         response.writeHead(404).end('Not found');
         return;
       }

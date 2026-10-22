@@ -1,0 +1,21 @@
+SEEDANCE 2.0 — PAPER-BOAT MODEL TEST
+Generated October 19, 2026 for the SeedanceCheap team's internal model evaluation.
+Published with Codex assistance. AI-generated footage; not a customer submission.
+Checkout and end-to-end Studio delivery were outside this test.
+
+EXACT SUBMITTED PROMPT
+A red paper boat floats slowly across a shallow clear pond beside green reeds. The camera gently follows the boat, with continuous realistic motion and soft water sounds. Natural morning light. No people, faces, text, logos or dialogue.
+
+RECEIVED FILE
+15.04 seconds of picture; container approximately 15.10 seconds.
+720 x 1204 pixels, H.264, 24 fps, AAC audio.
+The requested portrait preset did not produce standard 720 x 1280 dimensions.
+No cut, crop or upscale was added for this publication.
+Audio measures approximately -54.4 LUFS integrated and is very quiet.
+Notes use technical checks and sampled frames, not full creative/audio-content approval.
+
+BEFORE GENERATING
+Check the current selected model, input mode, exact format and credit charge in Studio.
+Availability, delivery time and creative results can vary.
+Free planning does not generate footage.
+https://seedancecheap.com
