@@ -26,3 +26,24 @@ document.querySelector('#copy-starter').addEventListener('click',async()=>{
   let timeout;
   try{await Promise.race([navigator.clipboard.writeText(field.value.trim()),new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new Error('Clipboard unavailable')),1500);})]);status.textContent='Starter copied. Review the current model and settings in Studio.';}catch{field.focus();field.select();status.textContent='Select and copy the starter using your browser.';}finally{clearTimeout(timeout);}
 });
+
+const remixPlayers=[document.querySelector('#remix-source'),document.querySelector('#remix-result')];
+const remixStatus=document.querySelector('#remix-status');
+let remixPlayRequest=0;
+document.querySelector('#play-remix').addEventListener('click',async()=>{
+  const request=++remixPlayRequest;
+  video.pause();
+  for(const player of remixPlayers){player.pause();player.currentTime=0;player.muted=true;}
+  remixStatus.textContent='Starting both clips silently…';
+  const results=await Promise.allSettled(remixPlayers.map(player=>player.play()));
+  if(request!==remixPlayRequest)return;
+  if(results.some(result=>result.status==='rejected')){
+    for(const player of remixPlayers)player.pause();
+    remixStatus.textContent='Playback did not start for both clips. Use the individual player controls.';
+  }else remixStatus.textContent='Playing both silently from the start. Guidance can change timing; the clips are not frame-aligned.';
+});
+document.querySelector('#pause-remix').addEventListener('click',()=>{
+  remixPlayRequest++;
+  for(const player of remixPlayers)player.pause();
+  remixStatus.textContent='Both clips paused. Each player can also be reviewed independently.';
+});
