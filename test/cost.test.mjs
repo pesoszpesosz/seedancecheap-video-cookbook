@@ -5,6 +5,23 @@ import { readSharedBudget, sharedBudgetLink } from '../docs/share.mjs';
 
 const halfCredit = { credits:5, cents:1125, attempts:6, restored:1, seconds:18, duration:15, creditsPerClip:0.5 };
 
+test('current Studio 2 formats budget rejected takes without treating a bulk allocation as checkout cash', () => {
+  const batch = { ...clipTerms['seedance-2.5-15s-720p'], attempts:3, restored:0, seconds:15 };
+  const starter = calculate({ ...packs[0], ...batch });
+  assert.equal(starter.allocatedCents, 750);
+  assert.equal(starter.minimumCashCents, 750);
+  const bulk = calculate({ ...packs.at(-1), ...batch });
+  assert.equal(bulk.allocatedCents, 297);
+  assert.equal(bulk.minimumCashCents, 9900);
+  assert.equal(bulk.unusedCredits, 97);
+  const longClip = calculate({ ...packs[0], ...clipTerms['seedance-2.5'], attempts:1, restored:0, seconds:30 });
+  assert.equal(longClip.allocatedCents, 125);
+  assert.equal(longClip.minimumCashCents, 250);
+  assert.equal(longClip.unusedCredits, 0.5);
+  const historical = readSharedBudget('#budget=2&credits=5&cents=1125&attempts=6&restored=2&seconds=18&duration=30&creditsPerClip=1');
+  assert.equal(calculate(historical).allocatedCents, 900);
+});
+
 test('quarter-credit shared budgets preserve restored attempts and distinguish the $99 pack from usage', () => {
   const budget = { ...packs.find(pack => pack.credits === 100), ...clipTerms['veo31-text-8s-720'], attempts:4, restored:0.25, seconds:8 };
   const shared = readSharedBudget(new URL(sharedBudgetLink('https://example.com/', budget)).hash);

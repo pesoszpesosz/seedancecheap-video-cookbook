@@ -1,4 +1,4 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=20261022-quarter-credit';
+import { packs, clipTerms, calculate } from './cost.mjs?v=20261025-studio2';
 import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=20261022campaign';
 import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=20261022campaign';
 
@@ -23,7 +23,12 @@ function render() {
   }
   $('restored').step = terms ? String(terms.creditsPerClip) : 'any';
   $('model-availability').hidden = !terms;
-  if (terms) $('model-availability').href = worksheetLink(`https://seedancecheap.com/app.html?model=${$('model').value}&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability`, location.search);
+  if (terms) {
+    const destination = $('model').value.startsWith('seedance-2.5')
+      ? 'https://seedancecheap.com/studio2/?utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability#generate'
+      : `https://seedancecheap.com/app.html?model=${$('model').value}&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability`;
+    $('model-availability').href = worksheetLink(destination, location.search);
+  }
   $('shared-budget').hidden = true;
   currentBudget = null;
   $('share-budget').disabled = true;
@@ -56,7 +61,7 @@ form.addEventListener('submit', event => event.preventDefault());
 form.addEventListener('input', render);
 form.addEventListener('change', render);
 $('example').addEventListener('click', () => {
-  $('model').value = 'seedance-2.5'; $('pack').value = '2'; $('attempts').value = '6'; $('restored').value = '2'; $('seconds').value = '18';
+  $('model').value = 'seedance-2.5-15s-720p'; $('pack').value = '0'; $('attempts').value = '3'; $('restored').value = '0'; $('seconds').value = '15';
   render();
 });
 $('restore-defaults').addEventListener('click', () => { form.reset(); render(); });
