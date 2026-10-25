@@ -8,8 +8,25 @@ const scenes = {
 };
 scenes.clay={file:'motion-courier-clay.mp4',poster:'motion-courier-clay-poster.jpg',title:'A delivery in clay.',description:'A punch, a trolley and an intact cake. Our original action clip guides a new clay-style take; the final tasting gesture changes.',duration:'15-second guided take',format:'Portrait 480p',provenance:'An internal Seedance 2.5 style-guidance model test from 25 October 2026. The complete 15.072-second, 480 × 854 received file is shown with its audio: no cuts or upscaling. Our owned 14.9-second AI source and one Nano Banana 2 clay-style reference guided the result. This was not a production Studio 2 checkout or customer-delivery test.',original:'motion-courier-clay-prompt.txt',summary:'The actual video prompt combines the Studio 2 Motion Remix Style brief with our 15-second clay-scene direction. One owned source video and one generated appearance reference were supplied. Compare the full source and result below; guidance changes some details and timing.',starter:'A short clay-style action comedy with two fictional adult puppets. A courier in a blue sculpted jacket protects a red delivery bag, dodges one incoming punch and finishes beside an intact white cake. Warm miniature garage set, side daylight, clear whole-body movement and no captions or logos. Use your own clip and appearance reference as guidance; review the actual model limits and price first.'};
 const video=document.querySelector('#scene-video');
+const promptCopyButton=document.querySelector('#copy-original-prompt');
+const promptCopyStatus=document.querySelector('#original-copy-status');
+const actualPrompt=document.querySelector('#original-prompt-text');
+const promptSetups={
+  drama:'In Studio 2 choose Video → Seedance 2.5 · Mango · 480p · 30s → Text to video → 9:16 and AI-generated audio. Review the full quote before starting.',
+  delivery:'In Studio 2 choose Video → Seedance 2.5 · Mango · 720p · 15s → Text to video → 9:16 and AI-generated audio. Review the full quote before starting.',
+  clay:'Choose Genjutsu → Use my own video and replace the prefilled direction with this actual style prompt. Select Seedance 2.5 · Mango · 480p · 15s, 9:16 and Video guidance. Add the source video and appearance image from the full recipe below, then review the quote.',
+  fight:'This is an edit of a historical 30-second source with a clothing reference. Its original prompt still needs compatible reference inputs. Choose a currently available format and review the full quote; the original request settings may differ.',
+  product:'This is a historical text-generated concept-car example. Choose a currently available duration and native format, then review the full quote. The prompt does not guarantee a matching real product.'
+};
+let activeSceneKey='drama',originalCopyRequest=0;
 for(const button of document.querySelectorAll('[data-scene]'))button.addEventListener('click',()=>{
   const scene=scenes[button.dataset.scene];
+  activeSceneKey=button.dataset.scene;originalCopyRequest++;promptCopyButton.disabled=false;
+  actualPrompt.value='';actualPrompt.classList.add('hidden');document.querySelector('#original-prompt-label').classList.add('hidden');
+  promptCopyStatus.textContent='Copy the prompt used for this example, then choose the matching settings.';
+  document.querySelector('#scene-setup').textContent=promptSetups[activeSceneKey];
+  document.querySelector('#open-scene-studio').href=`https://seedancecheap.com/studio2/?utm_source=github&utm_medium=showcase&utm_campaign=example_prompt_oct25&utm_content=${activeSceneKey}${activeSceneKey==='clay'?'#genjutsu':'#generate'}`;
+  applyWorksheetLinks(document,location.search);
   video.pause();video.poster=scene.poster;video.querySelector('source').src=scene.file;video.load();video.setAttribute('aria-label',scene.title+' AI-generated example');
   for(const choice of document.querySelectorAll('[data-scene]'))choice.setAttribute('aria-pressed',String(choice===button));
   document.querySelector('#screen').classList.toggle('wide',button.dataset.scene==='product');
@@ -20,6 +37,31 @@ for(const button of document.querySelectorAll('[data-scene]'))button.addEventLis
   document.querySelector('#prompt-details').open=false;
   if(scene.original){document.querySelector('#original-prompt').href=scene.original;document.querySelector('#original-summary').textContent=scene.summary;}
   document.querySelector('#copy-status').textContent='New starter ready. Edit it before copying; this is a planning draft.';
+});
+
+promptCopyButton.addEventListener('click',async()=>{
+  const request=++originalCopyRequest,scene=scenes[activeSceneKey];
+  promptCopyButton.disabled=true;promptCopyStatus.textContent='Loading the actual prompt…';
+  let timeout;
+  try{
+    const response=await fetch(scene.original,{cache:'no-store'});
+    if(!response.ok)throw new Error('Prompt unavailable');
+    const text=(await response.text()).trim();
+    if(!text)throw new Error('Empty prompt');
+    if(request!==originalCopyRequest)return;
+    actualPrompt.value=text;actualPrompt.classList.remove('hidden');document.querySelector('#original-prompt-label').classList.remove('hidden');
+    document.querySelector('#prompt-details').open=true;
+    try{
+      await Promise.race([navigator.clipboard.writeText(text),new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new Error('Clipboard unavailable')),1500);})]);
+      if(request===originalCopyRequest)promptCopyStatus.textContent='Actual prompt copied: '+scene.title;
+    }catch{
+      if(request===originalCopyRequest){actualPrompt.focus();actualPrompt.select();promptCopyStatus.textContent='Select and copy the actual prompt below, then choose the matching settings.';}
+    }
+  }catch{
+    if(request===originalCopyRequest){document.querySelector('#prompt-details').open=true;promptCopyStatus.textContent='The prompt could not load. Use Download the original prompt below.';}
+  }finally{
+    clearTimeout(timeout);if(request===originalCopyRequest)promptCopyButton.disabled=false;
+  }
 });
 document.querySelector('#copy-starter').addEventListener('click',async()=>{
   const field=document.querySelector('#scene-starter'),status=document.querySelector('#copy-status');
