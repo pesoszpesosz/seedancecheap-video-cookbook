@@ -45,7 +45,8 @@ for (const name of names) {
   if (next.slice(next.indexOf('</head>')) !== original.slice(original.indexOf('</head>'))) {
     throw new Error(`Unexpected body change: ${name}`);
   }
-  if (next !== original) await writeFile(file, next);
+  // Git can check out CRLF on Windows. Do not rewrite otherwise unchanged pages.
+  if (next.replaceAll('\r\n', '\n') !== original.replaceAll('\r\n', '\n')) await writeFile(file, next);
   pages.push({ file: name, canonical });
 }
 
