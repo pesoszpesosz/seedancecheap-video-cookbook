@@ -12,9 +12,9 @@ const promptCopyButton=document.querySelector('#copy-original-prompt');
 const promptCopyStatus=document.querySelector('#original-copy-status');
 const actualPrompt=document.querySelector('#original-prompt-text');
 const promptSetups={
-  drama:'In Studio 2 choose Video → Seedance 2.5 · Mango · 480p · 30s → Text to video → 9:16 and AI-generated audio. Review the full quote before starting.',
-  delivery:'In Studio 2 choose Video → Seedance 2.5 · Mango · 720p · 15s → Text to video → 9:16 and AI-generated audio. Review the full quote before starting.',
-  clay:'Choose Genjutsu → Use my own video and replace the prefilled direction with this actual style prompt. Select Seedance 2.5 · Mango · 480p · 15s, 9:16 and Video guidance. Add the source video and appearance image from the full recipe below, then review the quote.',
+  drama:'In Studio 2 open Video. Choose Model: Seedance 2.5; Create from: Text to video; Clip length: 30 seconds; Resolution: 480p; Frame: 9:16. Paste the copied prompt into Scene direction, then review the full quote.',
+  delivery:'In Studio 2 open Video. Choose Model: Seedance 2.5; Create from: Text to video; Clip length: 15 seconds; Resolution: 720p; Frame: 9:16. Paste the copied prompt into Scene direction, then review the full quote.',
+  clay:'Choose Genjutsu → Use my own video → Style transfer. Select 480p / 15s under Quality and duration, then 9:16. Paste the style prompt into Add your own touch (optional). Add the source video and Style reference image from the full recipe below, choose the audio you need, then review the quote.',
   fight:'This is an edit of a historical 30-second source with a clothing reference. Its original prompt still needs compatible reference inputs. Choose a currently available format and review the full quote; the original request settings may differ.',
   product:'This is a historical text-generated concept-car example. Choose a currently available duration and native format, then review the full quote. The prompt does not guarantee a matching real product.'
 };
