@@ -21,7 +21,26 @@ export function cookbookServer() {
       }
       const name = path === '/' ? 'index.html' : path.slice(1);
       const body = await readFile(new URL(name, root));
-      response.writeHead(200, { 'Content-Type': types[name.split('.').pop()], 'Cache-Control': 'no-store' });
+      const type = types[name.split('.').pop()];
+      const headers = { 'Content-Type': type, 'Cache-Control': 'no-store', 'Content-Length': body.length };
+      if (type === 'video/mp4') {
+        headers['Accept-Ranges'] = 'bytes';
+        if (request.headers.range) {
+          const match = /^bytes=(\d*)-(\d*)$/.exec(request.headers.range);
+          const suffix = match && !match[1] && match[2];
+          const start = suffix ? Math.max(0, body.length - Number(match[2])) : Number(match?.[1]);
+          const end = suffix || !match?.[2] ? body.length - 1 : Math.min(Number(match[2]), body.length - 1);
+          if (!match || (!match[1] && !match[2]) || !Number.isSafeInteger(start)
+              || !Number.isSafeInteger(end) || start < 0 || start >= body.length || end < start) {
+            response.writeHead(416, { 'Content-Range': `bytes */${body.length}` }).end();
+            return;
+          }
+          response.writeHead(206, { ...headers, 'Content-Range': `bytes ${start}-${end}/${body.length}`, 'Content-Length': end - start + 1 });
+          response.end(request.method === 'HEAD' ? undefined : body.subarray(start, end + 1));
+          return;
+        }
+      }
+      response.writeHead(200, headers);
       response.end(request.method === 'HEAD' ? undefined : body);
     } catch {
       response.writeHead(404).end('Not found');
