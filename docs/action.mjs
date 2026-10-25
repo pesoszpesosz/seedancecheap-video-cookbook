@@ -6,13 +6,14 @@ const scenes = {
   drama: {file:'action-empty-chair.mp4',poster:'action-empty-chair-poster.jpg',title:'One ring. One lie.',description:'A ring hits the plate. An explanation falls apart. One chair stays empty. Watch the complete take.',duration:'30-second original take',format:'Portrait 480p',provenance:'An internal Seedance 2.5 drama model test from 25 October 2026. Native 480 × 854 with generated audio. The complete 30.08-second received file is shown: no cuts or upscaling. This test did not include Studio checkout or customer delivery. Details can vary from the prompt.',original:'action-empty-chair-prompt.txt',summary:'The successful text prompt specifies two fictional adults, a ring, an uneasy conversation, a departure and a final phone gesture. An earlier detailed request was rejected without producing a video; this is the complete result of the simplified prompt. Download the actual successful prompt below.',starter:'Original drama with two fictional adults in a late-night cafe. One places a sealed letter on the table, waits while the other adult reacts, then leaves. Keep both actors and the letter consistent across three short shots, with natural gestures and one clear final reaction. Soft practical side lighting. No readable text, logos or music.'},
   product: {file:'action-car.mp4',poster:'action-car-poster.jpg',title:'Put the camera to work.',description:'One fictional concept car, moving light and a camera that arcs from the side toward the front.',duration:'30-second example',format:'Wide',provenance:'Our existing Seedance 2.5 concept-car example, generated from text. A fictional vehicle, not a test of reproducing a real product or an endorsement by a car brand.',original:'action-car-original-prompt.txt',summary:'The original prompt describes a pearl-white fictional concept car, wet neon streets, a side track and a frontward camera arc. The full prompt is included below.',starter:'Photorealistic product film. One unbranded pearl-white fictional sports car drives past camera on a wet city street at night. A low side tracking shot keeps all visible wheels grounded and the vehicle shape coherent. Blue and amber practical lights reflect naturally on the road and bodywork. Sharp normal-speed movement. No people, logos, text, extra wheels or slow motion.'}
 };
+scenes.clay={file:'motion-courier-clay.mp4',poster:'motion-courier-clay-poster.jpg',title:'A delivery in clay.',description:'A punch, a trolley and an intact cake. Our original action clip guides a new clay-style take; the final tasting gesture changes.',duration:'15-second guided take',format:'Portrait 480p',provenance:'An internal Seedance 2.5 style-guidance model test from 25 October 2026. The complete 15.072-second, 480 × 854 received file is shown with its audio: no cuts or upscaling. Our owned 14.9-second AI source and one Nano Banana 2 clay-style reference guided the result. This was not a production Studio 2 checkout or customer-delivery test.',original:'motion-courier-clay-prompt.txt',summary:'The actual video prompt combines the Studio 2 Motion Remix Style brief with our 15-second clay-scene direction. One owned source video and one generated appearance reference were supplied. Compare the full source and result below; guidance changes some details and timing.',starter:'A short clay-style action comedy with two fictional adult puppets. A courier in a blue sculpted jacket protects a red delivery bag, dodges one incoming punch and finishes beside an intact white cake. Warm miniature garage set, side daylight, clear whole-body movement and no captions or logos. Use your own clip and appearance reference as guidance; review the actual model limits and price first.'};
 const video=document.querySelector('#scene-video');
 for(const button of document.querySelectorAll('[data-scene]'))button.addEventListener('click',()=>{
   const scene=scenes[button.dataset.scene];
   video.pause();video.poster=scene.poster;video.querySelector('source').src=scene.file;video.load();video.setAttribute('aria-label',scene.title+' AI-generated example');
   for(const choice of document.querySelectorAll('[data-scene]'))choice.setAttribute('aria-pressed',String(choice===button));
   document.querySelector('#screen').classList.toggle('wide',button.dataset.scene==='product');
-  document.querySelector('#screen-label').textContent=button.dataset.scene==='product'?'AI-generated fictional vehicle. Existing team example.':['delivery','drama'].includes(button.dataset.scene)?'AI-generated fictional adults. New internal model test.':'AI-generated fictional adults. Existing team example.';
+  document.querySelector('#screen-label').textContent=button.dataset.scene==='product'?'AI-generated fictional vehicle. Existing team example.':['delivery','drama','clay'].includes(button.dataset.scene)?'AI-generated fictional adults. New internal model test.':'AI-generated fictional adults. Existing team example.';
   for(const [id,value] of Object.entries({'scene-title':scene.title,'scene-description':scene.description,'scene-duration':scene.duration,'scene-format':scene.format,'scene-provenance':scene.provenance}))document.getElementById(id).textContent=value;
   document.querySelector('#download-scene').href=scene.file;document.querySelector('#scene-starter').value=scene.starter;
   document.querySelector('#prompt-details').classList.toggle('hidden',!scene.original);document.querySelector('#unavailable-prompt').classList.toggle('hidden',!!scene.original);
@@ -28,29 +29,35 @@ document.querySelector('#copy-starter').addEventListener('click',async()=>{
 });
 
 function openSharedScene(){
-  const match=/^#scene-(delivery|fight|drama|product)$/.exec(location.hash);
+  const match=/^#scene-(delivery|fight|drama|product|clay)$/.exec(location.hash);
   if(match)document.querySelector(`[data-scene="${match[1]}"]`).click();
 }
 openSharedScene();
 window.addEventListener('hashchange',openSharedScene);
 
-const remixPlayers=[document.querySelector('#remix-source'),document.querySelector('#remix-result')];
-const remixStatus=document.querySelector('#remix-status');
-let remixPlayRequest=0;
-document.querySelector('#play-remix').addEventListener('click',async()=>{
-  const request=++remixPlayRequest;
-  video.pause();
-  for(const player of remixPlayers){player.pause();player.currentTime=0;player.muted=true;}
-  remixStatus.textContent='Starting both clips silently…';
-  const results=await Promise.allSettled(remixPlayers.map(player=>player.play()));
-  if(request!==remixPlayRequest)return;
-  if(results.some(result=>result.status==='rejected')){
-    for(const player of remixPlayers)player.pause();
-    remixStatus.textContent='Playback did not start for both clips. Use the individual player controls.';
-  }else remixStatus.textContent='Playing both silently from the start. Guidance can change timing; the clips are not frame-aligned.';
-});
-document.querySelector('#pause-remix').addEventListener('click',()=>{
-  remixPlayRequest++;
-  for(const player of remixPlayers)player.pause();
-  remixStatus.textContent='Both clips paused. Each player can also be reviewed independently.';
-});
+const comparisonPlayers=[...document.querySelectorAll('.remix-pair video')];
+let comparisonPlayRequest=0;
+function bindComparison(prefix){
+  const players=[document.querySelector(`#${prefix}-source`),document.querySelector(`#${prefix}-result`)];
+  const status=document.querySelector(`#${prefix}-status`);
+  document.querySelector(`#play-${prefix}`).addEventListener('click',async()=>{
+    const request=++comparisonPlayRequest;
+    video.pause();
+    for(const player of comparisonPlayers)player.pause();
+    for(const player of players){player.currentTime=0;player.muted=true;}
+    status.textContent='Starting both clips silently…';
+    const results=await Promise.allSettled(players.map(player=>player.play()));
+    if(request!==comparisonPlayRequest)return;
+    if(results.some(result=>result.status==='rejected')){
+      for(const player of players)player.pause();
+      status.textContent='Playback did not start for both clips. Use the individual player controls.';
+    }else status.textContent='Playing both silently from the start. Guidance can change timing; the clips are not frame-aligned.';
+  });
+  document.querySelector(`#pause-${prefix}`).addEventListener('click',()=>{
+    comparisonPlayRequest++;
+    for(const player of comparisonPlayers)player.pause();
+    status.textContent='Both clips paused. Each player can also be reviewed independently.';
+  });
+}
+bindComparison('remix');
+bindComparison('clay');
