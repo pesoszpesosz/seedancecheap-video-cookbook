@@ -41,7 +41,8 @@ for (const name of names) {
   ].join('\n');
   let next = original.replace(/^  <!-- Discovery metadata:[\s\S]*?^  <!-- \/Discovery metadata -->\r?\n/gm, '');
   next = next.replace(/^\s*<link rel="canonical"[^>]+>\r?\n/gm, '');
-  next = next.replace(/(<meta name="description" content="[^"]+"\s*\/?>)\r?\n/i, `$1\n${block}\n`);
+  // A callback keeps prices such as $1.25 literal instead of expanding $1 as a capture.
+  next = next.replace(/(<meta name="description" content="[^"]+"\s*\/?>)\r?\n/i, (_, descriptionTag) => `${descriptionTag}\n${block}\n`);
   if (next.slice(next.indexOf('</head>')) !== original.slice(original.indexOf('</head>'))) {
     throw new Error(`Unexpected body change: ${name}`);
   }
