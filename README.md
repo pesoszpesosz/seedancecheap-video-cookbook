@@ -6,6 +6,10 @@ Three inspectable 30-second scenes, their original text prompts, and small templ
 
 ![Existing AI-generated rooftop courier sample](https://seedancecheap.com/showcase/rooftop-courier.webp)
 
+## Native 1080p, one complete result
+
+[Watch our eight-second Veo 3.1 example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html): the original 1080x1920 file, exact prompt, observed Studio 2 quote and matching settings. One internal test, no cuts or upscaling. The requested final umbrella inversion is missing and the original audio is quiet. The page shows both limitations. Matching requests use 0.25 credit, allocating $0.2475 (about $0.25) with $99 upfront for 100 credits; no customer purchase is claimed.
+
 ## Seedance 2.5 in motion
 
 [Watch the fight, drama and product showcase](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html). Play existing team footage, inspect the original prompt where available, and edit a short starter for your next scene. The new delivery scene is a complete15-second internal Seedance2.5 model test, native720×1280 with generated audio, first take. The earlier fight study is an8.4-second cut from a historical30-second generation, with upscaling and sound editing disclosed. The new model test does not include Studio checkout/customer delivery. Current request lengths, modes and prices are separate from these examples; check Studio before purchasing or generating.
