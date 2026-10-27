@@ -1,5 +1,5 @@
-import { calculate } from './cost.mjs?v=1c8da8de1c3b';
-import { isWorksheetChannel } from './links.mjs?v=1c8da8de1c3b';
+import { calculate } from './cost.mjs?v=e203d07328cb';
+import { isWorksheetChannel } from './links.mjs?v=e203d07328cb';
 
 const fields = ['credits', 'cents', 'attempts', 'restored', 'seconds', 'duration'];
 
