@@ -1,10 +1,22 @@
 # AI video prompt cookbook from SeedanceCheap
 
-Three inspectable 30-second scenes, their original text prompts, and small templates for deciding what to generate next.
+Watch complete action and Genjutsu examples, inspect their actual prompts, and plan your next AI video with free creator tools.
 
 **Published by SeedanceCheap**, an independent video studio, using its existing public samples. Prepared with Codex. These are historical outputs, not a promise that a rerun will match. The prompts record the requested scene; inspect the full video to judge what actually happened.
 
-![Existing AI-generated rooftop courier sample](https://seedancecheap.com/showcase/rooftop-courier.webp)
+## 720p action. One important delivery.
+
+[Watch the complete 15-second Seedance 2.5 action clip](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#scene-delivery), then [see its Genjutsu before-and-after](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#remix).
+
+<a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#scene-delivery"><img src="docs/action-delivery-poster.jpg" width="280" alt="A courier ducks an incoming punch while protecting a red delivery bag in our fictional AI action scene. Watch the complete 720p clip."></a>
+
+**15s / 720p Seedance 2.5 videos from $0.99 per request**, with the **$99 upfront pack of 100 credits**. Each matching request uses **1 credit**. A smaller one-credit pack costs $2.50. No subscription; retakes and reference creation cost extra. Check the selected format, live capacity and complete quote in Studio before buying or generating.
+
+This action example was generated through our existing Plenx account: one text prompt, requested at 720p with audio, received at 720 × 1280. The complete 15.072-second original is shown unchanged, with no cuts or added upscaling. It is an internal model test with fictional AI adults and staged action; it did not test customer checkout or delivery.
+
+[Copy the exact submitted prompt](docs/action-delivery-original-prompt.txt). In Studio 2, choose Video → Seedance 2.5 → Text to video → 15 seconds → 720p → 9:16. Paste it into Scene direction and review the current quote. [Open Studio 2](https://seedancecheap.com/studio2/?utm_source=github&utm_medium=cookbook&utm_campaign=hd_action_oct27&utm_content=readme#generate).
+
+The showcase also preserves the earlier fight study: an 8.4-second edit from a historical 30-second generation, with upscaling and sound editing disclosed. Each example has its own source notes. New results can differ from these examples.
 
 ## 1080p delivered output, one complete result
 
@@ -13,10 +25,6 @@ Before a site release, run `npm run prepare:site`, then `npm test`. Preparation 
 [Choose an HD video workflow](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html): the supplier-upscaled Veo 3.1 example, a separately checked 15s/720p Seedance 2.5 remix quote, exact pack allocations and the documented differences from Higgsfield Genjutsu and Genjutsu Lite. The quote check starts no paid generation.
 
 [Watch our eight-second Veo 3.1 example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html): the original 1080x1920 file, exact prompt, observed Studio 2 quote and matching settings. One internal test. The saved request selected supplier upscaling to 1080p; native generation resolution is not verified. No local cuts or video resizing were applied. The requested final umbrella inversion is missing and the original audio is quiet. The page shows both limitations. Matching requests use 0.25 credit, allocating $0.2475 (about $0.25) with $99 upfront for 100 credits; no customer purchase is claimed.
-
-## Seedance 2.5 in motion
-
-[Watch the fight, drama and product showcase](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html). Play existing team footage, inspect the original prompt where available, and edit a short starter for your next scene. The new delivery scene is a complete15-second internal Seedance2.5 model test, native720×1280 with generated audio, first take. The earlier fight study is an8.4-second cut from a historical30-second generation, with upscaling and sound editing disclosed. The new model test does not include Studio checkout/customer delivery. Current request lengths, modes and prices are separate from these examples; check Studio before purchasing or generating.
 
 ## One idea. Three directions.
 
@@ -46,7 +54,7 @@ The boat is a compact subject/action/camera prompt. The car adds moving reflecti
 
 [Open the free two-shot continuity worksheet](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/continuity.html). Keep shared character and scene details, write the end-to-start handoff, and review the actual moving pair in your editor. Edit and download your plan or use the [blank text worksheet](docs/continuity.txt). No sign-in, uploads or generation is required.
 
-The doorway example is a proposed plan, not tested footage. Reference-image and frame controls depend on your chosen tool; text descriptions and reused frames cannot guarantee identical faces or a seamless cut. The linked SeedanceCheap builder is for text planning of fictional adult characters; video generation is separate. Face/person image references are unsupported. Selected Omni modes accept private reference video; check the exact input mode in Studio. A reference is not a guarantee of a seamless continuation.
+The doorway example is a proposed plan, not tested footage. Reference-image and frame controls depend on your chosen tool; text descriptions and reused frames cannot guarantee identical faces or a seamless cut. The linked SeedanceCheap builder is for text planning of fictional adult characters; video generation is separate. Reference acceptance varies by model and mode. Genjutsu and selected Omni modes offer their own video-guidance paths; inspect the selected tool's input labels in Studio before preparing references. A reference is not a guarantee of a seamless continuation.
 
 ## Plan an AI car shot
 
@@ -129,7 +137,7 @@ For recurring fictional characters, keep a fixed text description and restate ea
 
 The $0.99 rate is per credit and requires the $99 pack. A credit is not a fixed number of videos: each selected mode has its own charge. New Veo 3.1 and Omni Flash tools are listed from 0.25 credit, with availability checked separately. Start with one short request and review the actual result before deciding to make another. Check [the current offer](https://seedancecheap.com/buy?utm_source=github&utm_medium=cookbook&utm_campaign=one_idea_oct22&utm_content=cookbook_pricing) before purchasing; this pack-price snapshot was checked October 22, 2026.
 
-Start with text-to-video and check live input availability before planning around a reference. Permitted image subjects include objects, products, clothing alone, scenery or locations. Face/person reference images are unsupported. Veo modes can offer start frames, start/end frames or ingredient images; selected Omni modes accept a private reference video. Check the selected mode and supported inputs in Studio. Fictional people can be described in text; exact likeness, voices and choreography are not guaranteed. Check current formats, funding terms and wait estimates in Studio; historical samples do not establish current availability. Delivered private MP4s are available for 48 hours after delivery; check the exact expiry timestamp in your studio. Reference uploads expire separately after 24 hours. Confirmed technical failures restore the original generation credit or charge, rather than automatically refunding a pack purchase in cash.
+Start with text-to-video and check live input availability before planning around a reference. Reference acceptance varies by model and mode; use the selected tool's input labels. Veo modes can offer start frames, start/end frames or ingredient images. Genjutsu and selected Omni modes offer video guidance; the linked action showcase includes our own source clip and guided result. Exact likeness, voices and choreography are not guaranteed. Check current formats, funding terms and wait estimates in Studio; historical samples do not establish current availability. Delivered private MP4s are available for 48 hours after delivery; check the exact expiry timestamp in your studio. Reference uploads expire separately after 24 hours. Confirmed technical failures restore the original generation credit or charge, rather than automatically refunding a pack purchase in cash.
 
 ## Sources
 
