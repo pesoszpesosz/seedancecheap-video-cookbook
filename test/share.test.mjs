@@ -110,8 +110,8 @@ test('a Postman request-planner visit keeps its source through another guide and
   assert.equal(JSON.stringify([siteLinks, companions]).includes('secret'), false);
 });
 
-test('Quora and Product Hunt readers keep attribution through a guide, shared budget and Studio without private query data', () => {
-  for (const channel of ['quora', 'producthunt']) {
+test('reviewed campaign sources keep attribution through a guide, shared budget and Studio without private query data', () => {
+  for (const channel of ['quora', 'producthunt', 'bluesky']) {
   const siteLinks = [{ href: 'https://seedancecheap.com/studio2/?utm_medium=guide&utm_campaign=hd_workflows_oct27#genjutsu' }];
   const companions = [{ href: page + 'native-1080p.html' }, { href: page }];
   const root = { querySelectorAll: selector => selector === '[data-site-link]' ? siteLinks : companions };
