@@ -23,6 +23,8 @@ for (const name of names) {
     for (const field of ['name', 'description', 'thumbnailUrl', 'contentUrl', 'uploadDate']) {
       if (typeof video[field] !== 'string' || !video[field].trim()) throw new Error(`Missing video ${field}: ${name}`);
     }
+    if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(video.uploadDate)
+        || !Number.isFinite(Date.parse(video.uploadDate))) throw new Error(`Video uploadDate needs a full datetime with timezone: ${name}`);
     for (const field of ['thumbnailUrl', 'contentUrl']) {
       const asset = video[field].startsWith(base) ? video[field].slice(base.length) : '';
       if (!/^[a-z0-9][a-z0-9._-]*\.(jpg|png|webp|mp4)$/i.test(asset)) throw new Error(`Video ${field} must reference a local public asset: ${name}`);

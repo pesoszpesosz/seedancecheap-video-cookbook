@@ -47,7 +47,7 @@ test('video discovery lists visible public media and refuses stale player metada
     await copyFile(new URL('../scripts/update-discovery.mjs', import.meta.url), script);
     for (const name of ['brand-icon.png', 'take.jpg', 'take.mp4', 'other.mp4']) await writeFile(path.join(root, 'docs', name), 'fixture asset');
     const base = 'https://pesoszpesosz.github.io/seedancecheap-video-cookbook/';
-    const video = {'@context':'https://schema.org','@type':'VideoObject',name:'A take & its result',description:'Complete test <with> limitations.',thumbnailUrl:base+'take.jpg',contentUrl:base+'take.mp4',uploadDate:'2026-10-25'};
+    const video = {'@context':'https://schema.org','@type':'VideoObject',name:'A take & its result',description:'Complete test <with> limitations.',thumbnailUrl:base+'take.jpg',contentUrl:base+'take.mp4',uploadDate:'2026-10-25T11:04:47Z'};
     const fixture = v => `<!doctype html>\n<html><head>\n  <title>Watch the take</title>\n  <meta name="description" content="A complete example.">\n  <script type="application/ld+json">${JSON.stringify(v)}</script>\n</head><body><video controls poster="take.jpg"><source src="take.mp4" type="video/mp4"></video></body></html>\n`;
     const page = path.join(root, 'docs', 'watch.html');
     await writeFile(page, fixture(video));
@@ -63,6 +63,8 @@ test('video discovery lists visible public media and refuses stale player metada
     assert.equal(await readFile(path.join(root, 'docs', 'sitemap.xml'), 'utf8'), sitemap);
     await writeFile(page, fixture({...video, contentUrl:'https://unrelated.example/take.mp4'}));
     await assert.rejects(run(process.execPath, [script]), /must reference a local public asset/);
+    await writeFile(page, fixture({...video, uploadDate:'2026-10-25'}));
+    await assert.rejects(run(process.execPath, [script]), /full datetime with timezone/);
   } finally {
     assert.equal(path.dirname(path.resolve(root)), parent);
     assert.ok(path.basename(root).startsWith('seedancecheap-video-discovery-'));
