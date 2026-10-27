@@ -8,6 +8,8 @@ Three inspectable 30-second scenes, their original text prompts, and small templ
 
 ## Native 1080p, one complete result
 
+Before a site release, run `npm run prepare:site`, then `npm test`. Preparation reconciles content-based versions across every module entry and dependency, then refreshes discovery metadata and the sitemap. Re-running it is safe after an interruption; no dated cache keys or manual cache cleanup are required.
+
 [Choose an HD video workflow](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html): the delivered Veo 3.1 example, a separately checked 15s/720p Seedance 2.5 remix quote, exact pack allocations and the documented differences from Higgsfield Genjutsu and Genjutsu Lite. The quote check starts no paid generation.
 
 [Watch our eight-second Veo 3.1 example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html): the original 1080x1920 file, exact prompt, observed Studio 2 quote and matching settings. One internal test, no cuts or upscaling. The requested final umbrella inversion is missing and the original audio is quiet. The page shows both limitations. Matching requests use 0.25 credit, allocating $0.2475 (about $0.25) with $99 upfront for 100 credits; no customer purchase is claimed.

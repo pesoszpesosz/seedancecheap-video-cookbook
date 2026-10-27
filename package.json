@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "node scripts/serve-cookbook.mjs",
+    "prepare:site": "node scripts/prepare-site.mjs",
     "test": "node --test test/*.test.mjs"
   }
 }
