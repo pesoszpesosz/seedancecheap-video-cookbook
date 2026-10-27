@@ -110,6 +110,26 @@ test('a Postman request-planner visit keeps its source through another guide and
   assert.equal(JSON.stringify([siteLinks, companions]).includes('secret'), false);
 });
 
+test('Quora readers keep attribution through a guide, shared budget and Studio without private query data', () => {
+  const siteLinks = [{ href: 'https://seedancecheap.com/studio2/?utm_medium=guide&utm_campaign=hd_workflows_oct27#genjutsu' }];
+  const companions = [{ href: page + 'native-1080p.html' }, { href: page }];
+  const root = { querySelectorAll: selector => selector === '[data-site-link]' ? siteLinks : companions };
+  applyWorksheetLinks(root, '?from=quora&private_note=do-not-forward&token=secret');
+  const studio = new URL(siteLinks[0].href);
+  assert.equal(studio.searchParams.get('utm_source'), 'quora');
+  assert.equal(studio.searchParams.get('utm_campaign'), 'hd_workflows_oct27');
+  assert.equal(studio.hash, '#genjutsu');
+  for (const companion of companions) assert.equal(new URL(companion.href).search, '?from=quora');
+  const shared = new URL(sharedBudgetLink(companions[1].href, example));
+  assert.equal(shared.search, '?from=quora');
+  assert.deepEqual(readSharedBudget(shared.hash), example);
+  const onward = new URL(worksheetLink('https://seedancecheap.com/studio2/#generate', shared.search));
+  assert.equal(onward.searchParams.get('utm_source'), 'quora');
+  assert.equal(onward.hash, '#generate');
+  assert.equal(JSON.stringify([siteLinks, companions, shared.href, onward.href]).includes('secret'), false);
+  assert.equal(new URL(worksheetLink('https://seedancecheap.com/', '?from=quora.evil.test')).searchParams.get('utm_source'), 'github');
+});
+
 test('incomplete, repeated, impossible and unsupported budgets are rejected', () => {
   const valid = new URL(sharedBudgetLink(page, example)).hash;
   for (const invalid of [
