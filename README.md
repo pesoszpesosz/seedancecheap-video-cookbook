@@ -12,7 +12,7 @@ Watch complete action and Genjutsu examples, inspect their actual prompts, and p
 
 **15s / 720p Seedance 2.5 videos from $0.99 per request**, with the **$99 upfront pack of 100 credits**. Each matching request uses **1 credit**. A smaller one-credit pack costs $2.50. No subscription; retakes and reference creation cost extra. Check the selected format, live capacity and complete quote in Studio before buying or generating.
 
-This action example was generated through our existing Plenx account: one text prompt, requested at 720p with audio, received at 720 × 1280. The complete 15.072-second original is shown unchanged, with no cuts or added upscaling. It is an internal model test with fictional AI adults and staged action; it did not test customer checkout or delivery.
+This is our internal Seedance 2.5 model example: one text prompt, requested at 720p with audio, received at 720 × 1280. The complete 15.072-second original is shown unchanged, with no cuts or added upscaling. It is an internal model test with fictional AI adults and staged action; it did not test customer checkout or delivery.
 
 [Copy the exact submitted prompt](docs/action-delivery-original-prompt.txt). In Studio 2, choose Video → Seedance 2.5 → Text to video → 15 seconds → 720p → 9:16. Paste it into Scene direction and review the current quote. [Open Studio 2](https://seedancecheap.com/studio2/?utm_source=github&utm_medium=cookbook&utm_campaign=hd_action_oct27&utm_content=readme#generate).
 
