@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html</loc></url>
@@ -10,9 +10,26 @@
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/first-scene.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/motion-remix.html</loc></url>
-  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html</loc></url>
+  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/umbrella-1080p-poster.jpg</video:thumbnail_loc>
+      <video:title>Umbrella: Final Boss — 1080p delivered Veo 3.1 example</video:title>
+      <video:description>Complete eight-second internal AI model test: a fictional adult struggles with an umbrella on a wet city street. Delivered at 1080 × 1920 using supplier upscaling; native model resolution is unverified. Audio levels balanced for playback, with every original video frame preserved. Untouched received file also available.</video:description>
+      <video:content_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/umbrella-native1080-playback.mp4</video:content_loc>
+      <video:publication_date>2026-10-26T16:52:17Z</video:publication_date>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-idea.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/paper-boat-test.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/product-label.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seedance-guenstig.html</loc></url>
+  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/watch-delivery.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-delivery-poster.jpg</video:thumbnail_loc>
+      <video:title>Delivered intact — complete 720p Seedance 2.5 action scene</video:title>
+      <video:description>Complete 15.072-second internal AI model test: a fictional adult courier protects a red delivery bag through an incoming punch and a reversal. Generated through our own Plenx route, delivered at 720 × 1280 and shown without local cuts or added upscaling. Native model resolution is unverified. Earlier example; check current model availability before buying.</video:description>
+      <video:content_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-delivery.mp4</video:content_loc>
+      <video:publication_date>2026-10-25</video:publication_date>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video></url>
 </urlset>

@@ -9,6 +9,7 @@ const decode = s => s.replaceAll('&amp;', '&').replaceAll('&quot;', '"').replace
 const escape = s => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const names = (await readdir(docs)).filter(name => name.endsWith('.html')).sort();
 const pages = [];
+const videos = [];
 
 for (const name of names) {
   const file = path.join(docs, name);
@@ -16,6 +17,21 @@ for (const name of names) {
   const title = original.match(/<title>([^<]+)<\/title>/i)?.[1];
   const description = original.match(/<meta name="description" content="([^"]+)"\s*\/?>/i)?.[1];
   if (!title || !description) throw new Error(`Missing actual title/description: ${name}`);
+  for (const match of original.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    const video = JSON.parse(match[1]);
+    if (video['@type'] !== 'VideoObject') continue;
+    for (const field of ['name', 'description', 'thumbnailUrl', 'contentUrl', 'uploadDate']) {
+      if (typeof video[field] !== 'string' || !video[field].trim()) throw new Error(`Missing video ${field}: ${name}`);
+    }
+    for (const field of ['thumbnailUrl', 'contentUrl']) {
+      const asset = video[field].startsWith(base) ? video[field].slice(base.length) : '';
+      if (!/^[a-z0-9][a-z0-9._-]*\.(jpg|png|webp|mp4)$/i.test(asset)) throw new Error(`Video ${field} must reference a local public asset: ${name}`);
+      await readFile(path.join(docs, asset));
+      const attribute = field === 'contentUrl' ? 'src' : 'poster';
+      if (!original.includes(`${attribute}="${asset}"`)) throw new Error(`Video ${field} is absent from the player: ${name}`);
+    }
+    videos.push({ file: name, video });
+  }
   const shareImage = original.match(/<meta name="share-image" content="([^"]+)"\s*\/?>/i)?.[1] ?? 'brand-icon.png';
   const shareImageAlt = original.match(/<meta name="share-image-alt" content="([^"]+)"\s*\/?>/i)?.[1] ?? 'SeedanceCheap studio logo';
   if (path.basename(shareImage) !== shareImage || !/^[a-z0-9][a-z0-9._-]*\.(png|jpg|webp)$/i.test(shareImage)) throw new Error(`Share image must be a local filename: ${name}`);
@@ -48,12 +64,15 @@ for (const name of names) {
   }
   // Git can check out CRLF on Windows. Do not rewrite otherwise unchanged pages.
   if (next.replaceAll('\r\n', '\n') !== original.replaceAll('\r\n', '\n')) await writeFile(file, next);
-  pages.push({ file: name, canonical });
+  pages.push({ file: name, canonical, videos: videos.filter(v => v.file === name).map(v => v.video) });
 }
 
 pages.sort((a, b) => a.canonical.localeCompare(b.canonical));
-const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-  + pages.map(p => `  <url><loc>${escape(p.canonical)}</loc></url>`).join('\n')
+const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n'
+  + pages.map(p => {
+    const entries = p.videos.map(v => `\n    <video:video>\n      <video:thumbnail_loc>${escape(v.thumbnailUrl)}</video:thumbnail_loc>\n      <video:title>${escape(v.name)}</video:title>\n      <video:description>${escape(v.description)}</video:description>\n      <video:content_loc>${escape(v.contentUrl)}</video:content_loc>\n      <video:publication_date>${escape(v.uploadDate)}</video:publication_date>\n      <video:requires_subscription>no</video:requires_subscription>\n    </video:video>`).join('');
+    return `  <url><loc>${escape(p.canonical)}</loc>${entries}</url>`;
+  }).join('\n')
   + '\n</urlset>\n';
 const sitemapPath = path.join(docs, 'sitemap.xml');
 const previousSitemap = await readFile(sitemapPath, 'utf8').catch(e => {
@@ -61,4 +80,4 @@ const previousSitemap = await readFile(sitemapPath, 'utf8').catch(e => {
   throw e;
 });
 if (previousSitemap !== sitemap) await writeFile(sitemapPath, sitemap);
-console.log(JSON.stringify({ pages: pages.length, sitemap: base + 'sitemap.xml', bodyChanges: 0 }));
+console.log(JSON.stringify({ pages: pages.length, videos: videos.length, sitemap: base + 'sitemap.xml', bodyChanges: 0 }));
