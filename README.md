@@ -4,6 +4,14 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
+## Two Chases. Two Priorities: the 14.2-second action reel
+
+A car vault. A wet-road drift. Then a red light and a coffee worth protecting.
+
+[Watch the complete 720p reel and five-cut recipe](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#two-chases). Made from our Green Means Go and Night Run films in our **Studio 2 Video Editor**, with original generated audio, scene captions and no upscaling. The page links to both source-film prompts.
+
+The native editor export used **0.5 credit**, separately from the source generations. Before buying generation credits, [check the dated availability notice and pack terms](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html).
+
 ## Green Means Go: a chase with one very polite interruption
 
 She outran everyone. Except the red light.
