@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "status": "maintenance",
+  "observedAt": "2026-11-01T03:51:22.525Z",
+  "nextReviewNotBefore": "2026-11-02T00:10:00Z",
+  "recoveryRequires": "A fresh authoritative check; the announced end time alone does not establish recovery.",
+  "targets": [
+    {
+      "file": "index.html",
+      "language": "en"
+    },
+    {
+      "file": "action.html",
+      "language": "en"
+    },
+    {
+      "file": "green-means-go.html",
+      "language": "en"
+    },
+    {
+      "file": "night-run.html",
+      "language": "en"
+    },
+    {
+      "file": "motion-remix.html",
+      "language": "en"
+    },
+    {
+      "file": "hd-video-workflows.html",
+      "language": "en"
+    },
+    {
+      "file": "seedance-guenstig.html",
+      "language": "de"
+    },
+    {
+      "file": "first-scene.html",
+      "language": "en"
+    },
+    {
+      "file": "watch-delivery.html",
+      "language": "en"
+    }
+  ]
+}
