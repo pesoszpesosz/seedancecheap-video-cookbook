@@ -1,16 +1,38 @@
-# AI video prompt cookbook from SeedanceCheap
+# SeedanceCheap: AI action films, VFX and exact prompts
 
-Watch complete action and Genjutsu examples, inspect their actual prompts, and plan your next AI video with free creator tools.
+Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy the exact prompts, and see how our team edited the results. The [free creator cookbook](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/) also includes shot planners, Genjutsu source/reference/result examples and a video-cost calculator.
 
-**Published by SeedanceCheap**, an independent video studio, using its existing public samples. Prepared with Codex. These are historical outputs, not a promise that a rerun will match. The prompts record the requested scene; inspect the full video to judge what actually happened.
+**Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
-## 720p action. One important delivery.
+## Green Means Go: a chase with one very polite interruption
+
+She outran everyone. Except the red light.
+
+<a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go.html"><img src="docs/green-means-go-poster.jpg" width="240" alt="An AI-generated adult stunt performer vaults a parked car in Green Means Go."></a>
+
+[Watch the 12-second edit and complete 15-second original](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go.html). Generated with **Seedance 2.5 through Plenx at 720 × 1280**, then cut in our **Studio 2 Video Editor**. We kept 0–6.5 seconds and 9.5–15 seconds, shortening the crossing-signal pause while retaining the generated audio with those passages. No upscaling or replacement music.
+
+[Download the exact prompt](docs/green-means-go-prompt.txt). The page shows the original, edit and practical review, including wardrobe and stunt details that differ from the brief. Internal team demonstration; no customer purchase or current storefront-capacity proof is claimed.
+
+## Seat Upgrade: a camping chair with an exit plan
+
+One pull. Four wheels. A very short camping trip.
+
+<a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html"><img src="docs/seat-upgrade-poster.jpg" width="240" alt="An AI-generated adult driver in a yellow desert buggy, transformed from a camping chair."></a>
+
+[Watch the complete eight-second transformation](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html). **Veo 3.1 Lite through Plenx, 720 × 1280**, with its original generated audio. The full received file lasts 7.93 seconds. No added shots or upscaling. [Copy the exact prompt](docs/seat-upgrade-prompt.txt).
+
+The person, seat and desert stay broadly consistent. Some components appear rather than visibly unfolding from the chair, and the buggy drives forward instead of taking the requested exit to camera-right. Treat this as fictional VFX; the review explains what to check in your own take.
+
+[Explore Studio 2's models and workflows](https://seedancecheap.com/studio2/?utm_source=github&utm_medium=cookbook&utm_campaign=films_nov1&utm_content=readme#apps). Choose your model and review its current settings, live availability and full quote before generating. Planning tools and prompt downloads are free; generation and editing are separate actions.
+
+## Earlier 720p action and Genjutsu study
 
 [Watch the complete 15-second Seedance 2.5 action clip](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#scene-delivery), then [see its Genjutsu before-and-after](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#remix).
 
 <a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#scene-delivery"><img src="docs/action-delivery-poster.jpg" width="280" alt="A courier ducks an incoming punch while protecting a red delivery bag in our fictional AI action scene. Watch the complete 720p clip."></a>
 
-**15s / 720p Seedance 2.5 videos from $0.99 per request**, with the **$99 upfront pack of 100 credits**. Each matching request uses **1 credit**. A smaller one-credit pack costs $2.50. No subscription; retakes and reference creation cost extra. Check the selected format, live capacity and complete quote in Studio before buying or generating.
+At our October 25, 2026 quote check, **15s / 720p Seedance 2.5 used 1 credit**, allocating **$0.99 per matching request from the $99 upfront pack of 100 credits**. This is a dated price snapshot. Check the selected format, live capacity and complete quote in Studio before buying or generating. Retakes and reference creation cost separately.
 
 This is our internal Seedance 2.5 model example: one text prompt, requested at 720p with audio, received at 720 × 1280. The complete 15.072-second original is shown unchanged, with no cuts or added upscaling. It is an internal model test with fictional AI adults and staged action; it did not test customer checkout or delivery.
 
@@ -19,8 +41,6 @@ This is our internal Seedance 2.5 model example: one text prompt, requested at 7
 The showcase also preserves the earlier fight study: an 8.4-second edit from a historical 30-second generation, with upscaling and sound editing disclosed. Each example has its own source notes. New results can differ from these examples.
 
 ## 1080p delivered output, one complete result
-
-Before a site release, run `npm run prepare:site`, then `npm test`. Preparation reconciles content-based versions across every module entry and dependency, then refreshes discovery metadata and the sitemap. Re-running it is safe after an interruption; no dated cache keys or manual cache cleanup are required.
 
 [Choose an HD video workflow](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html): the supplier-upscaled Veo 3.1 example, a separately checked 15s/720p Seedance 2.5 remix quote, exact pack allocations and the documented differences from Higgsfield Genjutsu and Genjutsu Lite. The quote check starts no paid generation.
 
@@ -144,6 +164,8 @@ Start with text-to-video and check live input availability before planning aroun
 The car and boat prompts are copied from the original public example pages linked above. The [courier prompt](https://seedancecheap.com/showcase/rooftop-courier-prompt.txt) was already public. The templates contain planning suggestions; they have not been tested against a new generation.
 
 ## Run the tools locally
+
+Before a site release, run `npm run prepare:site`, then `npm test`. Preparation reconciles content-based versions across every module entry and dependency, then refreshes discovery metadata and the sitemap. Re-running it is safe after an interruption; no dated cache keys or manual cache cleanup are required.
 
 With Node.js installed, run `npm start` and open `http://localhost:8080`. This dependency-free preview serves the existing calculator and guides from `docs/`; it does not submit API requests, collect API keys, install dependencies or generate media. Run `npm test` to check the examples. The same launch command is suitable for a public StackBlitz import.
 
