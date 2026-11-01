@@ -26,6 +26,12 @@ The person, seat and desert stay broadly consistent. Some components appear rath
 
 [Explore Studio 2's models and workflows](https://seedancecheap.com/studio2/?utm_source=github&utm_medium=cookbook&utm_campaign=films_nov1&utm_content=readme#apps). Choose your model and review its current settings, live availability and full quote before generating. Planning tools and prompt downloads are free; generation and editing are separate actions.
 
+## Night Run: coffee, still standing
+
+<a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/night-run.html"><img src="docs/night-run-poster.jpg" width="240" alt="A yellow fictional rally coupe drifts on wet streets."></a>
+
+[Watch the complete 13.2-second car-chase edit](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/night-run.html). **Seedance 2.5, 720 × 1280**, cut in our **Studio 2 Video Editor** from a 15-second source. Keep 0–6.5 seconds and 8–14.7 seconds, retain the original generated audio and use full-frame fit. No upscaling or replacement music. [Copy the actual prompt](docs/night-run-prompt.txt).
+
 ## Earlier 720p action and Genjutsu study
 
 [Watch the complete 15-second Seedance 2.5 action clip](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#scene-delivery), then [see its Genjutsu before-and-after](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html#remix).
