@@ -10,7 +10,7 @@ She outran everyone. Except the red light.
 
 <a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go.html"><img src="docs/green-means-go-poster.jpg" width="240" alt="An AI-generated adult stunt performer vaults a parked car in Green Means Go."></a>
 
-[Watch the 12-second edit and complete 15-second original](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go.html). Generated with **Seedance 2.5 through Plenx at 720 × 1280**, then cut in our **Studio 2 Video Editor**. We kept 0–6.5 seconds and 9.5–15 seconds, shortening the crossing-signal pause while retaining the generated audio with those passages. No upscaling or replacement music.
+[Watch the 12-second edit and complete 15-second original](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go.html). Generated with **Seedance 2.5 at 720 × 1280**, then cut in our **Studio 2 Video Editor**. We kept 0–6.5 seconds and 9.5–15 seconds, shortening the crossing-signal pause while retaining the generated audio with those passages. No upscaling or replacement music.
 
 [Download the exact prompt](docs/green-means-go-prompt.txt). The page shows the original, edit and practical review, including wardrobe and stunt details that differ from the brief. Internal team demonstration; no customer purchase or current storefront-capacity proof is claimed.
 
@@ -20,7 +20,7 @@ One pull. Four wheels. A very short camping trip.
 
 <a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html"><img src="docs/seat-upgrade-poster.jpg" width="240" alt="An AI-generated adult driver in a yellow desert buggy, transformed from a camping chair."></a>
 
-[Watch the complete eight-second transformation](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html). **Veo 3.1 Lite through Plenx, 720 × 1280**, with its original generated audio. The full received file lasts 7.93 seconds. No added shots or upscaling. [Copy the exact prompt](docs/seat-upgrade-prompt.txt).
+[Watch the complete eight-second transformation](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html). **Veo 3.1 Lite, 720 × 1280**, with its original generated audio. The full received file lasts 7.93 seconds. No added shots or upscaling. [Copy the exact prompt](docs/seat-upgrade-prompt.txt).
 
 The person, seat and desert stay broadly consistent. Some components appear rather than visibly unfolding from the chair, and the buggy drives forward instead of taking the requested exit to camera-right. Treat this as fictional VFX; the review explains what to check in your own take.
 
