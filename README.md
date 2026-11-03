@@ -4,6 +4,12 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
+## One Fight. Two Looks: the 13.2-second Genjutsu showcase
+
+[Watch the complete 720p source/result edit](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html). Seven matched cuts alternate our earlier action source and blue-jacket guided result, with the trolley and cake payoff. Original generated audio, clear source/result labels and the exact Studio 2 cut recipe. Full inputs, reference and prompts remain linked; clothing, timing, faces and cake details vary.
+
+The final native editor export quoted 0.5 credit. We made two export versions, quoting 1 credit in total, to improve the cake reveal. Source generation and reference creation are separate; no new AI generation was used for this edit. Review the dated availability notice and your current complete quote before buying credits.
+
 ## Two Chases. Two Priorities: the 14.2-second action reel
 
 A car vault. A wet-road drift. Then a red light and a coffee worth protecting.
