@@ -26,6 +26,15 @@
       <video:requires_subscription>no</video:requires_subscription>
     </video:video></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html</loc></url>
+  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene-poster.jpg</video:thumbnail_loc>
+      <video:title>Make a Scene — Seedance 2.5 and Genjutsu action showreel</video:title>
+      <video:description>A 21.2-second portfolio montage of earlier AI car-vault, drifting-car and fight scenes, including a Genjutsu-guided blue-jacket remake. Cut in the SeedanceCheap Studio 2 Video Editor with local Kokoro narration and original effects. Fictional adults and staged action.</video:description>
+      <video:content_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.mp4</video:content_loc>
+      <video:publication_date>2026-11-03T21:09:53.547941+00:00</video:publication_date>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/motion-remix.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html</loc>
     <video:video>
