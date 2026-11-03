@@ -36,3 +36,17 @@ test('German notices are localized and invalid or undated states fail before a p
   assert.throws(() => availabilityPage(page, { status: 'ready' }), /Unrecognized/);
   assert.throws(() => availabilityPage(page, { status: 'maintenance', observedAt: 'invalid' }), /observation time/);
 });
+
+test('limited recovery offers the qualified HD backup without promising Genjutsu, 30 seconds or matching old demo provenance', () => {
+  const limited = { status: 'limited', observedAt: '2026-11-03T22:30:00Z', source: 'private-provider-evidence' };
+  const result = availabilityPage(availabilityPage(page, snapshot), limited);
+  assert.match(result, /720p text-to-video and image-guided requests of 5, 10 or 15 seconds/);
+  assert.ok(result.includes('0.5 credit: an allocated $0.495 from the $99 upfront pack of 100 credits'));
+  assert.match(result, /does not support Genjutsu\/source-video guidance or 30-second clips/);
+  assert.match(result, /earlier films below came from other options/);
+  assert.match(result, /data-site-link href="https:\/\/seedancecheap.com\/studio2\//);
+  assert.ok(!result.includes(limited.source));
+  assert.ok(result.includes('<p>15s/720p: $0.99; $99 upfront.</p>'));
+  assert.equal(availabilityPage(result, limited), result);
+  assert.match(availabilityPage(page, limited, 'de'), /720p für 5, 10 oder 15 Sekunden/);
+});
