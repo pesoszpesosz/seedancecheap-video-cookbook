@@ -64,6 +64,10 @@ test('preview serves the existing calculator, guide and module without serving r
     assert.match(await guide.text(), /request ID/i);
     const module = await fetch(base + '/api-request.mjs?v=example');
     assert.match(module.headers.get('content-type'), /^text\/javascript/);
+    const starter = await fetch(base + '/genjutsu-courier-starter.zip');
+    assert.equal(starter.status, 200);
+    assert.equal(starter.headers.get('content-type'), 'application/zip');
+    assert.deepEqual(Buffer.from(await starter.arrayBuffer()), await readFile(new URL('../docs/genjutsu-courier-starter.zip', import.meta.url)));
     for (const path of ['/README.md', '/package.json', '/.git/config', '/%2e%2e%2fREADME.md', '/missing.html']) {
       assert.equal((await fetch(base + path)).status, 404, path);
     }
