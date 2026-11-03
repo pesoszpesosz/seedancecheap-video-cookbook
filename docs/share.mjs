@@ -1,5 +1,5 @@
-import { calculate } from './cost.mjs?v=1ddb55513c14';
-import { isWorksheetChannel } from './links.mjs?v=1ddb55513c14';
+import { calculate } from './cost.mjs?v=6923a1726028';
+import { worksheetSource } from './links.mjs?v=6923a1726028';
 
 const fields = ['credits', 'cents', 'attempts', 'restored', 'seconds', 'duration'];
 
@@ -22,12 +22,12 @@ export function readSharedBudget(hash) {
   return budget;
 }
 
-export function sharedBudgetLink(pageUrl, budget) {
+export function sharedBudgetLink(pageUrl, budget, referrer = '') {
   calculate(budget);
   const url = new URL(pageUrl);
-  const channel = url.searchParams.get('from');
+  const channel = worksheetSource(url.search, referrer);
   url.search = '';
-  if (isWorksheetChannel(channel)) url.searchParams.set('from', channel);
+  if (channel) url.searchParams.set('from', channel);
   const version = budget.creditsPerClip === undefined ? '1' : '2';
   const parameters = new URLSearchParams({ budget: version });
   for (const field of fields) parameters.set(field, String(budget[field]));

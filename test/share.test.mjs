@@ -151,3 +151,42 @@ test('ordinary links keep the default worksheet behavior', () => {
   assert.equal(readSharedBudget(''), null);
   assert.equal(readSharedBudget('#example'), null);
 });
+
+test('an untagged LibHunt visit keeps its source through the guide, another page and Studio', () => {
+  const siteLinks = [{ href: 'https://seedancecheap.com/studio2/?utm_medium=guide&utm_campaign=hd_workflows_oct27#genjutsu' }];
+  const companions = [{ href: page + 'motion-remix.html' }];
+  const root = {
+    referrer: 'https://www.libhunt.com/r/seedancecheap-video-cookbook?private_note=do-not-forward',
+    querySelectorAll: selector => selector === '[data-site-link]' ? siteLinks : companions,
+  };
+  applyWorksheetLinks(root);
+  const studio = new URL(siteLinks[0].href);
+  assert.equal(studio.searchParams.get('utm_source'), 'libhunt');
+  assert.equal(studio.searchParams.get('utm_campaign'), 'hd_workflows_oct27');
+  assert.equal(studio.hash, '#genjutsu');
+  assert.equal(new URL(companions[0].href).search, '?from=libhunt');
+  const onward = new URL(worksheetLink('https://seedancecheap.com/studio2/#editor', new URL(companions[0].href).search));
+  assert.equal(onward.searchParams.get('utm_source'), 'libhunt');
+  assert.equal(onward.hash, '#editor');
+  assert.equal(JSON.stringify([siteLinks, companions, onward.href]).includes('private_note'), false);
+});
+
+test('a direct LibHunt calculator visit retains source and budget numbers when shared', () => {
+  const shared = new URL(sharedBudgetLink(page, example, 'https://libhunt.com/'));
+  assert.equal(shared.search, '?from=libhunt');
+  assert.deepEqual(readSharedBudget(shared.hash), example);
+  const studio = new URL(worksheetLink('https://seedancecheap.com/studio2/?utm_content=model_availability#generate', '', 'https://www.libhunt.com/'));
+  assert.equal(studio.searchParams.get('utm_source'), 'libhunt');
+  assert.equal(studio.searchParams.get('utm_content'), 'model_availability');
+  assert.equal(studio.hash, '#generate');
+});
+
+test('explicit campaign tags win and unrelated or misleading referrers keep the original default', () => {
+  const source = (search, referrer) => new URL(worksheetLink('https://seedancecheap.com/', search, referrer)).searchParams.get('utm_source');
+  assert.equal(source('?from=postman', 'https://www.libhunt.com/'), 'postman');
+  assert.equal(source('?from=unknown', 'https://www.libhunt.com/'), 'github');
+  for (const referrer of ['', 'not a URL', 'https://libhunt.com.evil.test/', 'https://example.test/?next=https://www.libhunt.com/', 'http://libhunt.com/']) {
+    assert.equal(source('', referrer), 'github');
+    assert.equal(new URL(sharedBudgetLink(page, example, referrer)).search, '');
+  }
+});

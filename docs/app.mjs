@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=1ddb55513c14';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=1ddb55513c14';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=1ddb55513c14';
+import { packs, clipTerms, calculate } from './cost.mjs?v=6923a1726028';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=6923a1726028';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=6923a1726028';
 
 applyWorksheetLinks(document, location.search);
 
@@ -27,7 +27,7 @@ function render() {
     const destination = $('model').value.startsWith('seedance-2.5')
       ? 'https://seedancecheap.com/studio2/?utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability#generate'
       : `https://seedancecheap.com/app.html?model=${$('model').value}&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability`;
-    $('model-availability').href = worksheetLink(destination, location.search);
+    $('model-availability').href = worksheetLink(destination, location.search, document.referrer);
   }
   $('shared-budget').hidden = true;
   currentBudget = null;
@@ -67,7 +67,7 @@ $('example').addEventListener('click', () => {
 $('restore-defaults').addEventListener('click', () => { form.reset(); render(); });
 $('share-budget').addEventListener('click', () => {
   if (!currentBudget) return;
-  $('budget-link').value = sharedBudgetLink(location.href, currentBudget);
+  $('budget-link').value = sharedBudgetLink(location.href, currentBudget, document.referrer);
   $('shared-budget').hidden = false;
   $('budget-link').focus();
   $('budget-link').select();
