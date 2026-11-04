@@ -8,6 +8,18 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 [Download the free Action Starter v1 (5.6 MB ZIP)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v1/seedancecheap-action-starter-v1.zip): four exact prompts, our actual Genjutsu source video and appearance reference, and two editing recipes. Extract it and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate activities. [See the release and complete films](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/action-starter-v1).
 
+## Protect the Cake: action, then a client voiceover
+
+A fight. A delivery. A very specific brief.
+
+<a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#protect-the-cake"><picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/protect-the-cake-poster.jpg"><img src="docs/protect-the-cake-preview-720p.webp" width="320" alt="Silent moving preview: an AI courier fights to protect a red delivery bag, then eats cake while the client's punchline appears."></picture></a>
+
+Silent preview. **[Watch the complete 6.4-second 720p film with sound and copy the three-cut recipe](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#protect-the-cake).** The clean action master and reference voice are free to inspect, without an account.
+
+This new cut combines our earlier Genjutsu footage, a new local Kokoro voice and a native **Studio 2 Video Editor** export. Captions and sound normalization were finished locally. Source generation, voice and editing are separate activities; the recipe records the actual voice/export quotes.
+
+[Try your own edit in Studio 2](https://seedancecheap.com/app.html?mode=register&next=%2Fstudio2%2F%23editor&utm_source=github&utm_medium=cookbook&utm_campaign=protect_the_cake_nov5&utm_content=readme_editor). Prepare the downloaded master and read the recipe first, then review the complete quote before starting an export.
+
 ## One Fight. Two Looks: the 13.2-second Genjutsu showcase
 
 <a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html?from=github"><picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/one-fight-two-looks-poster.jpg"><img src="docs/genjutsu-action-preview-720p.webp" width="270" alt="AI courier fight alternates the burgundy-jacket original and blue-jacket Genjutsu result in a six-second moving preview."></picture></a>
