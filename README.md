@@ -8,7 +8,11 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 ## One Fight. Two Looks: the 13.2-second Genjutsu showcase
 
-[Watch the complete 720p source/result edit](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html). Seven matched cuts alternate our earlier action source and blue-jacket guided result, with the trolley and cake payoff. Original generated audio, clear source/result labels and the exact Studio 2 cut recipe. Full inputs, reference and prompts remain linked; clothing, timing, faces and cake details vary.
+<a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html?from=github"><picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/one-fight-two-looks-poster.jpg"><img src="docs/genjutsu-action-preview-720p.webp" width="270" alt="AI courier fight alternates the burgundy-jacket original and blue-jacket Genjutsu result in a six-second moving preview."></picture></a>
+
+Six-second silent preview from our earlier internal AI footage. [Open the complete film with sound and the source/result recipe](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html?from=github).
+
+Seven matched cuts alternate our earlier action source and blue-jacket guided result, with the trolley and cake payoff. Original generated audio, clear source/result labels and the exact Studio 2 cut recipe. Full inputs, reference and prompts remain linked; clothing, timing, faces and cake details vary.
 
 The final native editor export quoted 0.5 credit. We made two export versions, quoting 1 credit in total, to improve the cake reveal. Source generation and reference creation are separate; no new AI generation was used for this edit. Review the dated availability notice and your current complete quote before buying credits.
 
