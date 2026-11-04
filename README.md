@@ -6,6 +6,8 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **The new budget generation promotion is paused while its model identity is verified.** The completed earlier Plenx films, exact prompts, Genjutsu inputs and editing recipes remain available. [Read the current video pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) before choosing a model or buying credits.
 
+[Download the free Action Starter v1 (5.6 MB ZIP)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v1/seedancecheap-action-starter-v1.zip): four exact prompts, our actual Genjutsu source video and appearance reference, and two editing recipes. Extract it and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate activities. [See the release and complete films](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/action-starter-v1).
+
 ## One Fight. Two Looks: the 13.2-second Genjutsu showcase
 
 <a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html?from=github"><picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/one-fight-two-looks-poster.jpg"><img src="docs/genjutsu-action-preview-720p.webp" width="270" alt="AI courier fight alternates the burgundy-jacket original and blue-jacket Genjutsu result in a six-second moving preview."></picture></a>
