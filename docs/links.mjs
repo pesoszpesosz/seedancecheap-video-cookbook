@@ -1,5 +1,9 @@
-const channels = new Set(['facebook', 'reddit', 'youtube', 'quora', 'producthunt', 'github', 'flipboard', 'stackblitz', 'itchio', 'postman', 'mastodon', 'blogger', 'wordpress', 'pinterest', 'linkedin', 'bluesky', 'libhunt']);
-const directoryOrigins = new Set(['https://libhunt.com', 'https://www.libhunt.com']);
+const channels = new Set(['facebook', 'reddit', 'youtube', 'quora', 'producthunt', 'github', 'flipboard', 'stackblitz', 'itchio', 'postman', 'mastodon', 'blogger', 'wordpress', 'pinterest', 'linkedin', 'bluesky', 'libhunt', 'google', 'bing']);
+const referralOrigins = new Map([
+  ['https://libhunt.com', 'libhunt'], ['https://www.libhunt.com', 'libhunt'],
+  ['https://google.com', 'google'], ['https://www.google.com', 'google'],
+  ['https://bing.com', 'bing'], ['https://www.bing.com', 'bing'],
+]);
 
 export function isWorksheetChannel(channel) {
   return channels.has(channel);
@@ -9,7 +13,7 @@ export function worksheetSource(search = '', referrer = '') {
   const requested = new URLSearchParams(search).get('from');
   if (requested !== null) return isWorksheetChannel(requested) ? requested : null;
   try {
-    return directoryOrigins.has(new URL(referrer).origin) ? 'libhunt' : null;
+    return referralOrigins.get(new URL(referrer).origin) || null;
   } catch {
     return null;
   }

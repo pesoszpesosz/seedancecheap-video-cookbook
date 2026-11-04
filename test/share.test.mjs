@@ -111,7 +111,7 @@ test('a Postman request-planner visit keeps its source through another guide and
 });
 
 test('reviewed campaign sources keep attribution through a guide, shared budget and Studio without private query data', () => {
-  for (const channel of ['quora', 'producthunt', 'bluesky']) {
+  for (const channel of ['quora', 'producthunt', 'bluesky', 'google', 'bing']) {
   const siteLinks = [{ href: 'https://seedancecheap.com/studio2/?utm_medium=guide&utm_campaign=hd_workflows_oct27#genjutsu' }];
   const companions = [{ href: page + 'native-1080p.html' }, { href: page }];
   const root = { querySelectorAll: selector => selector === '[data-site-link]' ? siteLinks : companions };
@@ -188,5 +188,31 @@ test('explicit campaign tags win and unrelated or misleading referrers keep the 
   for (const referrer of ['', 'not a URL', 'https://libhunt.com.evil.test/', 'https://example.test/?next=https://www.libhunt.com/', 'http://libhunt.com/']) {
     assert.equal(source('', referrer), 'github');
     assert.equal(new URL(sharedBudgetLink(page, example, referrer)).search, '');
+  }
+});
+
+test('organic search visitors keep a coarse source across guides and shared budgets without forwarding their search query', () => {
+  for (const [referrer, source] of [
+    ['https://www.bing.com/search?q=seedance+cheap&token=private-search', 'bing'],
+    ['https://www.google.com/search?q=seedance+cheap&token=private-search', 'google'],
+  ]) {
+    const siteLinks = [{ href: 'https://seedancecheap.com/studio2/?utm_campaign=hd_workflows_oct27#generate' }];
+    const companions = [{ href: page + 'hd-video-workflows.html' }];
+    const root = { referrer, querySelectorAll: selector => selector === '[data-site-link]' ? siteLinks : companions };
+    applyWorksheetLinks(root);
+    assert.equal(new URL(siteLinks[0].href).searchParams.get('utm_source'), source);
+    assert.equal(new URL(siteLinks[0].href).hash, '#generate');
+    assert.equal(new URL(companions[0].href).search, `?from=${source}`);
+    const shared = new URL(sharedBudgetLink(page, example, referrer));
+    assert.equal(shared.search, `?from=${source}`);
+    assert.deepEqual(readSharedBudget(shared.hash), example);
+    assert.equal(new URL(worksheetLink('https://seedancecheap.com/buy', shared.search)).searchParams.get('utm_source'), source);
+    assert.equal(JSON.stringify([siteLinks, companions, shared.href]).includes('private-search'), false);
+    assert.equal(JSON.stringify([siteLinks, companions, shared.href]).includes('seedance+cheap'), false);
+    assert.equal(new URL(worksheetLink('https://seedancecheap.com/', '?from=quora', referrer)).searchParams.get('utm_source'), 'quora');
+    assert.equal(new URL(worksheetLink('https://seedancecheap.com/', '?from=unknown', referrer)).searchParams.get('utm_source'), 'github');
+  }
+  for (const referrer of ['https://www.bing.com.evil.test/', 'https://google.com.evil.test/', 'https://example.test/?next=https://www.bing.com/', 'http://www.bing.com/']) {
+    assert.equal(new URL(worksheetLink('https://seedancecheap.com/', '', referrer)).searchParams.get('utm_source'), 'github');
   }
 });
