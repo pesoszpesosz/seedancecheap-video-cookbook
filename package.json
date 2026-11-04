@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node scripts/serve-cookbook.mjs",
     "prepare:site": "node scripts/prepare-site.mjs",
+    "export:stackblitz": "node scripts/export-stackblitz.mjs",
     "test": "node --test test/*.test.mjs"
   }
 }

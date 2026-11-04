@@ -4,6 +4,8 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
+**Current 15s / 720p text-or-still-image option: 0.5 credit, allocated $0.495 from $99 upfront for 100 credits.** The $2.50 one-credit starter covers two matching requests ($1.25 allocated each). This option supports 5/10/15 seconds and excludes Genjutsu/source-video guidance and 30s. The linked films came from earlier options. [Review the current formats and pack comparison](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html); catalogue and packs checked November 3, 2026. Extra takes, editing and references cost separately.
+
 ## One Fight. Two Looks: the 13.2-second Genjutsu showcase
 
 [Watch the complete 720p source/result edit](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html). Seven matched cuts alternate our earlier action source and blue-jacket guided result, with the trolley and cake payoff. Original generated audio, clear source/result labels and the exact Studio 2 cut recipe. Full inputs, reference and prompts remain linked; clothing, timing, faces and cake details vary.
@@ -190,6 +192,8 @@ Before a site release, run `npm run prepare:site`, then `npm test`. Preparation 
 With Node.js installed, run `npm start` and open `http://localhost:8080`. This dependency-free preview serves the existing calculator and guides from `docs/`; it does not submit API requests, collect API keys, install dependencies or generate media. Run `npm test` to check the examples. The same launch command is suitable for a public StackBlitz import.
 
 [Open the editable calculator on StackBlitz](https://stackblitz.com/edit/seedancecheap-usable-video-cost?file=index.html). This standalone copy reuses the calculator above and links to the existing public guides; it does not generate footage or establish current model availability.
+
+To refresh that existing project, run `npm run export:stackblitz -- /path/to/index.html` after site preparation. The exporter uses the canonical page and the same four calculator modules, resolves public assets, retains StackBlitz attribution and shares budgets through the stable public cookbook URL. Review the exported file, then replace only the existing project's `index.html` through its owner editor; do not fork another project.
 
 ## Maintaining public page discovery
 

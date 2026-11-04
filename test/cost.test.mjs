@@ -5,7 +5,7 @@ import { readSharedBudget, sharedBudgetLink } from '../docs/share.mjs';
 
 const halfCredit = { credits:5, cents:1125, attempts:6, restored:1, seconds:18, duration:15, creditsPerClip:0.5 };
 
-test('current Studio 2 formats budget rejected takes without treating a bulk allocation as checkout cash', () => {
+test('earlier Studio 2 format snapshots retain their original rates and shared budgets', () => {
   const batch = { ...clipTerms['seedance-2.5-15s-720p'], attempts:3, restored:0, seconds:15 };
   const starter = calculate({ ...packs[0], ...batch });
   assert.equal(starter.allocatedCents, 750);
@@ -20,6 +20,26 @@ test('current Studio 2 formats budget rejected takes without treating a bulk all
   assert.equal(longClip.unusedCredits, 0.5);
   const historical = readSharedBudget('#budget=2&credits=5&cents=1125&attempts=6&restored=2&seconds=18&duration=30&creditsPerClip=1');
   assert.equal(calculate(historical).allocatedCents, 900);
+});
+
+test('current 720p requests keep pack allocation, rejected takes and whole-pack cash separate', () => {
+  const terms = clipTerms['seedance-2.5-720p-15s-nov4'];
+  const one = calculate({ ...packs.at(-1), ...terms, attempts:1, restored:0, seconds:15 });
+  assert.equal(one.allocatedCents, 49.5);
+  assert.equal(one.minimumCashCents, 9900);
+  assert.equal(one.unusedCredits, 99.5);
+  const three = calculate({ ...packs.at(-1), ...terms, attempts:3, restored:0, seconds:15 });
+  assert.equal(three.allocatedCents, 148.5);
+  assert.equal(three.unusedCredits, 98.5);
+  const starter = calculate({ ...packs[0], ...terms, attempts:2, restored:0, seconds:15 });
+  assert.equal(starter.allocatedCents, 250);
+  assert.equal(starter.minimumCashCents, 250);
+  assert.equal(starter.unusedCredits, 0);
+  const restored = calculate({ ...packs.at(-1), ...terms, attempts:3, restored:0.5, seconds:15 });
+  assert.equal(restored.allocatedCents, 99);
+  assert.equal(restored.netAttempts, 2);
+  const short = calculate({ ...packs.at(-1), ...clipTerms['seedance-2.5-720p-5s-nov4'], attempts:1, restored:0, seconds:5 });
+  assert.equal(short.allocatedCents, 24.75);
 });
 
 test('quarter-credit shared budgets preserve restored attempts and distinguish the $99 pack from usage', () => {

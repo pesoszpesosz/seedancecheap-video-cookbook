@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=6923a1726028';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=6923a1726028';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=6923a1726028';
+import { packs, clipTerms, calculate } from './cost.mjs?v=9ce4a94c8bc2';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=9ce4a94c8bc2';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=9ce4a94c8bc2';
 
 applyWorksheetLinks(document, location.search);
 
@@ -61,7 +61,7 @@ form.addEventListener('submit', event => event.preventDefault());
 form.addEventListener('input', render);
 form.addEventListener('change', render);
 $('example').addEventListener('click', () => {
-  $('model').value = 'seedance-2.5-15s-720p'; $('pack').value = '0'; $('attempts').value = '3'; $('restored').value = '0'; $('seconds').value = '15';
+  $('model').value = 'seedance-2.5-720p-15s-nov4'; $('attempts').value = '3'; $('restored').value = '0'; $('seconds').value = '15';
   render();
 });
 $('restore-defaults').addEventListener('click', () => { form.reset(); render(); });
@@ -81,7 +81,8 @@ function loadSharedBudget() {
     if (shared) {
       const preset = packs.findIndex(pack => pack.credits === shared.credits && pack.cents === shared.cents);
       $('pack').value = preset < 0 ? 'custom' : String(preset);
-      $('model').value = Object.keys(clipTerms).find(model => clipTerms[model].duration === shared.duration && clipTerms[model].creditsPerClip === (shared.creditsPerClip ?? 1)) ?? 'custom';
+      const matchingModels = Object.keys(clipTerms).filter(model => clipTerms[model].duration === shared.duration && clipTerms[model].creditsPerClip === (shared.creditsPerClip ?? 1));
+      $('model').value = matchingModels.length === 1 ? matchingModels[0] : 'custom';
       $('pack-credits').value = shared.credits;
       $('pack-price').value = (shared.cents / 100).toFixed(2);
       $('attempts').value = shared.attempts;

@@ -5,6 +5,9 @@ export const packs = [
 ];
 
 export const clipTerms = {
+  'seedance-2.5-720p-15s-nov4': { duration: 15, creditsPerClip: 0.5 },
+  'seedance-2.5-720p-10s-nov4': { duration: 10, creditsPerClip: 0.5 },
+  'seedance-2.5-720p-5s-nov4': { duration: 5, creditsPerClip: 0.25 },
   'seedance-2.5': { duration: 30, creditsPerClip: 0.5 },
   'seedance-2.5-15s-720p': { duration: 15, creditsPerClip: 1 },
   'seedance-2.0': { duration: 15, creditsPerClip: 0.5 },
