@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=9ce4a94c8bc2';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=9ce4a94c8bc2';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=9ce4a94c8bc2';
+import { packs, clipTerms, calculate } from './cost.mjs?v=f25ad7ffd64d';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=f25ad7ffd64d';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=f25ad7ffd64d';
 
 applyWorksheetLinks(document, location.search);
 
@@ -101,6 +101,9 @@ function loadSharedBudget() {
 form.addEventListener('input', () => { $('shared-notice').hidden = true; });
 form.addEventListener('change', () => { $('shared-notice').hidden = true; });
 for (const id of ['example', 'restore-defaults']) $(id).addEventListener('click', () => { $('shared-notice').hidden = true; });
-window.addEventListener('hashchange', () => { loadSharedBudget(); render(); });
+window.addEventListener('hashchange', () => {
+  if (location.hash === '#budget' || !new URLSearchParams(location.hash.slice(1)).has('budget')) return;
+  loadSharedBudget(); render();
+});
 loadSharedBudget();
 render();

@@ -1,9 +1,10 @@
-import { calculate } from './cost.mjs?v=9ce4a94c8bc2';
-import { worksheetSource } from './links.mjs?v=9ce4a94c8bc2';
+import { calculate } from './cost.mjs?v=f25ad7ffd64d';
+import { worksheetSource } from './links.mjs?v=f25ad7ffd64d';
 
 const fields = ['credits', 'cents', 'attempts', 'restored', 'seconds', 'duration'];
 
 export function readSharedBudget(hash) {
+  if (hash === '#budget') return null;
   const parameters = new URLSearchParams(hash.replace(/^#/, ''));
   if (!parameters.has('budget')) return null;
   const version = parameters.get('budget');
