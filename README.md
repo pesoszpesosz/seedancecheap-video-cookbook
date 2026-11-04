@@ -195,6 +195,8 @@ With Node.js installed, run `npm start` and open `http://localhost:8080`. This d
 
 To refresh that existing project, run `npm run export:stackblitz -- /path/to/index.html` after site preparation. The exporter uses the canonical page and the same four calculator modules, resolves public assets, retains StackBlitz attribution and shares budgets through the stable public cookbook URL. Review the exported file, then replace only the existing project's `index.html` through its owner editor; do not fork another project.
 
+To prepare the current calculator for a Hugging Face Static Space, run `npm run export:stackblitz -- /path/to/space/index.html huggingface`. Add a Space `README.md` with `sdk: static` and `app_file: index.html` in its YAML header. This variant retains the Hugging Face source through publisher links and shared budgets; exports omit the original website's ownership-verification tags. The command prepares a file only. It does not create an account, publish a Space or consume model compute. Use the confirmed brand account for publication.
+
 ## Maintaining public page discovery
 
 Run `node scripts/update-discovery.mjs` after adding or changing a page's title or description. It updates canonical URLs, share metadata and the [sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap.xml) from the actual HTML pages, without changing their bodies or inventing modification dates. Pages use the existing SeedanceCheap logo by default; the scene-planner campaign declares its original candy artwork and explicit artwork disclosure for sharing.
