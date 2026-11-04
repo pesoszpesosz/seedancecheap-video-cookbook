@@ -25,7 +25,7 @@ test('replaces the legacy present-tense notice and only clears maintenance for a
   const current = availabilityPage(legacy, { ...snapshot, announcedEnd: '2026-10-31T23:59:00Z' });
   assert.ok(!current.includes('remain unavailable'));
   assert.match(current, /were under maintenance/);
-  const recovered = availabilityPage(current, { status: 'available', observedAt: '2026-11-02T08:00:00Z' });
+  const recovered = availabilityPage(current, { status: 'available', modelIdentityVerified: true, observedAt: '2026-11-02T08:00:00Z' });
   assert.ok(!recovered.includes('campaign-availability'));
   assert.ok(recovered.includes('<aside>Unrelated note</aside>'));
 });
@@ -38,7 +38,7 @@ test('German notices are localized and invalid or undated states fail before a p
 });
 
 test('limited recovery offers the qualified HD backup without promising Genjutsu, 30 seconds or matching old demo provenance', () => {
-  const limited = { status: 'limited', observedAt: '2026-11-03T22:30:00Z', source: 'private-provider-evidence' };
+  const limited = { status: 'limited', modelIdentityVerified: true, observedAt: '2026-11-03T22:30:00Z', source: 'private-provider-evidence' };
   const result = availabilityPage(availabilityPage(page, snapshot), limited);
   assert.match(result, /720p text-to-video and image-guided requests of 5, 10 or 15 seconds/);
   assert.ok(result.includes('0.5 credit: an allocated $0.495 from the $99 upfront pack of 100 credits'));
@@ -49,4 +49,24 @@ test('limited recovery offers the qualified HD backup without promising Genjutsu
   assert.ok(result.includes('<p>15s/720p: $0.99; $99 upfront.</p>'));
   assert.equal(availabilityPage(result, limited), result);
   assert.match(availabilityPage(page, limited, 'de'), /720p für 5, 10 oder 15 Sekunden/);
+});
+
+test('model review replaces the active offer notice without disclosing private evidence or keeping its purchase CTA', () => {
+  const live = availabilityPage(page, { status: 'limited', modelIdentityVerified: true, observedAt: '2026-11-03T22:30:00Z' });
+  const review = { status: 'review', observedAt: '2026-11-04T11:55:00Z', source: 'private-model-evidence' };
+  const result = availabilityPage(live, review);
+  assert.match(result, /verifying the model identity/);
+  assert.match(result, /promotional price claim is temporarily paused/);
+  assert.ok(!result.includes('backup_720_nov4'));
+  assert.ok(!result.includes('A new Seedance 2.5 backup offers'));
+  assert.ok(!result.includes(review.source));
+  assert.equal(availabilityPage(result, review), result);
+  assert.match(availabilityPage(page, review, 'de'), /Modellzuordnung/);
+});
+
+test('catalogue recovery alone cannot restore a model claim after an identity conflict', () => {
+  for (const status of ['available', 'limited']) {
+    assert.throws(() => availabilityPage(page, { status, observedAt: '2026-11-04T11:55:00Z' }), /Confirm model identity/);
+    assert.throws(() => availabilityPage(page, { status, modelIdentityVerified: false, observedAt: '2026-11-04T11:55:00Z' }), /Confirm model identity/);
+  }
 });

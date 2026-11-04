@@ -4,7 +4,7 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
-**Current 15s / 720p text-or-still-image option: 0.5 credit, allocated $0.495 from $99 upfront for 100 credits.** The $2.50 one-credit starter covers two matching requests ($1.25 allocated each). This option supports 5/10/15 seconds and excludes Genjutsu/source-video guidance and 30s. The linked films came from earlier options. [Review the current formats and pack comparison](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html); catalogue and packs checked November 3, 2026. Extra takes, editing and references cost separately.
+**The new budget generation promotion is paused while its model identity is verified.** The completed earlier Plenx films, exact prompts, Genjutsu inputs and editing recipes remain available. [Read the current video pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) before choosing a model or buying credits.
 
 ## One Fight. Two Looks: the 13.2-second Genjutsu showcase
 
@@ -68,7 +68,7 @@ The showcase also preserves the earlier fight study: an 8.4-second edit from a h
 
 ## 1080p delivered output, one complete result
 
-[Compare Seedance 2.5 pricing: 15s / 720p from $0.495 with the $99 pack](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html). The current text/still-image setup uses 0.5 credit per 15-second request, allocating $0.495 from $99 upfront for 100 credits. The $2.50 starter covers two matching requests ($1.25 allocated each). Watch a complete earlier 720p action example, review the current setup and compare selected Krea and Magnific plans with their full commitments. The guide separately preserves earlier Veo and Genjutsu examples and quotes; those films do not demonstrate the new half-credit option. Genjutsu/source-video guidance and 30-second requests are outside that option.
+[Inspect HD examples and review live video pricing](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html). The guide documents complete earlier Plenx films, Genjutsu inputs and dated plan examples. Its new budget-model promotional price is paused during verification; review your selected model and complete quote before purchasing.
 
 [Watch our eight-second Veo 3.1 example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html): the original 1080x1920 file, exact prompt, observed Studio 2 quote and matching settings. One internal test. The saved request selected supplier upscaling to 1080p; native generation resolution is not verified. No local cuts or video resizing were applied. The requested final umbrella inversion is missing and the original audio is quiet. The page shows both limitations. Matching requests use 0.25 credit, allocating $0.2475 (about $0.25) with $99 upfront for 100 credits; no customer purchase is claimed.
 

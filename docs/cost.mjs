@@ -4,6 +4,7 @@ export const packs = [
   { credits: 20, cents: 3000 }, { credits: 100, cents: 9900 },
 ];
 
+// Archived numeric terms preserve earlier calculations, not current model identity or availability.
 export const clipTerms = {
   'seedance-2.5-720p-15s-nov4': { duration: 15, creditsPerClip: 0.5 },
   'seedance-2.5-720p-10s-nov4': { duration: 10, creditsPerClip: 0.5 },

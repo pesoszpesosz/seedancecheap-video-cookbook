@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=59b811940834';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=59b811940834';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=59b811940834';
+import { packs, clipTerms, calculate } from './cost.mjs?v=291c40bd30fe';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=291c40bd30fe';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=291c40bd30fe';
 
 applyWorksheetLinks(document, location.search);
 
@@ -61,7 +61,7 @@ form.addEventListener('submit', event => event.preventDefault());
 form.addEventListener('input', render);
 form.addEventListener('change', render);
 $('example').addEventListener('click', () => {
-  $('model').value = 'seedance-2.5-720p-15s-nov4'; $('attempts').value = '3'; $('restored').value = '0'; $('seconds').value = '15';
+  $('model').value = 'custom'; $('duration').value = '15'; $('credits-per-clip').value = '1'; $('attempts').value = '3'; $('restored').value = '0'; $('seconds').value = '15';
   render();
 });
 $('restore-defaults').addEventListener('click', () => { form.reset(); render(); });
@@ -81,8 +81,8 @@ function loadSharedBudget() {
     if (shared) {
       const preset = packs.findIndex(pack => pack.credits === shared.credits && pack.cents === shared.cents);
       $('pack').value = preset < 0 ? 'custom' : String(preset);
-      const matchingModels = Object.keys(clipTerms).filter(model => clipTerms[model].duration === shared.duration && clipTerms[model].creditsPerClip === (shared.creditsPerClip ?? 1));
-      $('model').value = matchingModels.length === 1 ? matchingModels[0] : 'custom';
+      // A numeric shared budget does not establish the model that produced it.
+      $('model').value = 'custom';
       $('pack-credits').value = shared.credits;
       $('pack-price').value = (shared.cents / 100).toFixed(2);
       $('attempts').value = shared.attempts;
@@ -90,7 +90,7 @@ function loadSharedBudget() {
       $('seconds').value = shared.seconds;
       $('duration').value = shared.duration;
       $('credits-per-clip').value = shared.creditsPerClip ?? 1;
-      $('shared-notice').textContent = 'Shared budget loaded. The link preserves the selected rate and numbers; check the current offer before purchasing.';
+      $('shared-notice').textContent = 'Shared numeric budget loaded. Its numbers do not establish model identity or current availability; review a live quote before purchasing.';
       $('shared-notice').hidden = false;
     }
   } catch {

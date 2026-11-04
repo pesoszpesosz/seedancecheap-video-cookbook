@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "status": "limited",
-  "observedAt": "2026-11-03T22:29:58.5034523+00:00",
-  "nextReviewNotBefore": "2026-11-04T04:32:31.099013+00:00",
-  "recoveryRequires": "Current customer catalogue plus verified 5s and15s720p delivery. The owner Mango-only guard remains independent; this is not Genjutsu, 30-second or1080p recovery.",
+  "status": "review",
+  "observedAt": "2026-11-04T12:07:13.126797+00:00",
+  "nextReviewNotBefore": "2026-11-05T12:07:13.126805+00:00",
+  "recoveryRequires": "Reconcile native model selection and test-output provenance before restoring model-specific promotion; catalogue availability and output dimensions alone are insufficient.",
   "targets": [
     {
       "file": "index.html",
@@ -40,6 +40,15 @@
     {
       "file": "watch-delivery.html",
       "language": "en"
+    },
+    {
+      "file": "brand-canvas.html",
+      "language": "en"
+    },
+    {
+      "file": "make-a-scene.html",
+      "language": "en"
     }
-  ]
+  ],
+  "modelIdentityVerified": false
 }
