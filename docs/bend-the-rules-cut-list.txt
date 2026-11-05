@@ -1,0 +1,21 @@
+BEND THE RULES - 15-second local edit
+720x1280, 30 fps delivery, hard cuts, normal speed, original clip audio.
+AI-generated fictional adults and staged action. Earlier SeedanceCheap team demos.
+
+1. Original fight: keep 0.0-1.8s; film 0.0-1.8s.
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/motion-courier-source.mp4
+2. Genjutsu guided fight: keep 0.0-1.8s; film 1.8-3.6s.
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/motion-courier-result.mp4
+3. Seat Upgrade: keep 1.5-7.9s; film 3.6-10.0s.
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.mp4
+4. Green Means Go original: keep 9.0-14.0s; film 10.0-15.0s.
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go-original.mp4
+
+Full films, exact prompts and Genjutsu reference:
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/one-fight-two-looks.html#starter
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html#prompt
+https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go.html#prompt
+
+This edition was assembled with local FFmpeg and ASS captions, not new source generation.
+Source generation, reference creation and editing are separate activities.
+Earlier examples do not establish current model availability or prices.
