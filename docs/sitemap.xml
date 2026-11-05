@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/</loc></url>
-  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-score.html</loc></url>
+  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-score.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hear-the-chase-poster.jpg</video:thumbnail_loc>
+      <video:title>Hear the Chase — native Music Studio to Video Editor example</video:title>
+      <video:description>A complete 18.9-second 720p native Studio 2 export using our earlier AI action montage and new ACE-Step 1.5 Turbo instrumental score. Fictional adults and staged action. New music and export were quoted at 0.75 credit total; earlier footage and edits are separate.</video:description>
+      <video:content_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hear-the-chase-720p.mp4</video:content_loc>
+      <video:publication_date>2026-11-05T16:51:11.072901+00:00</video:publication_date>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action.html</loc>
     <video:video>
       <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/two-chases-poster.jpg</video:thumbnail_loc>
