@@ -14,7 +14,8 @@ export function availabilityPage(html, snapshot, language = 'en') {
   if (snapshot.status === 'available') return next;
   const stamp = observed.toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
   const german = language === 'de';
-  const heading = german ? `Verfügbarkeit geprüft: ${stamp}` : `Availability checked: ${stamp}`;
+  const spanish = language === 'es';
+  const heading = spanish ? `Disponibilidad comprobada: ${stamp}` : german ? `Verfügbarkeit geprüft: ${stamp}` : `Availability checked: ${stamp}`;
   const maintenance = german
     ? 'Bei dieser Prüfung waren die günstige Seedance-2.5-Videogenerierung und die entsprechende Genjutsu-Option wegen Wartung nicht verfügbar.'
     : 'At this check, budget Seedance 2.5 video generation and the matching Genjutsu option were under maintenance.';
@@ -33,15 +34,28 @@ export function availabilityPage(html, snapshot, language = 'en') {
   const reviewClose = german
     ? 'Warte auf die Modellprüfung, bevor du für diese Option Guthaben kaufst. Die fertigen Beispiele und andere Werkzeuge bleiben verfügbar.'
     : 'Wait for this model review before buying credits for that option. The completed examples and other tools remain available.';
-  const message = snapshot.status === 'review' ? review : snapshot.status === 'maintenance' ? maintenance : snapshot.status === 'limited' ? limited : unknown;
+  const spanishMessages = {
+    maintenance: 'En esta comprobación, la generación económica de vídeo Seedance 2.5 y la opción Genjutsu correspondiente estaban en mantenimiento.',
+    unknown: 'La disponibilidad actual de estas opciones de vídeo aún no se ha vuelto a confirmar.',
+    review: 'Estamos verificando la identidad del modelo de la nueva opción económica de vídeo. Su promoción de precio como Seedance 2.5 está pausada. Los ejemplos completos proceden de opciones anteriores.',
+    limited: 'Una nueva opción Seedance 2.5 permite solicitudes de 5, 10 o 15 segundos en 720p, con texto o imágenes de referencia. Una solicitud de 15 segundos consume 0,5 créditos: US$0,495 del paquete de US$99 pagados por adelantado con 100 créditos. Esta opción no admite Genjutsu con vídeo de origen ni clips de 30 segundos.',
+  };
+  const message = spanish ? spanishMessages[snapshot.status] : snapshot.status === 'review' ? review : snapshot.status === 'maintenance' ? maintenance : snapshot.status === 'limited' ? limited : unknown;
   const limitedClose = german
     ? 'Die älteren Filmbeispiele unten stammen von anderen Optionen. Prüfe die gewählte Option, ihre Verfügbarkeit und den vollständigen Preis vor dem Kauf.'
     : 'The earlier films below came from other options. Review your selected option, availability and complete quote before buying.';
   const link = snapshot.status === 'limited'
-    ? ` <a data-site-link href="https://seedancecheap.com/studio2/?utm_source=github&amp;utm_medium=availability&amp;utm_campaign=backup_720_nov4#generate">${german ? 'Aktuelle Videooptionen prüfen' : 'Review live video formats'}</a>`
+      ? ` <a data-site-link href="https://seedancecheap.com/studio2/?utm_source=github&amp;utm_medium=availability&amp;utm_campaign=backup_720_nov4#generate">${spanish ? 'Consultar las opciones de vídeo actuales' : german ? 'Aktuelle Videooptionen prüfen' : 'Review live video formats'}</a>`
     : '';
   const style = `<!-- campaign-availability:style -->${eol}<style>aside[data-campaign-availability]{grid-column:1/-1;margin:20px 0 26px;padding:14px 18px;border-left:4px solid #aa6400;border-radius:8px;background:#fff1cb;color:#452d08;font:14px/1.5 "Segoe UI",Arial,sans-serif}aside[data-campaign-availability] strong{display:block;margin-bottom:4px;font-weight:700}aside[data-campaign-availability] p{margin:0;max-width:95ch;color:#452d08;font-size:14px}aside[data-campaign-availability] a{display:inline-flex;align-items:center;min-height:44px;color:#452d08;font-weight:700;text-underline-offset:3px}</style>${eol}<!-- /campaign-availability:style -->${eol}`;
-  const notice = `<!-- campaign-availability:notice -->${eol}<aside data-campaign-availability="budget-seedance25" role="note"><strong>${heading}</strong><p>${message} ${snapshot.status === 'review' ? reviewClose : snapshot.status === 'limited' ? limitedClose : close}${link}</p></aside>${eol}<!-- /campaign-availability:notice -->${eol}`;
+  const closing = spanish
+    ? snapshot.status === 'review'
+      ? 'Espera a que termine esta revisión antes de comprar créditos para esa opción. Los ejemplos completos y otras herramientas siguen disponibles.'
+      : snapshot.status === 'limited'
+        ? 'Los ejemplos anteriores proceden de otras opciones. Revisa la opción seleccionada, la disponibilidad y el precio completo antes de comprar.'
+        : 'Los ejemplos completos y los precios comprobados anteriormente siguen visibles. Confirma la disponibilidad actual antes de comprar créditos.'
+    : snapshot.status === 'review' ? reviewClose : snapshot.status === 'limited' ? limitedClose : close;
+  const notice = `<!-- campaign-availability:notice -->${eol}<aside data-campaign-availability="budget-seedance25" role="note"><strong>${heading}</strong><p>${message} ${closing}${link}</p></aside>${eol}<!-- /campaign-availability:notice -->${eol}`;
   if (!next.includes('</head>') || !/<main\b[^>]*>/.test(next)) throw new Error('Expected a complete watch or guide page');
   next = next.replace('</head>', style + '</head>');
   return next.replace(/<main\b[^>]*>/, match => match + notice);
