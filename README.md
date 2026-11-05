@@ -16,6 +16,8 @@ A fight. A delivery. A very specific brief.
 
 Silent preview. **[Compare the complete 6.4-second comedy and 18.9-second source with sound](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#protect-the-cake).** Switch between both versions in the player, then copy the exact three-cut recipe. The clean action master and completed reference voice are free to inspect, without an account.
 
+**[Make both covers in one pass with Brand Canvas](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#brand-canvas).** Our native browser tool exported two original-size 720p covers with no generation credits used. Download the editable project or finished cover ZIP, then import the project to try your own text and logo. The source frames are from our earlier AI footage; Canvas editing and export are separate from generating new footage.
+
 This cut combines our earlier Genjutsu footage, a completed local Kokoro voice and a native **Studio 2 Video Editor** export. Captions and sound normalization were finished locally. The voice plus export used 0.75 credit: about **$0.74** allocated from the optional **$99 upfront pack of 100 credits**, exactly $0.7425. Source generation, references, local finishing and extra versions are separate. The linked recipe records the completed quotes and current voice-capacity limitation; check availability before adding credits.
 
 [Open the Studio 2 Video Editor](https://seedancecheap.com/studio2/?utm_source=github&utm_medium=cookbook&utm_campaign=protect_the_cake_nov5&utm_content=readme_editor#editor). Use an existing clip in your media library and read the recipe first, then review the complete quote before starting an export.
