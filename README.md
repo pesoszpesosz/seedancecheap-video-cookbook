@@ -14,11 +14,11 @@ A fight. A delivery. A very specific brief.
 
 <a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#protect-the-cake"><picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/protect-the-cake-poster.jpg"><img src="docs/protect-the-cake-preview-720p.webp" width="320" alt="Silent moving preview: an AI courier fights to protect a red delivery bag, then eats cake while the client's punchline appears."></picture></a>
 
-Silent preview. **[Watch the complete 6.4-second 720p film with sound and copy the three-cut recipe](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#protect-the-cake).** The clean action master and reference voice are free to inspect, without an account.
+Silent preview. **[Compare the complete 6.4-second comedy and 18.9-second source with sound](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#protect-the-cake).** Switch between both versions in the player, then copy the exact three-cut recipe. The clean action master and completed reference voice are free to inspect, without an account.
 
-This new cut combines our earlier Genjutsu footage, a new local Kokoro voice and a native **Studio 2 Video Editor** export. Captions and sound normalization were finished locally. Source generation, voice and editing are separate activities; the recipe records the actual voice/export quotes.
+This cut combines our earlier Genjutsu footage, a completed local Kokoro voice and a native **Studio 2 Video Editor** export. Captions and sound normalization were finished locally. The voice plus export used 0.75 credit: about **$0.74** allocated from the optional **$99 upfront pack of 100 credits**, exactly $0.7425. Source generation, references, local finishing and extra versions are separate. The linked recipe records the completed quotes and current voice-capacity limitation; check availability before adding credits.
 
-[Try your own edit in Studio 2](https://seedancecheap.com/app.html?mode=register&next=%2Fstudio2%2F%23editor&utm_source=github&utm_medium=cookbook&utm_campaign=protect_the_cake_nov5&utm_content=readme_editor). Prepare the downloaded master and read the recipe first, then review the complete quote before starting an export.
+[Open the Studio 2 Video Editor](https://seedancecheap.com/studio2/?utm_source=github&utm_medium=cookbook&utm_campaign=protect_the_cake_nov5&utm_content=readme_editor#editor). Use an existing clip in your media library and read the recipe first, then review the complete quote before starting an export.
 
 ## One Fight. Two Looks: the 13.2-second Genjutsu showcase
 
