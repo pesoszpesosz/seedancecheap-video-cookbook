@@ -6,7 +6,7 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **The new budget generation promotion is paused while its model identity is verified.** The completed earlier Plenx films, exact prompts, Genjutsu inputs and editing recipes remain available. [Read the current video pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) before choosing a model or buying credits.
 
-[Download the free Action Starter v1 (5.6 MB ZIP)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v1/seedancecheap-action-starter-v1.zip): four exact prompts, our actual Genjutsu source video and appearance reference, and two editing recipes. Extract it and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate activities. [See the release and complete films](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/action-starter-v1).
+[Download the free Action Starter v2 (13.8 MB ZIP)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v2/seedancecheap-action-starter-v2.zip): four exact prompts, our actual Genjutsu inputs, and three editing recipes. New: the complete cake comedy, clean 720p master and Kokoro WAV for trying the three-cut edit offline. Extract it and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate activities. [See the release and complete films](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/action-starter-v2).
 
 ## Protect the Cake: action, then a client voiceover
 
