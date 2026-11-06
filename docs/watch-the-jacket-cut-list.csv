@@ -1,0 +1,8 @@
+clip,file,in_seconds,out_seconds,duration_seconds,scene_caption,original_audio_volume
+1,motion-courier-source.mp4,0.25,0.85,0.60,AI · Original,0.4
+2,motion-courier-result.mp4,0.85,2.48,1.63,AI · Genjutsu,0.4
+3,motion-courier-source.mp4,3.90,5.48,1.58,AI · Original,0.4
+4,motion-courier-result.mp4,5.48,7.29,1.81,AI · Genjutsu,0.4
+5,motion-courier-source.mp4,10.20,11.11,0.91,AI · Original,0.4
+6,motion-courier-result.mp4,10.20,11.59,1.39,AI · Genjutsu,0.4
+7,motion-courier-result.mp4,13.00,14.80,1.80,Make yours · seedancecheap.com,0.4
