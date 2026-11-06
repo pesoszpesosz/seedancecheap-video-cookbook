@@ -84,3 +84,24 @@ test('preview serves the existing calculator, guide and module without serving r
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('music examples load and seek as audio in the local preview', async () => {
+  const server = cookbookServer();
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`;
+  try {
+    for (const [file, type] of [['cobalt-gold-two-minute-score.mp3', 'audio/mpeg'], ['cobalt-gold-two-minute-score.wav', 'audio/wav']]) {
+      const original = await readFile(new URL(`../docs/${file}`, import.meta.url));
+      const head = await fetch(`${base}/${file}`, { method: 'HEAD' });
+      assert.equal(head.status, 200);
+      assert.equal(head.headers.get('content-type'), type);
+      assert.equal(head.headers.get('content-length'), String(original.length));
+      const range = await fetch(`${base}/${file}`, { headers: { Range: 'bytes=1000-1063' } });
+      assert.equal(range.status, 206);
+      assert.equal(range.headers.get('content-range'), `bytes 1000-1063/${original.length}`);
+      assert.deepEqual(Buffer.from(await range.arrayBuffer()), original.subarray(1000, 1064));
+    }
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
