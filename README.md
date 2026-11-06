@@ -8,6 +8,14 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 [Download the free Action Starter v2 (13.8 MB ZIP)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v2/seedancecheap-action-starter-v2.zip): four exact prompts, our actual Genjutsu inputs, and three editing recipes. New: the complete cake comedy, clean 720p master and Kokoro WAV for trying the three-cut edit offline. Extract it and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate activities. [See the release and complete films](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/action-starter-v2).
 
+## Cobalt and Gold: build a new cast
+
+<a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/casting-reference.html?from=github"><img src="docs/casting-cobalt-and-gold.jpg" width="260" alt="Our fictional adult casting reference: cobalt hat, sculpted ivory jacket, gold mask and magenta tailcoat."></a>
+
+[Download the original image and copy the exact prompt](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/casting-reference.html?from=github). This still was made in our own included image generator at the 1K setting, using 0 extra image credits. Included image access unlocks after one completed AI video; up to 1,000 images a day are shared by all customers, subject to capacity.
+
+The guide shows the requested 9:16 frame and actual 768 × 1376 output, describes the two fictional adults, and offers the complete text as a copyable prompt or TXT download. This is an image workflow; motion generation is a separate action with its own quote. No account is needed to inspect the guide or download its files.
+
 ## Protect the Cake: action, then a client voiceover
 
 A fight. A delivery. A very specific brief.
