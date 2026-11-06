@@ -68,6 +68,13 @@ test('preview serves the existing calculator, guide and module without serving r
     assert.equal(starter.status, 200);
     assert.equal(starter.headers.get('content-type'), 'application/zip');
     assert.deepEqual(Buffer.from(await starter.arrayBuffer()), await readFile(new URL('../docs/genjutsu-courier-starter.zip', import.meta.url)));
+    const project = await fetch(base + '/casting-brand-kit.brand.json');
+    assert.equal(project.status, 200);
+    assert.match(project.headers.get('content-type'), /^application\/json/);
+    const originalProject = await readFile(new URL('../docs/casting-brand-kit.brand.json', import.meta.url));
+    assert.deepEqual(Buffer.from(await project.arrayBuffer()), originalProject);
+    assert.equal(JSON.parse(originalProject).pages.length, 3);
+    assert.equal((await fetch(base + '/brand-canvas-stunt-department.brand.json')).status, 200);
     for (const path of ['/README.md', '/package.json', '/.git/config', '/%2e%2e%2fREADME.md', '/missing.html']) {
       assert.equal((await fetch(base + path)).status, 404, path);
     }
