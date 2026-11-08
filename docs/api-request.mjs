@@ -1,33 +1,42 @@
-import { applyWorksheetLinks } from './links.mjs?v=cd2598353619';
+import { applyWorksheetLinks } from './links.mjs?v=42946306a014';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
-  'seedance-2.0': {duration:15, credits:0.5}
+  'seedance-2.0': {duration:15, credits:0.5},
+  'veo-3.1': {duration:8, credits:0.5, paidOnly:true}
 };
 
-export function makeRequest(prompt, requestId, model='seedance-2.5', funding='') {
+const pilotSizes = {'16:9':'1280x720', '9:16':'720x1280'};
+
+export function makeRequest(prompt, requestId, model='seedance-2.5', funding='', ratio='16:9') {
   if (!/^[A-Za-z0-9_-]{1,80}$/.test(requestId)) {
     throw new Error('Use 1–80 letters, digits, underscores or hyphens for this example ID.');
   }
   if (typeof prompt !== 'string' || !prompt.trim() || prompt.length > 3000) {
     throw new Error('Write a scene prompt of 1–3000 characters.');
   }
-  if (!Object.hasOwn(pilotModels, model)) throw new Error('Choose Seedance 2.0 or Seedance 2.5.');
+  if (!Object.hasOwn(pilotModels, model)) throw new Error('Choose a listed pilot model.');
+  if (!Object.hasOwn(pilotSizes, ratio)) throw new Error('Choose a listed 720p format.');
   if (!['trial','paid'].includes(funding)) throw new Error('Choose trial or paid funding after checking the live terms.');
+  const details = pilotModels[model];
+  if (funding === 'trial' && details.paidOnly) {
+    throw new Error('Choose paid funding explicitly to prepare the Veo 3.1 recipe.');
+  }
   return {
     model,
-    duration:pilotModels[model].duration,
+    duration:details.duration,
     prompt,
-    ratio: '16:9',
-    size: '1280x720',
+    ratio,
+    size: pilotSizes[ratio],
     request_id: requestId,
     free_trial: funding === 'trial',
     auto_retry: false
   };
 }
 
-export function commandExamples(requestId, shell) {
+export function commandExamples(requestId, shell, model='seedance-2.5') {
   if (!/^[A-Za-z0-9_-]{1,80}$/.test(requestId)) throw new Error('Invalid example request ID.');
+  if (!Object.hasOwn(pilotModels, model)) throw new Error('Invalid example model.');
   const windows = shell === 'powershell';
   const curl = windows ? 'curl.exe' : 'curl';
   const key = windows ? '$env:SEEDANCECHEAP_API_KEY' : '$SEEDANCECHEAP_API_KEY';
@@ -35,12 +44,14 @@ export function commandExamples(requestId, shell) {
   const auth = ' -H "Authorization: Bearer ' + key + '"';
   const jsonFlags = ' --fail-with-body --silent --show-error --max-time 90';
   return {
+    availability: curl + ' --fail-with-body --silent --show-error --max-time 15 "' +
+      base + '/api/availability?model=' + model + '"',
     submit: curl + jsonFlags + ' "' + base + '/v1/videos/generations"' + auth +
       ' -H "Content-Type: application/json" --data-binary "@request.json" --output create-response.json',
     recover: curl + jsonFlags + ' "' + base + '/v1/videos/by-request/' + requestId + '"' + auth +
       ' --output recovered-job.json',
     poll: curl + jsonFlags + ' "' + base + '/v1/videos/vid_YOUR_ID"' + auth + ' --output job.json',
-    download: curl + ' --fail --silent --show-error "' + base + '/v1/videos/vid_YOUR_ID/content"' +
+    download: curl + ' --location --fail --silent --show-error "' + base + '/v1/videos/vid_YOUR_ID/content"' +
       auth + ' --output pilot-video.mp4'
   };
 }
@@ -52,6 +63,8 @@ if (typeof document !== 'undefined') {
   const shell = document.getElementById('command-shell');
   const model = document.getElementById('pilot-model');
   const funding = document.getElementById('pilot-funding');
+  const format = document.getElementById('pilot-format');
+  const trialOption = document.getElementById('trial-funding-option');
   const availability = document.getElementById('model-availability');
   const terms = document.getElementById('pilot-terms');
   const preview = document.getElementById('request-json');
@@ -62,15 +75,18 @@ if (typeof document !== 'undefined') {
   function render() {
     try {
       const details=pilotModels[model.value];
-      if (!details) throw new Error('Choose Seedance 2.0 or Seedance 2.5.');
-      const credit=details.credits;
+      if (!details) throw new Error('Choose a listed pilot model.');
+      trialOption.disabled = details.paidOnly === true;
+      if (trialOption.disabled && funding.value === 'trial') funding.value = '';
       const availabilityUrl = new URL(availability.href);
       availabilityUrl.searchParams.set('model', model.value);
       availability.href = availabilityUrl.toString();
-      terms.textContent=`${details.duration}-second request · ${credit} credit if paid · 16:9 · requested 1280×720`;
-      prepared = makeRequest(prompt.value, requestId.value, model.value, funding.value);
+      if (!Object.hasOwn(pilotSizes, format.value)) throw new Error('Choose a listed 720p format.');
+      const size = pilotSizes[format.value];
+      terms.textContent = `${details.duration}-second request · ${details.credits} credit if paid · ${format.value} · requested ${size.replace('x', '×')}`;
+      prepared = makeRequest(prompt.value, requestId.value, model.value, funding.value, format.value);
       preview.textContent = JSON.stringify(prepared, null, 2);
-      const commands = commandExamples(prepared.request_id, shell.value);
+      const commands = commandExamples(prepared.request_id, shell.value, prepared.model);
       for (const name of Object.keys(commands)) {
         document.getElementById(name + '-command').textContent = commands[name];
       }
@@ -82,7 +98,7 @@ if (typeof document !== 'undefined') {
     } catch (error) {
       prepared = null;
       preview.textContent = '';
-      for (const name of ['submit', 'recover', 'poll', 'download']) {
+      for (const name of ['availability', 'submit', 'recover', 'poll', 'download']) {
         document.getElementById(name + '-command').textContent = 'Complete the request fields first.';
       }
       download.disabled = true;
@@ -94,6 +110,7 @@ if (typeof document !== 'undefined') {
   for (const field of [requestId, prompt]) field.addEventListener('input', render);
   shell.addEventListener('change', render);
   model.addEventListener('change', render);
+  format.addEventListener('change', render);
   funding.addEventListener('change', render);
   function rememberRequestId() {
     try { history.replaceState({...history.state, seedancecheapPilotRequestId:requestId.value}, ''); }

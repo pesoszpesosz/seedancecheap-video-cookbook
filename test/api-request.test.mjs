@@ -13,7 +13,20 @@ test('each model gets its exact duration and explicit funding without changing t
     assert.equal(request.auto_retry,false);
     assert.equal(request.request_id,'pilot_001');
   }
-  assert.equal(makeRequest(prompt,'pilot_001',undefined,'trial').model,'seedance-2.5');
+  const defaultDraft = makeRequest(prompt,'pilot_001',undefined,'trial');
+  assert.equal(defaultDraft.model,'seedance-2.5');
+  assert.deepEqual([defaultDraft.ratio,defaultDraft.size],['16:9','1280x720']);
+  const vertical = makeRequest(prompt,'pilot_vertical','seedance-2.0','paid','9:16');
+  assert.deepEqual([vertical.ratio,vertical.size],['9:16','720x1280']);
+});
+
+test('the eight-second Veo text recipe requires explicit paid funding and a supported format',()=>{
+  assert.deepEqual(makeRequest('A paper boat.','pilot_veo','veo-3.1','paid','9:16'),{
+    model:'veo-3.1',duration:8,prompt:'A paper boat.',ratio:'9:16',size:'720x1280',
+    request_id:'pilot_veo',free_trial:false,auto_retry:false
+  });
+  assert.throws(()=>makeRequest('A paper boat.','pilot_veo','veo-3.1','trial'),/paid funding explicitly/);
+  assert.throws(()=>makeRequest('A paper boat.','pilot_veo','veo-3.1','paid','1:1'),/720p format/);
 });
 
 test('invalid model, ID and prompt cannot produce an executable pilot',()=>{
@@ -30,7 +43,11 @@ test('missing or malformed funding cannot prepare a request or silently select p
 
 test('recovery keeps the original ID in both shells without changing or submitting a job',()=>{
   for(const shell of ['bash','powershell']){
-    const command=commandExamples('pilot_original_001',shell);
+    const command=commandExamples('pilot_original_001',shell,'veo-3.1');
+    assert.match(command.availability,/\/api\/availability\?model=veo-3\.1/);
+    assert.doesNotMatch(command.availability,/Authorization|--data|POST/);
+    assert.match(command.download,/--location --fail/);
+    assert.doesNotMatch(command.download,/location-trusted/);
     assert.match(command.recover,/\/by-request\/pilot_original_001/);
     assert.match(command.submit,/@request\.json/);
     assert.doesNotMatch(command.recover,/--data|POST/);

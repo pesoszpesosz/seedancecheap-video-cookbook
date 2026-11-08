@@ -2,12 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 test('Back-restored fields reconcile with JSON and the availability route after pageshow',async()=>{
-  const names=['request-id','pilot-prompt','command-shell','pilot-model','pilot-funding','model-availability','pilot-terms','request-json','download-request','request-status','submit-command','recover-command','poll-command','download-command'];
+  const names=['request-id','pilot-prompt','command-shell','pilot-model','pilot-funding','trial-funding-option','pilot-format','availability-command','model-availability','pilot-terms','request-json','download-request','request-status','submit-command','recover-command','poll-command','download-command'];
   const nodes=Object.fromEntries(names.map(name=>[name,{value:'',textContent:'',disabled:false,href:'',classList:{add(){},remove(){}},handlers:{},addEventListener(name,callback){(this.handlers[name]??=[]).push(callback);}}]));
   Object.assign(nodes['request-id'],{value:'original_id'});
   Object.assign(nodes['pilot-prompt'],{value:'Original paper-boat scene.'});
   Object.assign(nodes['command-shell'],{value:'bash'});
   Object.assign(nodes['pilot-model'],{value:'seedance-2.5'});
+  Object.assign(nodes['pilot-format'],{value:'16:9'});
   nodes['model-availability'].href='https://seedancecheap.com/api?model=seedance-2.5&utm_source=facebook#availability';
   const saved={document:globalThis.document,window:globalThis.window,location:globalThis.location,fetch:globalThis.fetch,history:globalThis.history};
   const handlers={};let networkCalls=0;
@@ -32,12 +33,14 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     handlers.pageshow();
     // The browser restores these values after the initial script/event work.
     nodes['pilot-model'].value='seedance-2.0';
+    nodes['pilot-format'].value='9:16';
     nodes['pilot-prompt'].value='Restored "paper boat" scene.\nKeep this text.';
     nodes['command-shell'].value='powershell';
     nodes['pilot-funding'].value='paid';
     await new Promise(resolve=>setTimeout(resolve,5));
     const request=JSON.parse(nodes['request-json'].textContent);
     assert.equal(request.model,'seedance-2.0');assert.equal(request.duration,15);
+    assert.deepEqual([request.ratio,request.size],['9:16','720x1280']);
     assert.equal(request.prompt,nodes['pilot-prompt'].value);assert.equal(request.request_id,'restored_original_id');
     assert.equal(request.free_trial,false);assert.equal(request.auto_retry,false);
     const destination=new URL(nodes['model-availability'].href);
@@ -47,6 +50,19 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     assert.match(nodes['recover-command'].textContent,/restored_original_id/);
     assert.equal(nodes['download-request'].disabled,false);assert.equal(networkCalls,0);
     assert.match(nodes['request-status'].textContent,/can use your credits or balance/);
+    nodes['pilot-funding'].value='trial';
+    nodes['pilot-model'].value='veo-3.1';
+    for(const callback of nodes['pilot-model'].handlers.change)callback();
+    assert.equal(nodes['trial-funding-option'].disabled,true);
+    assert.equal(nodes['pilot-funding'].value,'');
+    assert.equal(nodes['download-request'].disabled,true);
+    assert.equal(nodes['request-json'].textContent,'');
+    nodes['pilot-funding'].value='paid';
+    for(const callback of nodes['pilot-funding'].handlers.change)callback();
+    assert.equal(JSON.parse(nodes['request-json'].textContent).duration,8);
+    assert.match(nodes['availability-command'].textContent,/model=veo-3\.1/);
+    assert.match(nodes['pilot-terms'].textContent,/8-second.*720×1280/);
+    assert.equal(networkCalls,0);
     nodes['pilot-funding'].value='';
     for(const callback of nodes['pilot-funding'].handlers.change)callback();
     assert.equal(nodes['request-json'].textContent,'');assert.equal(nodes['download-request'].disabled,true);

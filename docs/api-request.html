@@ -61,12 +61,14 @@
       <h2 id="prepare-heading">Prepare a small text-only pilot</h2>
       <p>Define what a usable result must show before trying it. The proposed paper-boat test below is a simple geometry, water-contact and camera-motion exercise; this particular request has not been generated.</p>
       <label for="pilot-model">Model and length</label>
-      <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option></select>
+      <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option><option value="veo-3.1">Veo 3.1 · 8 seconds · 0.5 credit</option></select>
+      <label for="pilot-format">720p format</label>
+      <select id="pilot-format"><option value="16:9">Landscape · 1280×720</option><option value="9:16">Portrait · 720×1280</option></select>
       <p style="margin-top:12px"><span id="pilot-terms" class="pill">30-second request · 1 credit if paid · 16:9 · requested 1280×720</span></p>
-      <p><strong>Before submitting or buying credits:</strong> <a id="model-availability" data-site-link href="https://seedancecheap.com/api?model=seedance-2.5&amp;utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=availability#availability">Check this model’s live availability without signing in →</a> Availability changes; this builder prepares requests locally. If capacity is unavailable or cannot be verified, wait before starting a new request. Keep any existing job’s request ID and settings unchanged.</p>
-      <p class="muted">Model and duration choices describe the request contract; new requests depend on current admission. Check current trial availability separately from capacity. These settings do not guarantee delivery, visual quality or exact output dimensions.</p>
+      <p><strong>Before submitting or buying credits:</strong> <a id="model-availability" data-site-link href="https://seedancecheap.com/api?model=seedance-2.5&amp;utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=availability#availability">Check this model’s live availability without signing in →</a> Confirm that the selected orientation and size are listed. If capacity or the exact format cannot be verified, wait before starting a new request. Keep any existing job’s request ID and settings unchanged.</p>
+      <p class="muted">These text-only recipes describe the request settings. The 8-second Veo 3.1 recipe uses paid funding. Check capacity and current trial availability separately. Output dimensions, delivery and creative quality can vary.</p>
       <label for="pilot-funding">Funding route</label>
-      <select id="pilot-funding"><option value="" selected>Choose funding</option><option value="trial">Trial: if enabled and eligible</option><option value="paid">Paid: credits or balance</option></select>
+      <select id="pilot-funding"><option value="" selected>Choose funding</option><option id="trial-funding-option" value="trial">Trial · if enabled and eligible</option><option value="paid">Paid: credits or balance</option></select>
       <p class="muted">This free builder prepares JSON only after you choose. Trial mode never falls back to paid funding. Paid mode can use your credits or balance when you run the command separately.</p>
       <label for="request-id">Request ID</label>
       <input id="request-id" value="paper_boat_pilot_001" maxlength="80" spellcheck="false" autocomplete="off" aria-describedby="id-help">
@@ -86,6 +88,9 @@
       <p>Use your studio API key in the server environment variable <code>SEEDANCECHEAP_API_KEY</code>. Keep the downloaded JSON in your working folder. No credential belongs in this page.</p>
       <label for="command-shell">Command syntax</label>
       <select id="command-shell"><option value="bash">Bash / macOS / Linux</option><option value="powershell">Windows PowerShell</option></select>
+      <h3>Check live admission</h3>
+      <pre id="availability-command" aria-label="Read-only availability command"></pre>
+      <p>This optional GET uses no key. Before starting a new job, check that <code>generation_status</code> is <code>available</code> and <code>available_formats</code> includes the exact <code>ratio</code> and <code>size</code> from the saved JSON. Check your account funding separately.</p>
       <h3>1. Submit the saved JSON</h3>
       <pre id="submit-command" aria-label="Submit command"></pre>
       <p>Save the response and its job ID. A connection failure alone does not tell you whether the server accepted the request.</p>
@@ -110,13 +115,13 @@
         <tr><td>429 or 503</td><td>Read the response, wait, and check the existing request before retrying.</td></tr>
         <tr><td>Ready</td><td>Save the MP4 and review it against your checks before using or publishing it.</td></tr>
       </tbody></table>
-      <p>Service timing and available formats can change. The live documentation and your actual receipt take precedence over this example. One-time packs cost $2.50 for 1 credit or $30 for 20 credits, with no subscription. Seedance 2.0 uses 0.5 credit per 15-second request; Seedance 2.5 uses 1 credit per 30-second request. These are request budgets subject to current model admission. Review your selected funding route in the saved JSON. One successful introductory trial, when enabled and eligible, is shared across both models.</p>
+      <p>Service timing and available formats can change. The live documentation and your actual receipt take precedence over this example. Check current one-time pack totals on the <a data-site-link href="https://seedancecheap.com/price-guide?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=pricing">pricing guide</a>. The credit totals above describe fixed request recipes and are subject to current admission. Review your selected funding route in the saved JSON.</p>
       <p><a data-companion-link href="./">Count paid attempts and approved seconds with the free calculator →</a><br><a data-companion-link href="./first-scene.html">New to prompts? Plan your first scene →</a></p>
       <div class="actions"><a class="button" data-site-link href="https://seedancecheap.com/?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=closing_offer">Inspect the examples and current offer →</a></div>
     </section>
   </main>
-  <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. Model and duration fields were checked against the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> on October 9, 2026; no live generation was run for this guide. The historical video examples elsewhere in this cookbook use Seedance 2.5 and do not verify Seedance 2.0 output. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
+  <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. Model and duration fields were checked against the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> on November 8, 2026. The guide prepares sample commands without executing them. Earlier films in the cookbook identify their own models and settings. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
 </div>
-<script type="module" src="./api-request.mjs?v=cd2598353619"></script>
+<script type="module" src="./api-request.mjs?v=42946306a014"></script>
 </body>
 </html>
