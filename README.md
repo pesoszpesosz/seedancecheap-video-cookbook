@@ -14,6 +14,8 @@ Before scoring a chase, mark the first move, the hardest impact and the reveal. 
 
 [Download the free Soundtrack Starter ZIP (15.7 MB)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v2/seedancecheap-soundtrack-starter-v1.zip) to try it offline. It includes the clean action master, the finished cut, the original WAV, our score direction and the exact edit ranges. Open START-HERE.txt after extracting. [See the walkthrough and listen to the full score](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-score.html?from=github#starter).
 
+[Check soundtrack timing on your own export](examples/video-delivery-check/#check-the-soundtrack-against-its-original-wav). The local example separates audio-content alignment from decoded picture and sound timestamps.
+
 ## Cobalt and Gold: build a new cast
 
 <a href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/casting-reference.html?from=github"><img src="docs/casting-cobalt-and-gold.jpg" width="260" alt="Our fictional adult casting reference: cobalt hat, sculpted ivory jacket, gold mask and magenta tailcoat."></a>
