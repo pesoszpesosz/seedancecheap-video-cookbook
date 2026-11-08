@@ -1,4 +1,4 @@
-import {applyWorksheetLinks} from './links.mjs?v=b2abf61e5748';
+import {applyWorksheetLinks} from './links.mjs?v=cd2598353619';
 applyWorksheetLinks(document, location.search);
 const scenes = {
   delivery: {file:'action-delivery.mp4',poster:'action-delivery-poster.jpg',title:'Delivered intact.',description:'An incoming punch, a quick reversal, and a delivery worth the trouble. Watch the red bag.',duration:'15-second original take',format:'Portrait 720p',provenance:'Generated for our internal model test on 23 October 2026 with Seedance 2.5, requested at 720p with audio. This complete 15.072-second original was delivered at 720 × 1280 and is shown unchanged: no cuts or added upscaling. This internal model test did not include Studio checkout or customer delivery.',original:'action-delivery-original-prompt.txt',summary:'One text prompt describes two fictional adults, a fight reversal, an intact cake and a final comic reaction. No reference images or videos were uploaded by this chat. The complete submitted prompt is included below.',starter:'Photorealistic action scene with two fictional adult stunt performers. A punch is already moving as the shot starts. One performer slips outside it, redirects the arm and lands one compact staged body counter. Keep both performers and their feet readable in a medium-wide side view. Natural weight, clear contact and recoil, normal speed, complete recovery. No blood, weapons, slow motion, captions or logos.'},
@@ -25,7 +25,7 @@ for(const button of document.querySelectorAll('[data-scene]'))button.addEventLis
   actualPrompt.value='';actualPrompt.classList.add('hidden');document.querySelector('#original-prompt-label').classList.add('hidden');
   promptCopyStatus.textContent='Copy the prompt used for this example, then choose the matching settings.';
   document.querySelector('#scene-setup').textContent=promptSetups[activeSceneKey];
-  document.querySelector('#open-scene-studio').href=`https://seedancecheap.com/studio2/?utm_source=github&utm_medium=showcase&utm_campaign=example_prompt_oct25&utm_content=${activeSceneKey}${activeSceneKey==='clay'?'#genjutsu':'#generate'}`;
+  document.querySelector('#open-scene-studio').href=`https://seedancecheap.com/studio2/?utm_source=other&utm_medium=showcase&utm_campaign=example_prompt_oct25&utm_content=${activeSceneKey}${activeSceneKey==='clay'?'#genjutsu':'#generate'}`;
   applyWorksheetLinks(document,location.search);
   video.pause();video.poster=scene.poster;video.querySelector('source').src=scene.file;video.load();video.setAttribute('aria-label',scene.title+' AI-generated example');
   for(const choice of document.querySelectorAll('[data-scene]'))choice.setAttribute('aria-pressed',String(choice===button));
