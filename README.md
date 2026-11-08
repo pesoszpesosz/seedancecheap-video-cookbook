@@ -4,9 +4,15 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
-**The new budget generation promotion is paused while its model identity is verified.** The completed earlier Plenx films, exact prompts, Genjutsu inputs and editing recipes remain available. [Read the current video pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) before choosing a model or buying credits.
+**The new budget generation promotion is paused while its model identity is verified.** The completed earlier AI films, exact prompts, Genjutsu inputs and editing recipes remain available. [Read the current video pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) before choosing a model or buying credits.
 
 [Download the free Action Starter v2 (13.8 MB ZIP)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v2/seedancecheap-action-starter-v2.zip): four exact prompts, our actual Genjutsu inputs, and three editing recipes. New: the complete cake comedy, clean 720p master and Kokoro WAV for trying the three-cut edit offline. Extract it and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate activities. [See the release and complete films](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/action-starter-v2).
+
+## Hear the Chase
+
+Before scoring a chase, mark the first move, the hardest impact and the reveal. In our [18.9-second 720p action edit](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-score.html?from=github#film), we muted the original audio and added an original ACE-Step 1.5 Turbo score across the cut.
+
+[Download the free Soundtrack Starter ZIP (15.7 MB)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v2/seedancecheap-soundtrack-starter-v1.zip) to try it offline. It includes the clean action master, the finished cut, the original WAV, our score direction and the exact edit ranges. Open START-HERE.txt after extracting. [See the walkthrough and listen to the full score](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-score.html?from=github#starter).
 
 ## Cobalt and Gold: build a new cast
 
@@ -25,8 +31,6 @@ A fight. A delivery. A very specific brief.
 Silent preview. **[Compare the complete 6.4-second comedy and 18.9-second source with sound](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#protect-the-cake).** Switch between both versions in the player, then copy the exact three-cut recipe. The clean action master and completed reference voice are free to inspect, without an account.
 
 **[Make both covers in one pass with Brand Canvas](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/make-a-scene.html?from=github#brand-canvas).** Our native browser tool exported two original-size 720p covers with no generation credits used. Download the editable project or finished cover ZIP, then import the project to try your own text and logo. The source frames are from our earlier AI footage; Canvas editing and export are separate from generating new footage.
-
-**[Listen to Red Light, our complete 30-second Music Studio score](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/action-score.html?from=github).** ACE-Step 1.5 Turbo delivered the native stereo WAV at a reviewed 0.25-credit quote. Hear the full result, download the unchanged WAV and copy the exact music direction. Music is separate from video generation and editing; the page explains the optional pack allocation and current-quote requirement.
 
 This cut combines our earlier Genjutsu footage, a completed local Kokoro voice and a native **Studio 2 Video Editor** export. Captions and sound normalization were finished locally. The voice plus export used 0.75 credit: about **$0.74** allocated from the optional **$99 upfront pack of 100 credits**, exactly $0.7425. Source generation, references, local finishing and extra versions are separate. The linked recipe records the completed quotes and current voice-capacity limitation; check availability before adding credits.
 
@@ -94,7 +98,7 @@ The showcase also preserves the earlier fight study: an 8.4-second edit from a h
 
 ## 1080p delivered output, one complete result
 
-[Inspect HD examples and review live video pricing](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html). The guide documents complete earlier Plenx films, Genjutsu inputs and dated plan examples. Its new budget-model promotional price is paused during verification; review your selected model and complete quote before purchasing.
+[Inspect HD examples and review live video pricing](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html). The guide documents complete earlier AI films, Genjutsu inputs and dated plan examples. Its new budget-model promotional price is paused during verification; review your selected model and complete quote before purchasing.
 
 [Watch our eight-second Veo 3.1 example](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html): the original 1080x1920 file, exact prompt, observed Studio 2 quote and matching settings. One internal test. The saved request selected supplier upscaling to 1080p; native generation resolution is not verified. No local cuts or video resizing were applied. The requested final umbrella inversion is missing and the original audio is quiet. The page shows both limitations. Matching requests use 0.25 credit, allocating $0.2475 (about $0.25) with $99 upfront for 100 credits; no customer purchase is claimed.
 
