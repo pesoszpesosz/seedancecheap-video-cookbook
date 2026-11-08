@@ -82,6 +82,17 @@
         <li>Choose two or three checks for success: an object keeps its shape, the action reads, or the camera follows the intended path.</li>
         <li>If you use a fictional adult character, keep the same text description when you change the scene. Review face, clothing and action separately; a text sheet cannot guarantee an identical face.</li>
       </ol>
+      <details id="three-beats">
+        <summary>Try three beats in one action shot</summary>
+        <p>Start with the box falling, show the catch, then give the courier one more problem. Keep the hands, trolley and both boxes visible in the same shot.</p>
+        <p class="prompt" id="action-example-prompt">In the first second, a box slips off a low mail trolley outside a loading entrance. A fictional adult courier catches it with both hands. As she steadies it, a second box starts sliding toward the opposite edge. Hold a wide vertical shot in daylight. Keep the trolley, both boxes and her hands visible. A short scrape and a cardboard thud.</p>
+        <p class="muted">This is a planning exercise. If you generate a take, check whether the catch reads and both boxes stay in frame.</p>
+        <div class="actions">
+          <button type="button" class="secondary" id="load-action-example" aria-controls="first-scene-plan">Load the example into my notes</button>
+          <a class="button" data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=first_scene_guide&amp;utm_content=three_beats#builder">Open the free prompt builder</a>
+        </div>
+        <p id="action-example-status" class="muted" role="status"></p>
+      </details>
       <label for="first-scene-plan">Your first-scene notes</label>
       <textarea id="first-scene-plan" spellcheck="false">FIRST AI SCENE
 Meaning: [one sentence the audience should understand]
@@ -158,6 +169,19 @@ Decision: [keep / edit / revise / stop]</textarea>
   applyWorksheetLinks(document, location.search);
   const plan = document.getElementById('first-scene-plan');
   const status = document.getElementById('download-status');
+  const exampleStatus = document.getElementById('action-example-status');
+  const actionPrompt = document.getElementById('action-example-prompt').textContent.trim();
+  document.getElementById('load-action-example').addEventListener('click', () => {
+    if (plan.value !== plan.defaultValue) {
+      exampleStatus.textContent = 'Your notes already have content. Copy the sample above or download your notes below.';
+      return;
+    }
+    plan.value = plan.defaultValue
+      .replace('MY PROMPT\n[...]', `MY PROMPT\n${actionPrompt}`)
+      .replace('Pass/fail checks: [...]', 'Pass/fail checks: The hands catch the first box. Both boxes stay in frame.');
+    exampleStatus.textContent = 'Example loaded. Edit or download your notes below.';
+    plan.focus();
+  });
   document.getElementById('download-plan').addEventListener('click', () => {
     const url = URL.createObjectURL(new Blob([plan.value], {type: 'text/plain;charset=utf-8'}));
     const link = document.createElement('a');
