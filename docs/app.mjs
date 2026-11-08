@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=42946306a014';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=42946306a014';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=42946306a014';
+import { packs, clipTerms, calculate } from './cost.mjs?v=c35be46f2877';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=c35be46f2877';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=c35be46f2877';
 
 applyWorksheetLinks(document, location.search);
 
@@ -14,7 +14,8 @@ function render() {
   const custom = $('pack').value === 'custom';
   $('custom-fields').hidden = !custom;
   const pack = custom ? { credits: number('pack-credits'), cents: Math.round(number('pack-price') * 100) } : packs[Number($('pack').value)];
-  const terms = clipTerms[$('model').value];
+  const model = $('model').value;
+  const terms = clipTerms[model];
   $('duration').readOnly = Boolean(terms);
   $('credits-per-clip').readOnly = Boolean(terms);
   if (terms) {
@@ -22,13 +23,10 @@ function render() {
     $('credits-per-clip').value = terms.creditsPerClip;
   }
   $('restored').step = terms ? String(terms.creditsPerClip) : 'any';
-  $('model-availability').hidden = !terms;
-  if (terms) {
-    const destination = $('model').value.startsWith('seedance-2.5')
-      ? 'https://seedancecheap.com/studio2/?utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability#generate'
-      : `https://seedancecheap.com/app.html?model=${$('model').value}&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability`;
-    $('model-availability').href = worksheetLink(destination, location.search, document.referrer);
-  }
+  const destination = !terms || model.startsWith('seedance-2.5')
+    ? 'https://seedancecheap.com/studio2/?utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability#generate'
+    : `https://seedancecheap.com/app.html?model=${model}&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=model_availability`;
+  $('model-availability').href = worksheetLink(destination, location.search, document.referrer);
   $('shared-budget').hidden = true;
   currentBudget = null;
   $('share-budget').disabled = true;
