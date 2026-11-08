@@ -46,6 +46,8 @@ Six-second silent preview from our earlier internal AI footage. [Open the comple
 
 Seven matched cuts alternate our earlier action source and blue-jacket guided result, with the trolley and cake payoff. Original generated audio, clear source/result labels and the exact Studio 2 cut recipe. Full inputs, reference and prompts remain linked; clothing, timing, faces and cake details vary.
 
+[Watch The Cherry Stays and jump straight to the 14-frame cake insert](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/the-cherry-stays.html?from=github). The 10.25-second edit shows how a single prop can survive an outfit swap.
+
 The final native editor export quoted 0.5 credit. We made two export versions, quoting 1 credit in total, to improve the cake reveal. Source generation and reference creation are separate; no new AI generation was used for this edit. Review the dated availability notice and your current complete quote before buying credits.
 
 ## Two Chases. Two Priorities: the 14.2-second action reel
