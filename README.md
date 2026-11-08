@@ -164,6 +164,8 @@ For alternatives you have already reviewed, [compare up to three workflows with 
 
 [Open the free API request guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html). Prepare a text-only pilot JSON locally, save its request ID, and use the create, recovery, status and download examples in Bash or Windows PowerShell. A lost create response is a reason to look up the saved request, rather than start a new request ID.
 
+[Run the offline recovery cases](examples/recover-one-job/). The example checks the original request ID and a digest of the saved JSON, then classifies 13 synthetic lookup results without making an API call.
+
 Prepare standard Seedance 2.0 at 15 seconds and 0.5 credit, Seedance 2.5 at 30 seconds and 1 credit, or the separate Veo 3.1 text-only recipe at 8 seconds and 0.5 credit. The JSON keeps the model, duration and selected landscape or portrait 720p format together. Save a new request ID for changed inputs; switching the local preview never changes an existing job.
 
 Use the guide’s model-specific link or read-only status command before submitting or buying credits. Check that live admission lists the exact ratio and size in your saved request. If availability is unavailable or unknown, wait before starting a new job and keep any existing request ID unchanged.
