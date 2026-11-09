@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ajustar subtítulos SRT después de cortar un vídeo | SeedanceCheap</title>
+<meta name="description" content="Sincroniza los subtítulos SRT después de un corte. Introduce los tramos que conservaste y descarga el SRT ajustado gratis, sin subir el archivo.">
+  <!-- Discovery metadata: maintained by scripts/update-discovery.mjs -->
+  <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/ajustar-subtitulos-srt.html">
+  <link rel="icon" type="image/png" href="brand-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SeedanceCheap Creator Cookbook">
+  <meta property="og:title" content="Ajustar subtítulos SRT después de cortar un vídeo | SeedanceCheap">
+  <meta property="og:description" content="Sincroniza los subtítulos SRT después de un corte. Introduce los tramos que conservaste y descarga el SRT ajustado gratis, sin subir el archivo.">
+  <meta property="og:url" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/ajustar-subtitulos-srt.html">
+  <meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
+  <meta property="og:image:alt" content="SeedanceCheap studio logo">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ajustar subtítulos SRT después de cortar un vídeo | SeedanceCheap">
+  <meta name="twitter:description" content="Sincroniza los subtítulos SRT después de un corte. Introduce los tramos que conservaste y descarga el SRT ajustado gratis, sin subir el archivo.">
+  <meta name="twitter:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
+  <!-- /Discovery metadata -->
+<link rel="alternate" hreflang="en" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/srt-retime.html">
+<link rel="alternate" hreflang="es" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/ajustar-subtitulos-srt.html">
+<link rel="alternate" hreflang="x-default" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/srt-retime.html">
+<link rel="stylesheet" href="./srt-retime.css">
+<script type="module" src="./srt-retime.mjs?v=220b7f2bbc8f"></script>
+</head>
+<body>
+<header class="wrap"><a data-companion-link href="./">SeedanceCheap Creator Cookbook</a><a data-companion-link href="./srt-retime.html" lang="en" hreflang="en">English</a></header>
+<main class="wrap">
+  <h1>Ajusta tus subtítulos SRT después de un corte</h1>
+  <p>Introduce los tramos del vídeo original que conservaste. La herramienta recorta los subtítulos que cruzan un corte, elimina los que quedan fuera y ajusta los tiempos al nuevo montaje.</p>
+  <p class="quiet">Tu archivo se procesa en el navegador. No hace falta subirlo ni iniciar sesión.</p>
+  <section class="example" aria-labelledby="example-heading">
+    <h2 id="example-heading">De 12 a 9 segundos con un corte</h2>
+    <div class="timeline" aria-label="Línea de tiempo del ejemplo, de cero a doce segundos">
+      <span>Conservar<small>0–4 s</small></span>
+      <span class="removed">Quitar<small>4–7 s</small></span>
+      <span>Conservar<small>7–12 s</small></span>
+    </div>
+    <p class="quiet">Si un subtítulo iba del segundo 6 al 8, se pierde el primer segundo. El texto restante aparece del segundo 4 al 5 en el montaje.</p>
+    <button id="example" type="button">Probar este ejemplo</button>
+  </section>
+  <form id="retime" tabindex="-1">
+    <div class="fields">
+      <div>
+        <label for="source-file">Abrir un archivo SRT</label>
+        <input id="source-file" type="file" accept=".srt,text/plain">
+        <label for="source">O pegar los subtítulos SRT</label>
+        <textarea id="source" spellcheck="false"></textarea>
+      </div>
+      <div>
+        <label for="ranges">Tramos del original, en orden de reproducción</label>
+        <textarea id="ranges" spellcheck="false" aria-describedby="range-help" placeholder="00:00:00.000 --> 00:00:04.000"></textarea>
+        <p id="range-help" class="quiet">Un tramo por línea. Separa el inicio y el final con <code>--&gt;</code>. Usa los tiempos reales del vídeo exportado: un corte en un fotograma clave puede desplazar el punto de entrada.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit">Ajustar subtítulos</button>
+      <button id="download" type="button" disabled>Descargar el SRT ajustado</button>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+  </form>
+  <section class="result" aria-labelledby="result-heading">
+    <h2 id="result-heading"><label for="output">Subtítulos ajustados</label></h2>
+    <textarea id="output" readonly spellcheck="false"></textarea>
+  </section>
+  <section id="watch-cut" class="cut-demo" aria-labelledby="cut-heading">
+    <video controls playsinline preload="metadata" width="1080" height="1920" poster="cut-the-fight-poster.jpg" aria-label="Ejemplo de seis segundos con rótulos en inglés">
+      <source src="cut-the-fight-keep-the-captions.mp4" type="video/mp4">
+      <a href="cut-the-fight-keep-the-captions.mp4">Abrir el vídeo de ejemplo</a>
+    </video>
+    <div>
+      <h2 id="cut-heading">Del plano original al montaje</h2>
+      <p>Conservamos dos tramos de una escena anterior de Seedance 2.5, del segundo 5 al 7,2 y del 9,4 al 11. El ajuste elimina un subtítulo y hace que el del pastel aparezca a los 2,2 segundos.</p>
+      <p class="quiet">El vídeo y los SRT de este ejemplo están en inglés. La herramienta cambia los tiempos y conserva el texto. Escena de acción ficticia con adultos, generada con IA, con una fuente de 720 × 1280 integrada en un gráfico de 1080 × 1920.</p>
+      <button id="fight-example" type="button" data-kept-ranges="00:00:05.000 --> 00:00:07.200
+00:00:09.400 --> 00:00:11.000">Probar los tiempos de este montaje</button>
+      <span id="fight-example-status" role="status"></span>
+      <ul>
+        <li><a href="cut-the-fight-source.srt" download>Descargar el SRT original</a></li>
+        <li><a href="cut-the-fight-retimed.srt" download>Descargar el SRT ajustado del ejemplo</a></li>
+      </ul>
+    </div>
+  </section>
+  <p>Guarda el SRT junto al vídeo si tu reproductor admite subtítulos externos. Para incorporar una pista seleccionable a un MP4, consulta <a hreflang="en" href="https://gist.github.com/pesoszpesosz/9a48cb596dc8e05539dc641a310b0aa2">el ejemplo de línea de comandos en inglés</a>.</p>
+  <p>¿Preparas la siguiente escena? <a data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=srt_retime_demo&amp;utm_content=free_builder_es#builder">Abre el planificador gratuito de prompts</a>. Puedes planificar sin cuenta. La generación de vídeo es un paso aparte.</p>
+</main>
+<footer class="wrap">Herramienta gratuita del equipo de SeedanceCheap, con asistencia de Codex.</footer>
+</body>
+</html>

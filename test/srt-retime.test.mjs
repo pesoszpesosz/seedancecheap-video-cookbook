@@ -43,3 +43,9 @@ test('rejects malformed inputs and backwards ranges', () => {
   assert.throws(() => retimeSrt(source,'00:00:00.000 --> 00:00:60.000'), /Invalid timestamp/);
   assert.throws(() => retimeSrt('WEBVTT',ranges), /Invalid SRT cue/);
 });
+
+test('Spanish labels preserve caption bytes and localize malformed input', () => {
+  assert.deepEqual(retimeSrt(source, ranges, 'es'), retimeSrt(source, ranges));
+  assert.throws(() => retimeSrt(source, 'bad range', 'es'), /Tramo 1.*códigos de tiempo/);
+  assert.throws(() => retimeSrt('WEBVTT', ranges, 'es'), /subtítulo 1.*SRT válido/);
+});
