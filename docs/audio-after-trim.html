@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check for missing audio after trimming an MP4 | SeedanceCheap</title>
+  <meta name="description" content="Download a small MP4 test fixture and use ffprobe to check whether a stream-copy trim lost audio packets. Includes a verified reference trim.">
+  <!-- Discovery metadata: maintained by scripts/update-discovery.mjs -->
+  <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html">
+  <link rel="icon" type="image/png" href="brand-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SeedanceCheap Creator Cookbook">
+  <meta property="og:title" content="Check for missing audio after trimming an MP4 | SeedanceCheap">
+  <meta property="og:description" content="Download a small MP4 test fixture and use ffprobe to check whether a stream-copy trim lost audio packets. Includes a verified reference trim.">
+  <meta property="og:url" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html">
+  <meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
+  <meta property="og:image:alt" content="SeedanceCheap studio logo">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Check for missing audio after trimming an MP4 | SeedanceCheap">
+  <meta name="twitter:description" content="Download a small MP4 test fixture and use ffprobe to check whether a stream-copy trim lost audio packets. Includes a verified reference trim.">
+  <meta name="twitter:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
+  <!-- /Discovery metadata -->
+  <style>
+    :root {color-scheme:light;--paper:#f4f7f2;--ink:#152d30;--muted:#52676a;--line:#d7e3dc;--green:#c5ef6b}
+    * {box-sizing:border-box}
+    body {margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}
+    .shell {max-width:840px;margin:auto;padding:28px clamp(16px,4vw,34px) 48px}
+    header {display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:34px}
+    a {color:#1b615b;text-underline-offset:3px}
+    a:focus-visible,pre:focus-visible {outline:3px solid #518c36;outline-offset:3px}
+    .brand {font-size:21px;font-weight:750;text-decoration:none}
+    h1 {font-size:clamp(34px,6vw,60px);line-height:1.08;letter-spacing:-.045em;margin:0 0 14px}
+    h2 {font-size:24px;letter-spacing:-.02em;margin:0 0 10px}
+    .lead {font-size:19px;color:var(--muted);max-width:62ch}
+    .card {background:white;border:1px solid var(--line);border-radius:16px;margin:24px 0;padding:clamp(16px,4vw,27px);min-width:0}
+    .actions {display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+    .actions a {display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #8dab55;border-radius:8px;background:var(--green);color:var(--ink);font-weight:650;text-decoration:none}
+    .actions a + a {background:white;border-color:var(--line)}
+    .packet-result {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+    .packet-result div {border-top:3px solid #7ca652;background:#f4f8ed;padding:10px 12px}
+    .packet-result dt {font-size:14px;color:var(--muted)}
+    .packet-result dd {margin:0;font-size:34px;font-weight:750;font-variant-numeric:tabular-nums}
+    pre {overflow:auto;background:#eef3ed;border:1px solid var(--line);border-radius:8px;padding:12px;font:14px/1.55 ui-monospace,Consolas,monospace}
+    footer {border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:14px}
+    @media(max-width:440px) {.actions a {width:100%}.packet-result {gap:6px}.packet-result div {padding:8px}.packet-result dt {font-size:13px}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header><a class="brand" data-companion-link href="./">SeedanceCheap Cookbook</a><span>Video delivery check</span></header>
+  <main>
+    <h1>Did the trim drop the audio?</h1>
+    <p class="lead">Picture can survive a stream-copy trim while sound disappears. This small test checks whether a trimmer keeps audio packets that arrive after the video cutoff.</p>
+    <div class="actions">
+      <a href="./trim-audio-test-source.mp4" download>Download test input (80 KB)</a>
+      <a href="./trim-audio-test-reference.mp4" download>Download reference trim (15 KB)</a>
+    </div>
+    <p>Both files use a generated test pattern and a synthetic 440 Hz tone. Run the checks on your computer with an existing FFmpeg installation.</p>
+
+    <section class="card" aria-labelledby="numbers">
+      <h2 id="numbers">What happens at 0.500 seconds</h2>
+      <p>The first video packet beyond the cutoff arrived at decode timestamp <code>0.501406</code>. The audio packets through the cutoff arrived later in the read order, even though their own timestamps were between <code>0.000000</code> and <code>0.490667</code>.</p>
+      <dl class="packet-result">
+        <div><dt>Eligible audio packets before the stop</dt><dd>0</dd></div>
+        <div><dt>Eligible audio packets after the stop</dt><dd>24</dd></div>
+        <div><dt>Audio packets in the FFmpeg trim</dt><dd>24</dd></div>
+      </dl>
+      <p>These values come from FFmpeg and ffprobe 8.1.2 on this exact fixture. File and pipe reads gave the same order. The reproduction evaluates the early-stop rule against that packet order. <a href="https://github.com/yuroyami/KiteFFmpeg/issues/233#issuecomment-6729246536">See the fixture recipe and upstream discussion</a>.</p>
+    </section>
+
+    <section class="card" aria-labelledby="test">
+      <h2 id="test">Try it on your trimmer</h2>
+      <ol>
+        <li>Stream-copy the downloaded input from 0 to 0.5 seconds with the tool you are testing. Keep video and audio selected.</li>
+        <li>Run the packet count below on your output and the reference file. The reference reports 12 video packets and 24 audio packets.</li>
+        <li>Play or decode your result to check the sound. If the audio count falls to zero or audio ends early, inspect stream selection and the read-stop condition before changing encoders or generating another clip.</li>
+      </ol>
+      <pre tabindex="0" aria-label="ffprobe packet count command"><code>ffprobe -v error -count_packets -show_entries stream=codec_type,nb_read_packets -of json "trim-audio-test-reference.mp4"</code></pre>
+      <p>Packet count helps locate a missing track or a truncated read. Playback and a distinct cue help assess audibility and sync. For generated footage, keep the original delivery file so you can tell whether the audio was lost during generation or during editing.</p>
+    </section>
+    <p><a data-companion-link href="./api-request.html">Prepare a video request and save its receipt</a> with the free Cookbook builder. Generation is a separate step with its own availability and funding.</p>
+  </main>
+  <footer>Published by the SeedanceCheap team, with Codex. <a href="https://ffmpeg.org/ffprobe.html">Official ffprobe documentation</a>.</footer>
+</div>
+<script type="module">
+  import { applyWorksheetLinks } from './links.mjs?v=c35be46f2877';
+  applyWorksheetLinks(document, location.search);
+</script>
+</body>
+</html>
