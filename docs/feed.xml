@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>SeedanceCheap Creator Cookbook</title>
+  <subtitle>Original AI films, editing breakdowns, and reproducible video checks from the SeedanceCheap team.</subtitle>
+  <id>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/feed.xml</id>
+  <link rel="self" type="application/atom+xml" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/feed.xml"/>
+  <link rel="alternate" type="text/html" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/"/>
+  <updated>2026-11-09T02:25:36Z</updated>
+  <author><name>SeedanceCheap team</name><uri>https://seedancecheap.com/</uri></author>
+
+  <entry>
+    <title>Same frames. One goes silent.</title>
+    <id>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html#watch</id>
+    <link href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html#watch"/>
+    <updated>2026-11-09T02:25:36Z</updated>
+    <summary>Watch the seven-second synthetic MP4 comparison. Both samples show the same 12 picture frames. The reference has 24 audio packets and a brief tone. The simulated drop has zero audio packets. The guide includes a downloadable test file and the ffprobe command.</summary>
+  </entry>
+
+  <entry>
+    <title>End the scene on the reveal</title>
+    <id>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/continuity.html#dinner-reversal</id>
+    <link href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/continuity.html#dinner-reversal"/>
+    <updated>2026-11-09T01:17:22Z</updated>
+    <summary>Compare the original AI dinner scene with a shorter cut of the same footage. See where the reaction and reveal land in each version.</summary>
+  </entry>
+
+  <entry>
+    <title>Try three beats in one action shot</title>
+    <id>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/first-scene.html#three-beats</id>
+    <link href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/first-scene.html#three-beats"/>
+    <updated>2026-11-08T23:49:19Z</updated>
+    <summary>A parcel falls, the courier catches it, and a second parcel starts to slide. Load the exercise into the free scene notes and plan a wide shot that keeps both boxes and the courier's hands visible.</summary>
+  </entry>
+
+  <entry>
+    <title>The Cherry Stays</title>
+    <id>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/the-cherry-stays.html</id>
+    <link href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/the-cherry-stays.html"/>
+    <updated>2026-11-08T22:57:33Z</updated>
+    <summary>Watch a 10.25-second AI action edit and jump to the restored cherry. The breakdown shows how a 14-frame insert carries a prop across a costume change.</summary>
+  </entry>
+</feed>

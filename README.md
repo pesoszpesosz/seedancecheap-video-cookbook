@@ -2,6 +2,8 @@
 
 Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy the exact prompts, and see how our team edited the results. The [free creator cookbook](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/) also includes shot planners, Genjutsu source/reference/result examples and a video-cost calculator.
 
+[Subscribe in your feed reader](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/feed.xml) for new films and practical breakdowns.
+
 **Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
 **The new budget generation promotion is paused while its model identity is verified.** The completed earlier AI films, exact prompts, Genjutsu inputs and editing recipes remain available. [Read the current video pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) before choosing a model or buying credits.
