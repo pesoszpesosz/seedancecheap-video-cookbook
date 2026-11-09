@@ -2,7 +2,7 @@
 
 This example accompanies [our complete inspection guide](https://seedancecheap.wordpress.com/2026/10/16/check-an-ai-videos-resolution-duration-and-audio-before-you-use-it/). Published by the SeedanceCheap team, an independent studio; prepared with Codex.
 
-`inspect_video.py` reads an already-created local ffprobe JSON report. It makes no network requests, uploads, generation calls or changes to your video. It needs only Python's standard library. The separate probe command requires an existing ffprobe installation.
+`inspect_video.py` verifies a downloaded MP4 or summarizes an existing local ffprobe JSON report. The report mode uses Python’s standard library. Direct MP4 inspection also requires FFmpeg and ffprobe. Both modes keep the file on your computer.
 
 ## Try the synthetic report
 
@@ -14,7 +14,19 @@ python inspect_video.py probe-example.json
 
 The invented report describes one 1280 × 720 video stream, a 30.08-second container and one audio stream. It is a demonstration fixture, not generated footage or a delivery benchmark. Use `python3` if that is your interpreter's command name.
 
-## Inspect your own local file
+## Verify a downloaded MP4
+
+Run this with FFmpeg and ffprobe on PATH. It probes the file, decodes the moving video and any audio from start to end, and prints a JSON report with its byte count and SHA-256.
+
+```sh
+python inspect_video.py "delivered.mp4" --decode --expect-pixels 720x1280
+```
+
+Use the encoded width and height you requested, or omit `--expect-pixels` to report the delivered size without comparing it. A size mismatch prints the report and exits with code 2. A file that cannot be probed or decoded exits with an error. This checks the file locally and does not modify it.
+
+Try the command on the [original Umbrella test download](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/native-1080p.html?from=github#watch) with `--expect-pixels 1080x1920`. That earlier model test used upscaling. Its decoded file dimensions and audio stream pass the technical check, even though the requested final umbrella inversion is missing.
+
+## Summarize an existing probe report
 
 ```sh
 ffprobe -v error -show_streams -show_format -of json -o probe.json "delivered.mp4"

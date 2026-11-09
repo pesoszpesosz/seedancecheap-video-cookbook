@@ -103,7 +103,7 @@
       <p>Replace <code>vid_YOUR_ID</code> with the ID returned by create or recovery. Space status checks, for example 30 seconds apart, and keep your application’s waiting screen tied to this job.</p>
       <h3>4. Download after Ready</h3>
       <pre id="download-command" aria-label="Download command"></pre>
-      <p>Download within 48 hours after delivery, before the exact expiry time shown in your studio or job receipt. Check the curl exit code before opening the file. Play the full result and inspect source dimensions, motion and sound separately. <a data-companion-link href="./audio-after-trim.html">Check whether a later trim dropped audio</a>.</p>
+      <p>Download within 48 hours after delivery, before the exact expiry time shown in your studio or job receipt. Check the curl exit code before opening the file. Use the <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/tree/main/examples/video-delivery-check#verify-a-downloaded-mp4">local MP4 checker</a> to decode it and compare its encoded size with your request. Play the full result to judge motion and sound. <a data-companion-link href="./audio-after-trim.html">Check whether a later trim dropped audio</a>.</p>
       <p class="muted">The JSON commands require curl 7.76 or newer for <code>--fail-with-body</code>. HTTP errors return a nonzero exit code; their saved JSON is an error receipt, not a successful job. Windows examples use <code>curl.exe</code>.</p>
     </section>
 

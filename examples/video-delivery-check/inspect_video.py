@@ -1,7 +1,10 @@
-"""Summarize a local ffprobe JSON report. No network or media mutation."""
+"""Inspect local delivery metadata or verify a downloaded MP4 through full decode."""
+import argparse
+import hashlib
 import json
 import math
-import sys
+import re
+import subprocess
 from pathlib import Path
 
 
@@ -43,11 +46,61 @@ def summarize(report):
     }
 
 
+
+def inspect_mp4(path):
+    path = path.resolve(strict=True)
+    if not path.is_file():
+        raise ValueError('Choose a regular local MP4 file')
+    before = path.stat()
+    input_options = ['-protocol_whitelist', 'file,pipe', '-f', 'mov']
+    probe = subprocess.run(
+        ['ffprobe', '-v', 'error', *input_options, '-show_streams', '-show_format',
+         '-of', 'json', str(path)],
+        capture_output=True, check=True,
+    )
+    result = summarize(json.loads(probe.stdout))
+    subprocess.run(
+        ['ffmpeg', '-nostdin', '-v', 'error', '-xerror', '-err_detect', 'explode',
+         *input_options, '-i', str(path), '-map', '0:V', '-map', '0:a?', '-f', 'null', '-'],
+        capture_output=True, check=True,
+    )
+    digest = hashlib.sha256()
+    with path.open('rb') as media:
+        for block in iter(lambda: media.read(1024 * 1024), b''):
+            digest.update(block)
+    after = path.stat()
+    if (before.st_size, before.st_mtime_ns, before.st_ino) != (
+        after.st_size, after.st_mtime_ns, after.st_ino
+    ):
+        raise ValueError('File changed during inspection. Wait for the download to finish.')
+    return {**result, 'bytes': after.st_size, 'sha256': digest.hexdigest(), 'full_decode': True}
+
+
+def pixels(value):
+    if not re.fullmatch(r'[1-9][0-9]*x[1-9][0-9]*', value.lower()):
+        raise argparse.ArgumentTypeError('Use WIDTHxHEIGHT, for example 720x1280')
+    return [int(side) for side in value.lower().split('x')]
+
+
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        raise SystemExit('Usage: python inspect_video.py probe.json')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('input', type=Path, help='ffprobe JSON, or a local MP4 with --decode')
+    parser.add_argument('--decode', action='store_true', help='Probe and decode the local MP4')
+    parser.add_argument('--expect-pixels', type=pixels, help='Check encoded WIDTHxHEIGHT')
+    args = parser.parse_args()
     try:
-        data = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8-sig'))
-        print(json.dumps(summarize(data), indent=2, allow_nan=False))
+        result = (
+            inspect_mp4(args.input) if args.decode
+            else summarize(json.loads(args.input.read_text(encoding='utf-8-sig')))
+        )
+        if args.expect_pixels is not None:
+            result['expected_encoded_pixels'] = args.expect_pixels
+            result['encoded_pixels_match'] = result['encoded_pixels'] == args.expect_pixels
+        print(json.dumps(result, indent=2, allow_nan=False))
+        if result.get('encoded_pixels_match') is False:
+            raise SystemExit(2)
+    except subprocess.CalledProcessError as error:
+        reason = error.stderr.decode('utf-8', errors='replace').strip()
+        raise SystemExit(f'{error.cmd[0]} could not verify the file. {reason}')
     except (OSError, ValueError, TypeError, AttributeError) as error:
-        raise SystemExit('Cannot inspect report: ' + str(error))
+        raise SystemExit('Cannot inspect input: ' + str(error))

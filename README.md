@@ -190,7 +190,7 @@ The builder asks for no API key and sends no generation request. Choose funding 
 
 ## Inspect a delivered video locally
 
-[Download the video-metadata example](examples/video-delivery-check/). Use an existing ffprobe installation to write a local JSON report, then summarize its encoded dimensions, rotation metadata, duration and audio-stream count with Python's standard library. A synthetic report is included for a quick offline run; no footage upload, API request or generation is required.
+[Download the video-metadata example](examples/video-delivery-check/). Use Python with FFmpeg and ffprobe to decode a downloaded MP4, verify its encoded size and record its SHA-256. The same example can summarize an existing ffprobe JSON report. A synthetic report is included for a quick offline run; no footage upload, API request or generation is required.
 
 The code preserves unknown values and skips an attached cover image. Metadata does not prove native generation resolution, audible or synchronized audio, or creative quality. For a stream-copy regression, [download a synthetic MP4 and check whether the trim dropped audio](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html?from=github). For exports with more than one source audio track, [compare ordered audio packet hashes in your browser](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html?from=github#audio-track-match). Read the [complete inspection guide](https://seedancecheap.wordpress.com/2026/10/16/check-an-ai-videos-resolution-duration-and-audio-before-you-use-it/) and watch and listen to the entire result before accepting a shot.
 
