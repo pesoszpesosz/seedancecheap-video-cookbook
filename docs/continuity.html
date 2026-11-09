@@ -29,6 +29,10 @@
     .actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.button,button{display:inline-block;background:var(--green);border:1px solid #9bc754;border-radius:10px;padding:12px 17px;color:var(--ink);font:inherit;font-weight:650;text-decoration:none;cursor:pointer}.secondary{background:white;border-color:var(--line)}
     .card{background:white;border:1px solid var(--line);border-radius:18px;padding:25px;margin:22px 0}h2{font-size:24px;letter-spacing:-.025em;margin:0 0 12px}h3{font-size:18px;margin:0 0 8px}p{margin:0 0 14px}.muted,small{color:var(--muted)}
     .pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}.example{background:#edf4e5;border:1px solid var(--line);border-radius:12px;padding:18px}.example p{margin:0}.example strong{display:block;margin-bottom:8px}
+    .edit-examples figure{min-width:0;margin:0}
+    .edit-examples video{display:block;width:min(100%,270px);aspect-ratio:9/16;background:#14262a;border-radius:10px;margin:0 auto 10px}
+    .edit-examples video:focus-visible{outline:3px solid #518c36;outline-offset:3px}
+    .edit-examples figcaption{font-size:14px;color:var(--muted)}
     label{display:block;font-weight:650;margin:15px 0 8px}textarea{width:100%;min-height:230px;resize:vertical;background:#fafcf8;color:var(--ink);border:1px solid #aebfba;border-radius:10px;padding:14px;font:14px/1.6 ui-monospace,Consolas,monospace}#review-notes{min-height:200px}
     ul{padding-left:23px}li{margin:8px 0}#download-status{font-size:14px;align-self:center}footer{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;font-size:13px;color:var(--muted)}
     a:focus-visible,button:focus-visible,textarea:focus{outline:3px solid #518c36;outline-offset:3px}
@@ -53,6 +57,30 @@
         <div class="example"><strong>Shot B · open</strong><p>Begin with that same hand, sleeve and handle position. The hand turns the handle and the door opens into the room.</p></div>
       </div>
       <p style="margin-top:16px">Review the hand, handle and direction at the actual cut. If the join is rough, an insert of the hinge or room detail may bridge it. A continuous room or rain track can help the sound feel connected.</p>
+    </section>
+
+    <section class="card" id="dinner-reversal" aria-labelledby="dinner-reversal-heading">
+      <h2 id="dinner-reversal-heading">End the scene on the reveal</h2>
+      <p>At dinner, a woman takes the microphone and says she’s Victor’s wife. A second woman interrupts. Watch how five short selections carry the confrontation from the first line to the moment a recording changes who has the upper hand.</p>
+      <div class="pair edit-examples">
+        <figure class="example">
+          <video controls playsinline preload="none" poster="./action-drama-poster.jpg" aria-label="Original 30-second Seedance 2.5 dinner scene">
+            <source src="./action-drama.mp4" type="video/mp4">
+            <a href="./action-drama.mp4">Open the original video</a>
+          </video>
+          <figcaption><strong>Original · 30 seconds</strong>Watch for the gaps before the denial and the recording.</figcaption>
+        </figure>
+        <figure class="example">
+          <video controls playsinline preload="none" poster="./end-on-the-reveal-poster.jpg" aria-label="12-second captioned edit of the dinner scene">
+            <source src="./end-on-the-reveal.mp4" type="video/mp4">
+            <a href="./end-on-the-reveal.mp4">Open the captioned edit</a>
+          </video>
+          <figcaption><strong>Captioned edit · 12 seconds</strong>The new cut keeps the dialogue and ends on the woman holding the phone.</figcaption>
+        </figure>
+      </div>
+      <h3 style="margin-top:18px">Try the same cut</h3>
+      <p>At 24 fps, keep original frames 0–38, 82–142, 154–200, 268–319 and 481–569, with frame 0 at the start of the source. Keep the matching audio for each range and add a short fade at each join. When you review the last shot, check that the person and prop read clearly even with the sound off.</p>
+      <p class="muted">Fictional AI scene from the SeedanceCheap team, made with Seedance 2.5. Both files are 720 × 1280. The shorter version uses the existing footage and dialogue.</p>
     </section>
 
     <section class="card" aria-labelledby="shared-heading">
