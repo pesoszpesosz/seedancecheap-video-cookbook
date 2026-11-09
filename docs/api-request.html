@@ -36,6 +36,7 @@
     footer{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;font-size:13px;color:var(--muted)}a:focus-visible,button:focus-visible,input:focus,textarea:focus,select:focus{outline:3px solid #518c36;outline-offset:3px}
     @media(max-width:760px){.shell{padding:20px 18px 35px}.tag{max-width:145px;text-align:right}header{align-items:start;margin-bottom:28px}.flow{grid-template-columns:1fr 1fr}.card{padding:20px}.intro{font-size:17px}.actions .button{width:100%;text-align:center}th,td{padding:9px;font-size:14px}}
     @media print{body{background:white}.shell{padding:0}.actions,button{display:none}.card{break-inside:avoid}pre{border:1px solid #bbb;background:white;color:black}}
+    .stunt-study{margin:16px 0 20px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#f7faf4}.stunt-study summary{font-weight:650;cursor:pointer}.stunt-study[open] summary{margin-bottom:12px}.stunt-study video{display:block;width:min(100%,360px);height:auto;background:#0c151d;border-radius:10px}
   </style>
 </head>
 <body>
@@ -60,6 +61,17 @@
     <section class="card" aria-labelledby="prepare-heading">
       <h2 id="prepare-heading">Prepare a small text-only pilot</h2>
       <p>Define what a usable result must show before trying it. The proposed paper-boat test below is a simple geometry, water-contact and camera-motion exercise; this particular request has not been generated.</p>
+      <details id="stunt-contact" class="stunt-study">
+        <summary>Watch the wheel-contact test and copy the eight-second prompt</summary>
+        <p>Two animated examples show the difference between a wheel stopping with a gap and a wheel touching its stop. The sound marks the contact frame. This nine-second illustration was built locally as a review guide.</p>
+        <video controls playsinline preload="none" width="360" height="640" poster="stunt-contact-poster.jpg" aria-label="Animated comparison of an early stop and a wheel touching a wedge">
+          <source src="stunt-contact.mp4" type="video/mp4">
+          <a href="stunt-contact.mp4">Open the video</a>.
+        </video>
+        <h3>Copy this proposed scene into the prompt field</h3>
+        <p>Vertical 9:16, eight seconds, one continuous waist-low tracking shot. At 0–1 s a scuffed wheeled hard case rolls out of a service elevator. At 1–4 s an adult courier runs alongside it and gets ahead, holding a rubber doorstop. At 4–6 s the courier sets the wedge in the front wheel’s path. Keep the wheel and wedge visible as the case bumps to a stop. At 6–8 s the courier steadies the handle. End on the case still, just short of a painted floor line. Wheels rumble, one rubber thud at contact, no dialogue or music.</p>
+        <p class="muted">For this proposed pilot, select the eight-second Veo 3.1 recipe and Portrait. Check the exact format and live admission below before choosing funding. On playback, check the first second, the wheel’s contact with the wedge, and the timing of the thud.</p>
+      </details>
       <label for="pilot-model">Model and length</label>
       <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option><option value="veo31-text-8s-720">Veo 3.1 · 8s · 0.25 credit</option><option value="veo-3.1">Veo 3.1 legacy · 8 seconds · 0.5 credit</option></select>
       <label for="pilot-format">720p format</label>
