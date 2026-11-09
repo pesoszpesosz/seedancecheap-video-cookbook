@@ -9,6 +9,15 @@ export function setupMotionComparison(root) {
   const jumps = [...(controls?.querySelectorAll('[data-compare-time]') || [])];
   if (players.length !== 2 || !range || !output || !status) return;
 
+  const page = root.ownerDocument.defaultView;
+  const namedBeats = jumps.filter(button => button.dataset.compareBeat);
+  const linkedBeat = () => namedBeats.find(button => page.location.hash === '#' + button.dataset.compareBeat);
+  const updateAddress = beat => {
+    if (!beat && !linkedBeat()) return;
+    const hash = '#' + (beat?.dataset.compareBeat || root.id);
+    if (page.location.hash !== hash) page.history.replaceState(page.history.state, '', hash);
+  };
+
   let ready = false;
   let failed = false;
   let length = 0;
@@ -16,7 +25,7 @@ export function setupMotionComparison(root) {
     range.disabled = !value;
     jumps.forEach(button => { button.disabled = !value; });
   };
-  const compare = value => {
+  const compare = (value, beat) => {
     if (!ready) return;
     const time = Math.max(0, Math.min(Number(value) || 0, length));
     players.forEach(player => {
@@ -27,8 +36,13 @@ export function setupMotionComparison(root) {
     range.value = String(time);
     range.setAttribute('aria-valuetext', `${time.toFixed(2)} seconds`);
     output.value = `${time.toFixed(2)}s`;
-    const message = 'Both clips paused. The same timestamp can show different movement.';
+    namedBeats.forEach(button => button.setAttribute('aria-pressed', String(button === beat)));
+    const message = beat?.dataset.compareNote || 'Both clips paused. The same timestamp can show different movement.';
     if (status.textContent !== message) status.textContent = message;
+  };
+  const restoreBeat = () => {
+    const beat = linkedBeat();
+    if (beat) compare(beat.dataset.compareTime, beat);
   };
   const load = () => {
     if (failed || ready || !players.every(p => Number.isFinite(p.duration) && p.duration > 0)) return;
@@ -37,6 +51,7 @@ export function setupMotionComparison(root) {
     ready = true;
     enable(true);
     status.textContent = 'Choose a time to inspect the source and result together.';
+    restoreBeat();
   };
   const fail = () => {
     failed = true;
@@ -46,9 +61,16 @@ export function setupMotionComparison(root) {
     status.textContent = 'The comparison could not load. Open either video below, or reload to try again.';
     if (fallbacks) fallbacks.hidden = false;
   };
-  range.addEventListener('input', () => compare(range.value));
-  jumps.forEach(button => button.addEventListener('click', () =>
-    compare(button.dataset.compareTime === 'end' ? length : button.dataset.compareTime)));
+  range.addEventListener('input', () => {
+    updateAddress();
+    compare(range.value);
+  });
+  jumps.forEach(button => button.addEventListener('click', () => {
+    const beat = button.dataset.compareBeat ? button : undefined;
+    updateAddress(beat);
+    compare(button.dataset.compareTime === 'end' ? length : button.dataset.compareTime, beat);
+  }));
+  page.addEventListener('hashchange', restoreBeat);
   players.forEach(player => {
     player.addEventListener('loadedmetadata', load);
     player.addEventListener('error', fail);
