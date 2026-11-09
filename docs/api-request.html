@@ -61,12 +61,12 @@
       <h2 id="prepare-heading">Prepare a small text-only pilot</h2>
       <p>Define what a usable result must show before trying it. The proposed paper-boat test below is a simple geometry, water-contact and camera-motion exercise; this particular request has not been generated.</p>
       <label for="pilot-model">Model and length</label>
-      <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option><option value="veo-3.1">Veo 3.1 · 8 seconds · 0.5 credit</option></select>
+      <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option><option value="veo31-text-8s-720">Veo 3.1 · 8 seconds · 720p text · 0.25 credit</option><option value="veo-3.1">Veo 3.1 legacy · 8 seconds · 0.5 credit</option></select>
       <label for="pilot-format">720p format</label>
       <select id="pilot-format"><option value="16:9">Landscape · 1280×720</option><option value="9:16">Portrait · 720×1280</option></select>
       <p style="margin-top:12px"><span id="pilot-terms" class="pill">30-second request · 1 credit if paid · 16:9 · requested 1280×720</span></p>
       <p><strong>Before submitting or buying credits:</strong> <a id="model-availability" data-site-link href="https://seedancecheap.com/api?model=seedance-2.5&amp;utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=availability#availability">Check this model’s live availability without signing in →</a> Confirm that the selected orientation and size are listed. If capacity or the exact format cannot be verified, wait before starting a new request. Keep any existing job’s request ID and settings unchanged.</p>
-      <p class="muted">These text-only recipes describe the request settings. The 8-second Veo 3.1 recipe uses paid funding. Check capacity and current trial availability separately. Output dimensions, delivery and creative quality can vary.</p>
+      <p class="muted">The quarter-credit Veo 3.1 option allocates about $0.25 from the $99 upfront 100-credit pack, or about $0.63 from one $2.50 credit. Both Veo options require paid funding. For the quarter-credit option, the availability link opens the exact API response. Check <code>generation_status</code> and <code>available_formats</code> before submitting. Output dimensions, delivery and creative quality can vary.</p>
       <label for="pilot-funding">Funding route</label>
       <select id="pilot-funding"><option value="" selected>Choose funding</option><option id="trial-funding-option" value="trial">Trial · if enabled and eligible</option><option value="paid">Paid: credits or balance</option></select>
       <p class="muted">This free builder prepares JSON only after you choose. Trial mode never falls back to paid funding. Paid mode can use your credits or balance when you run the command separately.</p>
@@ -123,6 +123,6 @@
   </main>
   <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. Model and duration fields were checked against the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> on November 8, 2026. The guide prepares sample commands without executing them. Earlier films in the cookbook identify their own models and settings. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
 </div>
-<script type="module" src="./api-request.mjs?v=c35be46f2877"></script>
+<script type="module" src="./api-request.mjs?v=46e1a8d3ed92"></script>
 </body>
 </html>

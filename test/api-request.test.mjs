@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {makeRequest, commandExamples} from '../docs/api-request.mjs';
+import {makeRequest, commandExamples, pilotModels} from '../docs/api-request.mjs';
 
 test('each model gets its exact duration and explicit funding without changing the saved input',()=>{
   const prompt='  A folded paper boat — one gentle push.\n';
@@ -27,6 +27,21 @@ test('the eight-second Veo text recipe requires explicit paid funding and a supp
   });
   assert.throws(()=>makeRequest('A paper boat.','pilot_veo','veo-3.1','trial'),/paid funding explicitly/);
   assert.throws(()=>makeRequest('A paper boat.','pilot_veo','veo-3.1','paid','1:1'),/720p format/);
+});
+
+test('the quarter-credit Veo recipe uses its exact model ID and preserves explicit funding',()=>{
+  const model = 'veo31-text-8s-720';
+  const prompt = 'A paper boat.';
+  assert.equal(pilotModels[model].credits,0.25);
+  for (const [ratio,size] of [['9:16','720x1280'],['16:9','1280x720']]) {
+    assert.deepEqual(makeRequest(prompt,'pilot_veo_720',model,'paid',ratio),{
+      model,duration:8,prompt,ratio,size,request_id:'pilot_veo_720',free_trial:false,auto_retry:false
+    });
+  }
+  assert.throws(()=>makeRequest(prompt,'pilot_veo_720',model,'trial'),/paid funding explicitly/);
+  assert.throws(()=>makeRequest(prompt,'pilot_veo_720',model,'paid','1:1'),/720p format/);
+  assert.match(commandExamples('pilot_veo_720','bash',model).availability,/model=veo31-text-8s-720"/);
+  assert.equal(pilotModels['veo-3.1'].credits,0.5);
 });
 
 test('invalid model, ID and prompt cannot produce an executable pilot',()=>{

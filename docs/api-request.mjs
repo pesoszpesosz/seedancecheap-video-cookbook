@@ -1,9 +1,10 @@
-import { applyWorksheetLinks } from './links.mjs?v=c35be46f2877';
+import { applyWorksheetLinks } from './links.mjs?v=46e1a8d3ed92';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
   'seedance-2.0': {duration:15, credits:0.5},
-  'veo-3.1': {duration:8, credits:0.5, paidOnly:true}
+  'veo-3.1': {duration:8, credits:0.5, paidOnly:true},
+  'veo31-text-8s-720': {duration:8, credits:0.25, paidOnly:true, availabilityJson:true}
 };
 
 const pilotSizes = {'16:9':'1280x720', '9:16':'720x1280'};
@@ -66,6 +67,7 @@ if (typeof document !== 'undefined') {
   const format = document.getElementById('pilot-format');
   const trialOption = document.getElementById('trial-funding-option');
   const availability = document.getElementById('model-availability');
+  const availabilityPage = new URL(availability.href);
   const terms = document.getElementById('pilot-terms');
   const preview = document.getElementById('request-json');
   const download = document.getElementById('download-request');
@@ -78,7 +80,11 @@ if (typeof document !== 'undefined') {
       if (!details) throw new Error('Choose a listed pilot model.');
       trialOption.disabled = details.paidOnly === true;
       if (trialOption.disabled && funding.value === 'trial') funding.value = '';
-      const availabilityUrl = new URL(availability.href);
+      const availabilityUrl = new URL(availabilityPage);
+      if (details.availabilityJson) {
+        availabilityUrl.pathname = '/api/availability';
+        availabilityUrl.hash = '';
+      }
       availabilityUrl.searchParams.set('model', model.value);
       availability.href = availabilityUrl.toString();
       if (!Object.hasOwn(pilotSizes, format.value)) throw new Error('Choose a listed 720p format.');
