@@ -50,6 +50,12 @@
   .chapters a{display:grid;grid-template-columns:4em minmax(0,1fr);min-height:44px;align-items:center;gap:8px;padding-block:6px}
   .chapters time{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
   .status{min-height:1.55em;margin:0 0 7px}
+  .cut-review summary{display:list-item;min-height:44px;padding-block:9px}
+  .cut-frames{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(9px,2vw,17px);max-width:390px;margin:0 0 12px}
+  .cut-frames figure{margin:0}
+  .cut-frames img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+  .cut-frames a{display:flex;align-items:center;min-height:44px;gap:.4em;font-weight:700;font-variant-numeric:tabular-nums}
+  .cut-frames p{margin:0;font-size:.88rem}
   .actions{display:flex;gap:8px 18px;flex-wrap:wrap;margin:4px 0 12px}
   .primary{background:var(--gold);color:#181a16;padding:0 12px;border-radius:7px;font-weight:700;text-decoration:none}
   details{border-top:1px solid var(--line);padding:9px 0;margin:8px 0}
@@ -89,10 +95,35 @@
       <li><a href="the-last-key.mp4#t=30.178" data-seek="30.178"><time datetime="PT30.178S">0:30</time><span>The box opens</span></a></li>
     </ol>
     <p class="quiet status" id="seek-status" role="status"></p>
+    <h2 id="continuity-kit">Review the cut</h2>
+    <p>Compare the two frames around the chapter break. Then use the worksheet to check how a prop carries the action across a cut in your own scene.</p>
+    <div class="actions">
+      <a class="primary" href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/last-key-continuity-v1/the-last-key-continuity-kit-v1.zip">Download the free kit (ZIP)</a>
+    </div>
+    <details class="cut-review">
+      <summary>Show the frames around 0:30 (spoiler)</summary>
+      <div class="cut-frames">
+        <figure>
+          <img src="the-last-key-cut-before.jpg" width="360" height="640" loading="lazy" alt="Maya and Nico standing with a closed green box">
+          <figcaption>
+            <a href="the-last-key.mp4#t=29" data-seek="29"><time datetime="PT29S">0:29</time><span>Before the cut</span></a>
+            <p>They stand with the green box closed.</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="the-last-key-cut-after.jpg" width="360" height="640" loading="lazy" alt="Maya lifting the green lid to reveal a red toy train">
+          <figcaption>
+            <a href="the-last-key.mp4#t=31" data-seek="31"><time datetime="PT31S">0:31</time><span>After the cut</span></a>
+            <p>They sit. Maya opens the same box.</p>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="quiet">The camera angle and their poses change. The box and wardrobe carry the scene across the cut.</p>
+    </details>
     <h2>Plan a scene with the same cast</h2>
     <p>Use Maya and Nico’s editable sheets to plan two connected shots. Keep the bench and their wardrobe in place. Change one action across the cut, from setting down a closed box to opening it.</p>
     <div class="actions">
-      <a class="primary" data-companion-link href="./continuity.html#last-key-cast">Get the sheets and exercise</a>
+      <a data-companion-link href="./continuity.html#last-key-cast">Use the online exercise</a>
       <a data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=watch&amp;utm_campaign=last_key_complete_nov9&amp;utm_content=character_planner#builder">Open the free prompt planner</a>
     </div>
     <p class="quiet">The original 480p-class Seedance 2.5 shots were assembled at 720 × 1280 in two chapters, then joined here with their original narration and picture frames. Generation is separate from free planning. Review your Studio quote and availability before buying credits.</p>
