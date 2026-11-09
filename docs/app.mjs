@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate, planCreditPacks } from './cost.mjs?v=56806da38d4b';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=56806da38d4b';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=56806da38d4b';
+import { packs, clipTerms, calculate, planCreditPacks } from './cost.mjs?v=a5d0bc84928c';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=a5d0bc84928c';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=a5d0bc84928c';
 
 applyWorksheetLinks(document, location.search);
 
@@ -71,7 +71,7 @@ $('share-budget').addEventListener('click', () => {
   $('budget-link').select();
 });
 
-function loadSharedBudget() {
+function loadSharedBudget(moveToWorksheet = true) {
   form.reset();
   $('shared-notice').hidden = true;
   try {
@@ -90,6 +90,11 @@ function loadSharedBudget() {
       $('credits-per-clip').value = shared.creditsPerClip ?? 1;
       $('shared-notice').textContent = 'Shared numeric budget loaded. Its numbers do not establish model identity or current availability; review a live quote before purchasing.';
       $('shared-notice').hidden = false;
+      if (moveToWorksheet) {
+        const heading = $('input-heading');
+        heading.focus({ preventScroll: true });
+        heading.scrollIntoView({ block: 'start' });
+      }
     }
   } catch {
     $('shared-notice').textContent = 'This shared budget could not be loaded. The worksheet is using its defaults; enter your numbers below.';
@@ -103,7 +108,9 @@ window.addEventListener('hashchange', () => {
   if (location.hash === '#budget' || !new URLSearchParams(location.hash.slice(1)).has('budget')) return;
   loadSharedBudget(); render();
 });
-loadSharedBudget();
+const navigationType = performance.getEntriesByType('navigation')[0]?.type;
+// Preserve the browser's saved reading position on reload and history traversal.
+loadSharedBudget(navigationType !== 'reload' && navigationType !== 'back_forward');
 render();
 
 const packForm = $('pack-planner-form');
