@@ -36,6 +36,10 @@
     .actions {display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
     .actions a {display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #8dab55;border-radius:8px;background:var(--green);color:var(--ink);font-weight:650;text-decoration:none}
     .actions a + a {background:white;border-color:var(--line)}
+    .trim-demo {display:grid;grid-template-columns:minmax(0,230px) minmax(0,1fr);align-items:center;gap:24px}
+    .trim-demo video {display:block;width:min(100%,230px);aspect-ratio:9/16;background:#14201e;border-radius:10px}
+    .trim-demo video:focus-visible {outline:3px solid #518c36;outline-offset:3px}
+    @media(max-width:620px) {.trim-demo {grid-template-columns:1fr;gap:16px}.trim-demo video {margin:auto}}
     .packet-result {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
     .packet-result div {border-top:3px solid #7ca652;background:#f4f8ed;padding:10px 12px}
     .packet-result dt {font-size:14px;color:var(--muted)}
@@ -56,6 +60,19 @@
       <a href="./trim-audio-test-reference.mp4" download>Download reference trim (15 KB)</a>
     </div>
     <p>Both files use a generated test pattern and a synthetic 440 Hz tone. Run the checks on your computer with an existing FFmpeg installation.</p>
+
+    <section class="card trim-demo" id="watch" aria-labelledby="demo-heading">
+      <video controls playsinline preload="none" poster="./same-frames-one-goes-silent-poster.jpg" aria-label="Seven-second MP4 audio trim comparison">
+        <source src="./same-frames-one-goes-silent.mp4" type="video/mp4">
+        <track kind="captions" srclang="en" label="English" src="./same-frames-one-goes-silent.vtt">
+        <a href="./same-frames-one-goes-silent.mp4">Open the seven-second demo</a>
+      </video>
+      <div>
+        <h2 id="demo-heading">Same frames. One goes silent.</h2>
+        <p>Play with sound to hear a brief tone in the reference pass. Both passes use the same 12 decoded picture frames. The reference has 24 audio packets. The simulated drop copies just the picture stream and has zero audio packets.</p>
+        <p><a href="#test">Try the packet check on your export.</a></p>
+      </div>
+    </section>
 
     <section class="card" aria-labelledby="numbers">
       <h2 id="numbers">What happens at 0.500 seconds</h2>
