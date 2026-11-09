@@ -47,6 +47,13 @@
     pre {overflow:auto;background:#eef3ed;border:1px solid var(--line);border-radius:8px;padding:12px;font:14px/1.55 ui-monospace,Consolas,monospace}
     footer {border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:14px}
     @media(max-width:440px) {.actions a {width:100%}.packet-result {gap:6px}.packet-result div {padding:8px}.packet-result dt {font-size:13px}}
+    .audio-reports {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+    .audio-reports label {font-weight:650}
+    .audio-reports input {display:block;max-width:100%;margin-top:6px;font:inherit}
+    #audio-match button {min-height:44px;font:inherit;font-weight:650;padding:8px 12px;border:1px solid #8dab55;border-radius:8px;background:var(--green);color:var(--ink)}
+    #audio-match button + button {background:white;border-color:var(--line)}
+    #audio-match button:focus-visible,#audio-match input:focus-visible {outline:3px solid #518c36;outline-offset:3px}
+    #audio-match output {display:block;padding:10px 12px;background:#f4f8ed;border-left:3px solid #7ca652;white-space:pre-wrap;overflow-wrap:anywhere}
   </style>
 </head>
 <body>
@@ -70,7 +77,7 @@
       <div>
         <h2 id="demo-heading">Same frames. One goes silent.</h2>
         <p>Play with sound to hear a brief tone in the reference pass. Both passes use the same 12 decoded picture frames. The reference has 24 audio packets. The simulated drop copies just the picture stream and has zero audio packets.</p>
-        <p><a href="#test">Try the packet check on your export.</a></p>
+        <p><a href="#test">Try the packet check on your export.</a> <a href="#audio-track-match">Compare copied audio tracks.</a></p>
       </div>
     </section>
 
@@ -95,13 +102,34 @@
       <pre tabindex="0" aria-label="ffprobe packet count command"><code>ffprobe -v error -count_packets -show_entries stream=codec_type,nb_read_packets -of json "trim-audio-test-reference.mp4"</code></pre>
       <p>Packet count helps locate a missing track or a truncated read. Playback and a distinct cue help assess audibility and sync. For generated footage, keep the original delivery file so you can tell whether the audio was lost during generation or during editing.</p>
     </section>
+    <section class="card" id="audio-track-match" aria-labelledby="audio-track-heading">
+      <h2 id="audio-track-heading">Did the export keep the right audio track?</h2>
+      <p>Two tracks can have the same duration and packet count. For a full stream copy, compare the ordered audio packet hashes to identify which source track was kept.</p>
+      <form id="audio-match">
+        <div class="audio-reports">
+          <label>Source audio report <input id="audio-match-source" type="file" accept=".json,application/json"></label>
+          <label>Export audio report <input id="audio-match-export" type="file" accept=".json,application/json"></label>
+        </div>
+        <div class="actions">
+          <button type="submit">Compare reports</button>
+          <button type="button" id="audio-match-sample">Try the two-tone example</button>
+        </div>
+        <output aria-live="polite" aria-atomic="true">Choose two reports or try the example.</output>
+      </form>
+      <p>The example copies the second of two one-second tone tracks. Both tracks have 47 packets. Your reports stay in the browser and can be up to 10 MiB each.</p>
+      <p>Run this command on your source. Repeat with your export file and write to <code>export-audio.json</code>.</p>
+      <pre tabindex="0" aria-label="ffprobe audio hash report command"><code>ffprobe -v error -select_streams a -show_streams -show_packets -show_entries stream=index,codec_type:stream_tags=title,language:packet=stream_index,data_hash -show_data_hash sha256 -of json -o source-audio.json "source.mkv"</code></pre>
+      <p>Packet matches check copied payloads and their order. Trimming, encoding or different packet boundaries can change the hashes. Use playback to check timing and sound quality. <a href="https://github.com/longtimeno-c/mediaviewer/issues/589#issuecomment-6731074978">See the two-tone fixture recipe</a>.</p>
+    </section>
     <p><a data-companion-link href="./api-request.html">Prepare a video request and save its receipt</a> with the free Cookbook builder. Generation is a separate step with its own availability and funding.</p>
   </main>
   <footer>Published by the SeedanceCheap team, with Codex. <a href="https://ffmpeg.org/ffprobe.html">Official ffprobe documentation</a>.</footer>
 </div>
 <script type="module">
-  import { applyWorksheetLinks } from './links.mjs?v=46e1a8d3ed92';
+  import { applyWorksheetLinks } from './links.mjs?v=c6e65c983141';
+  import { setupAudioPacketMatch } from './audio-packet-match.mjs?v=c6e65c983141';
   applyWorksheetLinks(document, location.search);
+  setupAudioPacketMatch(document.querySelector('#audio-match'));
 </script>
 </body>
 </html>
