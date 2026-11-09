@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why FFmpeg -ss jumps forward in MPEG-TS | SeedanceCheap Cookbook</title>
+<meta name="description" content="Watch a synthetic MPEG-TS stream-copy test. The same FFmpeg -ss 7 value starts at source keyframe 11 seconds by default and at 7 seconds with timestamp seeking.">
+  <!-- Discovery metadata: maintained by scripts/update-discovery.mjs -->
+  <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/timestamp-seek.html">
+  <link rel="icon" type="image/png" href="brand-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SeedanceCheap Creator Cookbook">
+  <meta property="og:title" content="Why FFmpeg -ss jumps forward in MPEG-TS | SeedanceCheap Cookbook">
+  <meta property="og:description" content="Watch a synthetic MPEG-TS stream-copy test. The same FFmpeg -ss 7 value starts at source keyframe 11 seconds by default and at 7 seconds with timestamp seeking.">
+  <meta property="og:url" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/timestamp-seek.html">
+  <meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
+  <meta property="og:image:alt" content="SeedanceCheap studio logo">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Why FFmpeg -ss jumps forward in MPEG-TS | SeedanceCheap Cookbook">
+  <meta name="twitter:description" content="Watch a synthetic MPEG-TS stream-copy test. The same FFmpeg -ss 7 value starts at source keyframe 11 seconds by default and at 7 seconds with timestamp seeking.">
+  <meta name="twitter:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
+  <!-- /Discovery metadata -->
+<meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/timestamp-seek-poster.jpg">
+<meta property="og:image:alt" content="Asked for 7s. Got 11s. Two FFmpeg seek modes on a synthetic test signal.">
+<style>
+  :root{color-scheme:dark;--ink:#14201e;--panel:#20322c;--text:#f1f3df;--muted:#bec9bf;--line:#486259;--green:#c5ef7b}
+  *{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--text);font:17px/1.55 'Segoe UI',sans-serif}a{color:var(--green);text-underline-offset:4px}a:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+  .wrap{width:min(1060px,100% - 36px);margin:auto}header,footer{padding:20px 0;color:var(--muted)}header{border-bottom:1px solid var(--line)}footer{border-top:1px solid var(--line)}main{padding:32px 0 45px}
+  h1{font-size:clamp(39px,7vw,76px);letter-spacing:-.055em;line-height:1;margin:8px 0 18px}h2{font-size:clamp(24px,4vw,35px);line-height:1.13;margin:0 0 15px}.label{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);font-weight:700}.note{color:var(--muted)}
+  .test{display:grid;grid-template-columns:minmax(200px,280px) minmax(0,1fr);gap:28px;align-items:start;margin-top:25px}video{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+  .evidence{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:23px}table{border-collapse:collapse;width:100%;text-align:left}th,td{border-bottom:1px solid var(--line);padding:10px 8px;overflow-wrap:anywhere}td:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}code{font-size:.9em}
+  @media(max-width:640px){.test{grid-template-columns:1fr;gap:20px}video{width:min(100%,260px)}.evidence{padding:16px}th,td{padding:8px 4px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Asked for 7s. Got 11s.","description":"An eight-second comparison of the source keyframes selected by two FFmpeg seek modes on the same synthetic MPEG-TS stream.","thumbnailUrl":"https://pesoszpesosz.github.io/seedancecheap-video-cookbook/timestamp-seek-poster.jpg","contentUrl":"https://pesoszpesosz.github.io/seedancecheap-video-cookbook/asked-for-seven-got-eleven.mp4","uploadDate":"2026-11-09T05:34:56Z","duration":"PT8S"}</script>
+<script type="module">
+import { applyWorksheetLinks } from './links.mjs?v=1e7c447d0146';
+applyWorksheetLinks(document, location.search);
+</script>
+</head>
+<body>
+<header class="wrap"><a data-companion-link href="./">SeedanceCheap Creator Cookbook</a></header>
+<main class="wrap">
+  <p class="label">An FFmpeg stream-copy test</p>
+  <h1>Asked for 7s.<br>Got 11s.</h1>
+  <p class="note">This synthetic MPEG-TS starts at 4 seconds. Watch what happens when FFmpeg treats <code>-ss 7</code> as a relative offset or an actual timestamp.</p>
+  <div class="test" id="watch">
+    <video controls playsinline preload="metadata" width="1080" height="1920" poster="timestamp-seek-poster.jpg" aria-label="Eight-second synthetic comparison of default and timestamp seeking">
+      <source src="asked-for-seven-got-eleven.mp4" type="video/mp4">
+      <a href="asked-for-seven-got-eleven.mp4">Open the eight-second comparison</a>
+    </video>
+    <section class="evidence" aria-labelledby="results-heading">
+      <h2 id="results-heading">Which source frame was copied?</h2>
+      <table><thead><tr><th scope="col">Input seek</th><th scope="col">First source keyframe</th></tr></thead>
+      <tbody><tr><td><code>-ss 7</code></td><td>11.000s</td></tr>
+      <tr><td><code>-seek_timestamp 1 -ss 7</code></td><td>7.000s</td></tr>
+      <tr><td><code>-ss 3</code></td><td>7.000s</td></tr></tbody></table>
+      <p>Both displayed outputs start at a remuxed PTS of 1.440s. We matched the SHA-256 of each output’s first video packet to the input to identify the actual source keyframe.</p>
+      <p class="note">The clip shows the two real stream-copy outputs from a synthetic 720p test source in a 1080 × 1920 edit. Short sound cues were made locally. The test covers FFmpeg 8.1.2 seeking. App behavior and audio sync require separate checks.</p>
+      <p><a href="https://github.com/mifi/lossless-cut/issues/3210#issuecomment-6732970481">Run the exact commands from the tested reproduction →</a></p>
+    </section>
+  </div>
+  <p>Retiming captions next? Confirm the actual ranges you kept before <a data-companion-link href="./srt-retime.html">running the free SRT retimer</a>.</p>
+</main>
+<footer class="wrap">From the SeedanceCheap team, with Codex.</footer>
+</body>
+</html>

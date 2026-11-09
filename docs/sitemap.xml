@@ -149,6 +149,15 @@
       <video:publication_date>2026-11-09T03:04:08Z</video:publication_date>
       <video:requires_subscription>no</video:requires_subscription>
     </video:video></url>
+  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/timestamp-seek.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/timestamp-seek-poster.jpg</video:thumbnail_loc>
+      <video:title>Asked for 7s. Got 11s.</video:title>
+      <video:description>An eight-second comparison of the source keyframes selected by two FFmpeg seek modes on the same synthetic MPEG-TS stream.</video:description>
+      <video:content_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/asked-for-seven-got-eleven.mp4</video:content_loc>
+      <video:publication_date>2026-11-09T05:34:56Z</video:publication_date>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/video-accion-ia.html</loc>
     <video:video>
       <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/wait-for-green-es-poster.jpg</video:thumbnail_loc>
