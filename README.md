@@ -176,7 +176,7 @@ For a smaller text-only test, [open the eight-second 720p recipe](https://pesosz
 
 [Run the offline recovery cases](examples/recover-one-job/). The example checks the original request ID and a digest of the saved JSON, then classifies 13 synthetic lookup results without making an API call.
 
-Prepare standard Seedance 2.0 at 15 seconds and 0.5 credit, Seedance 2.5 at 30 seconds and 1 credit, or the separate Veo 3.1 text-only recipe at 8 seconds and 0.5 credit. The JSON keeps the model, duration and selected landscape or portrait 720p format together. Save a new request ID for changed inputs; switching the local preview never changes an existing job.
+The builder lists standard Seedance 2.0 (15 seconds, 0.5 credit), Seedance 2.5 (30 seconds, 1 credit), and two eight-second Veo 3.1 options. The linked pilot selects `veo31-text-8s-720` at 0.25 credit. The legacy `veo-3.1` option is listed at 0.5 credit. Check the exact recipe ID, format and current quote before submitting. The JSON keeps the model, duration and selected 720p format together. Save a new request ID for changed inputs. Changing the local preview leaves existing jobs untouched.
 
 Use the guide’s model-specific link or read-only status command before submitting or buying credits. Check that live admission lists the exact ratio and size in your saved request. If availability is unavailable or unknown, wait before starting a new job and keep any existing request ID unchanged.
 
