@@ -85,6 +85,10 @@
       <li>Keep the picture cut at 1.500 s. In pass B, extend the incoming audio edge to include its source from 0.700 s. Keep the original sound in sync once the second shot is on screen.</li>
       <li>Blend the two audio tracks over the 300 ms overlap. Compare at the same playback volume. Extend or shorten the overlap if it steps on dialogue.</li>
     </ol>
+    <h3>Rebuild the two audio passes</h3>
+    <p>Save the <a href="green-means-go-original.mp4" download>Green Means Go source</a>, the <a href="night-run-original.mp4" download>Night Run source</a> and the <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/blob/main/examples/j-cut/replay.py">replay script</a> in the same directory. With Python 3 and FFmpeg on your path, run the command below.</p>
+    <pre style="white-space:pre-wrap;overflow-wrap:anywhere"><code>python replay.py green-means-go-original.mp4 night-run-original.mp4 j-cut-output</code></pre>
+    <p class="muted">The script writes two 3-second WAVs and checks that their samples match outside the 300 ms overlap. These are the audio passes before final mastering. Put either WAV under the same picture cut at 1.500 s.</p>
     <p>Planning an action shot? <a data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=sound_leads_the_cut&amp;utm_content=free_builder#builder">Open the free prompt planner</a>. Generation is a separate step.</p>
   </section>
 </main>
