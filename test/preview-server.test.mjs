@@ -75,6 +75,12 @@ test('preview serves the existing calculator, guide and module without serving r
     assert.deepEqual(Buffer.from(await project.arrayBuffer()), originalProject);
     assert.equal(JSON.parse(originalProject).pages.length, 3);
     assert.equal((await fetch(base + '/brand-canvas-stunt-department.brand.json')).status, 200);
+    for (const file of ['cut-the-fight-source.srt', 'cut-the-fight-retimed.srt']) {
+      const captions = await fetch(`${base}/${file}`);
+      assert.equal(captions.status, 200);
+      assert.match(captions.headers.get('content-type'), /^text\/plain/);
+      assert.deepEqual(Buffer.from(await captions.arrayBuffer()), await readFile(new URL(`../docs/${file}`, import.meta.url)));
+    }
     for (const path of ['/README.md', '/package.json', '/.git/config', '/%2e%2e%2fREADME.md', '/missing.html']) {
       assert.equal((await fetch(base + path)).status, 404, path);
     }

@@ -62,10 +62,10 @@
   @media(max-width:490px){.cut-demo{grid-template-columns:1fr}.cut-demo video{width:min(100%,260px)}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoObject", "name": "Cut the fight. Keep the captions.", "description": "A 6.4-second editor demo retimes two action notes across a cut in earlier AI footage. Compare the actual source and output SRT.", "thumbnailUrl": "https://pesoszpesosz.github.io/seedancecheap-video-cookbook/cut-the-fight-poster.jpg", "contentUrl": "https://pesoszpesosz.github.io/seedancecheap-video-cookbook/cut-the-fight-keep-the-captions.mp4", "uploadDate": "2026-11-09T04:29:49+00:00", "duration": "PT6.4S"}</script>
-<script type="module" src="./srt-retime.mjs?v=4f74639689fe"></script>
+<script type="module" src="./srt-retime.mjs?v=8eac57cfa9a8"></script>
 </head>
 <body>
-<header class="wrap"><a href="./">SeedanceCheap Creator Cookbook</a></header>
+<header class="wrap"><a data-companion-link href="./">SeedanceCheap Creator Cookbook</a></header>
 <main class="wrap">
   <h1>Retime SRT subtitles after a cut</h1>
   <p>Choose the source ranges that made it into your edit. The tool trims captions at the boundaries and shifts them onto the joined timeline.</p>
@@ -80,7 +80,7 @@
     <p class="quiet">A cue from 6–8s loses its first second. The rest appears from 4–5s in the edit.</p>
     <button id="example" type="button">Load this example</button>
   </section>
-  <form id="retime">
+  <form id="retime" tabindex="-1">
     <div class="fields">
       <div>
         <label for="source-file">Open an SRT file</label>
@@ -113,6 +113,9 @@
       <h2 id="cut-heading">Cut the fight. Keep the captions.</h2>
       <p>We kept 5.000–7.200s and 9.400–11.000s from an earlier Seedance 2.5 scene. The retimer dropped one cue and moved the cake cue to 2.200s in the joined edit.</p>
       <p class="quiet">The on-screen captions describe the action. Earlier AI footage with fictional adults and staged action, placed in a 1080 × 1920 graphic using its 720 × 1280 source.</p>
+      <button id="fight-example" type="button" data-kept-ranges="00:00:05.000 --> 00:00:07.200
+00:00:09.400 --> 00:00:11.000">Run this cut in the retimer</button>
+      <span id="fight-example-status" role="status"></span>
       <ul>
         <li><a href="cut-the-fight-source.srt" download>Download the source SRT</a></li>
         <li><a href="cut-the-fight-retimed.srt" download>Download the retimed SRT</a></li>
@@ -120,6 +123,7 @@
     </div>
   </section>
   <p>Keep the retimed SRT beside your video if your player supports sidecar subtitles. For an MP4 with selectable captions, the <a href="https://gist.github.com/pesoszpesosz/9a48cb596dc8e05539dc641a310b0aa2">tested command-line example</a> shows how to add timed text while copying the video and audio tracks.</p>
+  <p>Planning the next shot? <a data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=srt_retime_demo&amp;utm_content=free_builder#builder">Write the scene in the free prompt planner</a>. Prompt planning works without an account. Video generation is separate.</p>
 </main>
 <footer class="wrap">A free editing tool from the SeedanceCheap team, with Codex.</footer>
 </body>

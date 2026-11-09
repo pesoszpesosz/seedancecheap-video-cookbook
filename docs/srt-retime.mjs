@@ -1,3 +1,5 @@
+import { applyWorksheetLinks } from './links.mjs?v=8eac57cfa9a8';
+
 const stamp = String.raw`\d{2,}:\d{2}:\d{2}[,.]\d{3}`;
 const interval = new RegExp(`^\\s*(${stamp})\\s*-->\\s*(${stamp})\\s*$`);
 
@@ -61,6 +63,7 @@ export function retimeSrt(source, keptRanges) {
 }
 
 if (typeof document !== 'undefined') {
+  applyWorksheetLinks(document, location.search);
   const byId = id => document.getElementById(id);
   const form = byId('retime');
   const source = byId('source');
@@ -69,6 +72,8 @@ if (typeof document !== 'undefined') {
   const status = byId('status');
   const file = byId('source-file');
   const download = byId('download');
+  const fightExample = byId('fight-example');
+  const fightExampleStatus = byId('fight-example-status');
   let readVersion = 0;
   const clear = (message = '') => {
     output.value = '';
@@ -115,10 +120,15 @@ if (typeof document !== 'undefined') {
       status.textContent = error.message;
     }
   });
-  byId('example').addEventListener('click', () => {
+  const runExample = (captions, keptRanges) => {
     readVersion++;
     file.value = '';
-    source.value = `1
+    source.value = captions;
+    ranges.value = keptRanges;
+    form.requestSubmit();
+  };
+  byId('example').addEventListener('click', () => {
+    runExample(`1
 00:00:01,000 --> 00:00:02,000
 Before the cut
 
@@ -138,9 +148,29 @@ Crosses the second edge
 00:00:09,250 --> 00:00:10,750
 Later cue
 Second line
-`;
-    ranges.value = '00:00:00.000 --> 00:00:04.000\n00:00:07.000 --> 00:00:12.000';
-    form.requestSubmit();
+`, '00:00:00.000 --> 00:00:04.000\n00:00:07.000 --> 00:00:12.000');
+  });
+  fightExample.addEventListener('click', async () => {
+    const version = readVersion;
+    const currentRanges = ranges.value;
+    fightExample.disabled = true;
+    fightExampleStatus.textContent = 'Loading the demo captions…';
+    try {
+      const response = await fetch('./cut-the-fight-source.srt');
+      if (!response.ok) throw new Error('Demo captions unavailable.');
+      const captions = await response.text();
+      if (version === readVersion && currentRanges === ranges.value) {
+        runExample(captions, fightExample.dataset.keptRanges);
+        fightExampleStatus.textContent = '';
+        form.focus();
+      } else {
+        fightExampleStatus.textContent = 'Your current captions and ranges were kept.';
+      }
+    } catch {
+      fightExampleStatus.textContent = 'The demo could not load. Try again or use the source SRT link.';
+    } finally {
+      fightExample.disabled = false;
+    }
   });
   download.addEventListener('click', () => {
     const url = URL.createObjectURL(new Blob([output.value], {type: 'text/plain;charset=utf-8'}));

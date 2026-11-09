@@ -1,4 +1,4 @@
-import { applyWorksheetLinks } from './links.mjs?v=4f74639689fe';
+import { applyWorksheetLinks } from './links.mjs?v=8eac57cfa9a8';
 
 applyWorksheetLinks(document, location.search);
 const scene = document.getElementById('scene');

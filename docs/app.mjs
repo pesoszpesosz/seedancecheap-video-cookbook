@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=4f74639689fe';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=4f74639689fe';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=4f74639689fe';
+import { packs, clipTerms, calculate } from './cost.mjs?v=8eac57cfa9a8';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=8eac57cfa9a8';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=8eac57cfa9a8';
 
 applyWorksheetLinks(document, location.search);
 
