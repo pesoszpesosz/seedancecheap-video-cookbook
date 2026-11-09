@@ -247,4 +247,7 @@ To prepare the current calculator for a Hugging Face Static Space, run `npm run 
 
 Run `node scripts/update-discovery.mjs` after adding or changing a page's title or description. It updates canonical URLs, share metadata and the discovery maps without changing page bodies or inventing modification dates. The [XML sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap.xml) includes video metadata. The [plain-text sitemap](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sitemap-pages.txt) lists the same canonical pages. Pages use the existing SeedanceCheap logo by default; the scene-planner campaign declares its original candy artwork and explicit artwork disclosure for sharing.
 
+After Pages deploys a reviewed revision, send its new or substantively updated page to IndexNow with `npm run notify:index -- <deployed-commit-sha> <page.html>`. The command requires the live HTML to match Git, with the same canonical URL listed in the public sitemap. It stores a receipt under Git's shared directory so worktrees skip the same page revision on a rerun. Use the same explicit third argument for a shared receipt directory when working from separate clones. A lost response remains recorded as uncertain. IndexNow acceptance means the URL was received for processing. Search indexing is verified separately.
+
+
 This is a GitHub project site. A `robots.txt` inside this project would not control crawling of the host. Sitemap availability and share metadata do not prove search-engine indexing, ranking, qualified visitors or purchases.
