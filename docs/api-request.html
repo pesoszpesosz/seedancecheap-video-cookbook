@@ -127,12 +127,16 @@
     <section class="card" aria-labelledby="decisions-heading">
       <h2 id="decisions-heading">Make the next decision from the receipt</h2>
       <table><thead><tr><th>What you see</th><th>Next step</th></tr></thead><tbody>
-        <tr><td>Active or uncertain</td><td>Keep the same job and inspect its status. A slow request is not finished footage.</td></tr>
+        <tr><td>Active, uncertain or waiting for a service retry</td><td>Keep the same job ID and check its status before submitting another request.</td></tr>
         <tr><td>403 on the trial</td><td>Stop and review whether trials are enabled and your account is eligible. Trial mode does not fall back to paid generation.</td></tr>
         <tr><td>409 conflict</td><td>Compare your saved JSON. Reusing an ID with changed inputs is not a new pilot.</td></tr>
         <tr><td>429 or 503</td><td>Read the response, wait, and check the existing request before retrying.</td></tr>
+        <tr><td>Confirmed failed</td><td>Check that the original charge was restored before deciding on a new attempt. <a href="#restored-charge">What to check next</a>.</td></tr>
         <tr><td>Ready</td><td>Save the MP4 and review it against your checks before using or publishing it.</td></tr>
       </tbody></table>
+      <h3 id="restored-charge">After a confirmed failure</h3>
+      <p>Look up the same job ID and check its status and any retry notice. For a confirmed failed request, the original reserved charge is restored. Check your workspace credits or balance. If the status or restoration is unclear, give support the job ID and the error shown. Keep your API key private.</p>
+      <p>Once the job is final and the charge is restored, check the exact recipe, format and live quote again. If you choose another paid attempt, save it under a new request ID. Replaying the old ID with unchanged input retrieves the original job. See <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=restored_charge#status">the live status and restoration rules</a>.</p>
       <p>Service timing and available formats can change. The live documentation and your actual receipt take precedence over this example. Check current one-time pack totals on the <a data-site-link href="https://seedancecheap.com/price-guide?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=pricing">pricing guide</a>. The credit totals above describe fixed request recipes and are subject to current admission. Review your selected funding route in the saved JSON.</p>
       <p><a data-companion-link href="./">Count paid attempts and approved seconds with the free calculator →</a><br><a data-companion-link href="./first-scene.html">New to prompts? Plan your first scene →</a></p>
       <div class="actions"><a class="button" data-site-link href="https://seedancecheap.com/?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=closing_offer">Inspect the examples and current offer →</a></div>
