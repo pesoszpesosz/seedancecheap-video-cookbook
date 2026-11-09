@@ -168,7 +168,9 @@ For alternatives you have already reviewed, [compare up to three workflows with 
 
 ## Recover the same API job
 
-[Open the free API request guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html). Prepare a text-only pilot JSON locally, save its request ID, and use the create, recovery, status and download examples in Bash or Windows PowerShell. A lost create response is a reason to look up the saved request, rather than start a new request ID.
+[Open the free API request guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html). Prepare a text-only pilot JSON locally, save its request ID, and use the create, recovery, status and download examples in Bash or Windows PowerShell. If a create response is lost, look up the saved request ID first.
+
+For a smaller text-only test, [open the eight-second 720p recipe](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?model=veo31-text-8s-720&from=github#prepare-heading). The linked recipe selects Veo 3.1 at 0.25 credit. Check admission for free, then choose funding explicitly.
 
 [Run the offline recovery cases](examples/recover-one-job/). The example checks the original request ID and a digest of the saved JSON, then classifies 13 synthetic lookup results without making an API call.
 

@@ -1,4 +1,4 @@
-import { applyWorksheetLinks } from './links.mjs?v=331413093bc7';
+import { applyWorksheetLinks } from './links.mjs?v=56806da38d4b';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
@@ -35,6 +35,12 @@ export function makeRequest(prompt, requestId, model='seedance-2.5', funding='',
   };
 }
 
+function availabilityCommand(model, shell) {
+  const curl = shell === 'powershell' ? 'curl.exe' : 'curl';
+  return curl + ' --fail-with-body --silent --show-error --max-time 15 "' +
+    'https://seedancecheap.com/api/availability?model=' + model + '"';
+}
+
 export function commandExamples(requestId, shell, model='seedance-2.5') {
   if (!/^[A-Za-z0-9_-]{1,80}$/.test(requestId)) throw new Error('Invalid example request ID.');
   if (!Object.hasOwn(pilotModels, model)) throw new Error('Invalid example model.');
@@ -45,8 +51,7 @@ export function commandExamples(requestId, shell, model='seedance-2.5') {
   const auth = ' -H "Authorization: Bearer ' + key + '"';
   const jsonFlags = ' --fail-with-body --silent --show-error --max-time 90';
   return {
-    availability: curl + ' --fail-with-body --silent --show-error --max-time 15 "' +
-      base + '/api/availability?model=' + model + '"',
+    availability: availabilityCommand(model, shell),
     submit: curl + jsonFlags + ' "' + base + '/v1/videos/generations"' + auth +
       ' -H "Content-Type: application/json" --data-binary "@request.json" --output create-response.json',
     recover: curl + jsonFlags + ' "' + base + '/v1/videos/by-request/' + requestId + '"' + auth +
@@ -63,10 +68,15 @@ if (typeof document !== 'undefined') {
   const prompt = document.getElementById('pilot-prompt');
   const shell = document.getElementById('command-shell');
   const model = document.getElementById('pilot-model');
+  const linkedModels = new URLSearchParams(location.search).getAll('model');
+  if (linkedModels.length === 1 && Object.hasOwn(pilotModels, linkedModels[0])) {
+    model.value = linkedModels[0];
+  }
   const funding = document.getElementById('pilot-funding');
   const format = document.getElementById('pilot-format');
   const trialOption = document.getElementById('trial-funding-option');
   const availability = document.getElementById('model-availability');
+  const preflight = document.getElementById('availability-command');
   const availabilityPage = new URL(availability.href);
   const terms = document.getElementById('pilot-terms');
   const preview = document.getElementById('request-json');
@@ -77,7 +87,11 @@ if (typeof document !== 'undefined') {
   function render() {
     try {
       const details=pilotModels[model.value];
-      if (!details) throw new Error('Choose a listed pilot model.');
+      if (!details) {
+        preflight.textContent = 'Choose a listed pilot model.';
+        throw new Error('Choose a listed pilot model.');
+      }
+      preflight.textContent = availabilityCommand(model.value, shell.value);
       trialOption.disabled = details.paidOnly === true;
       if (trialOption.disabled && funding.value === 'trial') funding.value = '';
       const availabilityUrl = new URL(availabilityPage);
@@ -104,7 +118,7 @@ if (typeof document !== 'undefined') {
     } catch (error) {
       prepared = null;
       preview.textContent = '';
-      for (const name of ['availability', 'submit', 'recover', 'poll', 'download']) {
+      for (const name of ['submit', 'recover', 'poll', 'download']) {
         document.getElementById(name + '-command').textContent = 'Complete the request fields first.';
       }
       download.disabled = true;

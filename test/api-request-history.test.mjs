@@ -15,13 +15,24 @@ test('Back-restored fields reconcile with JSON and the availability route after 
   try {
     globalThis.document={getElementById:name=>nodes[name],querySelectorAll:()=>[]};
     globalThis.window={addEventListener:(name,callback)=>{handlers[name]=callback;}};
-    globalThis.location={search:'?from=facebook'};
+    globalThis.location={search:'?from=facebook&model=veo31-text-8s-720&funding=paid&prompt=ignored'};
     globalThis.history={state:{unrelated:'retained'},replaceState(value){this.state=value;}};
     globalThis.fetch=()=>{networkCalls++;throw new Error('This builder must remain local.');};
     await import('../docs/api-request.mjs?history-test');
     assert.equal(nodes['request-json'].textContent,'');
     assert.equal(nodes['download-request'].disabled,true);
     assert.match(nodes['submit-command'].textContent,/Complete the request fields/);
+    assert.equal(nodes['pilot-model'].value,'veo31-text-8s-720');
+    assert.equal(nodes['pilot-funding'].value,'');
+    assert.equal(nodes['pilot-prompt'].value,'Original paper-boat scene.');
+    assert.equal(nodes['trial-funding-option'].disabled,true);
+    assert.match(nodes['pilot-terms'].textContent,/8-second.*0\.25 credit/);
+    assert.match(nodes['availability-command'].textContent,/model=veo31-text-8s-720/);
+    const linkedAvailability=new URL(nodes['model-availability'].href);
+    assert.equal(linkedAvailability.pathname,'/api/availability');
+    assert.equal(linkedAvailability.searchParams.get('utm_source'),'facebook');
+    assert.equal(networkCalls,0);
+    nodes['pilot-model'].value='seedance-2.5';
     nodes['pilot-funding'].value='trial';
     for(const callback of nodes['pilot-funding'].handlers.change)callback();
     assert.equal(JSON.parse(nodes['request-json'].textContent).free_trial,true);
