@@ -33,6 +33,10 @@
     .edit-examples video{display:block;width:min(100%,270px);aspect-ratio:9/16;background:#14262a;border-radius:10px;margin:0 auto 10px}
     .edit-examples video:focus-visible{outline:3px solid #518c36;outline-offset:3px}
     .edit-examples figcaption{font-size:14px;color:var(--muted)}
+    #last-key-cast details{margin:16px 0;padding:12px 16px;border-left:3px solid #63865c;background:#f1f6ee}
+    #last-key-cast summary{cursor:pointer;font-weight:650}
+    #last-key-cast details p{margin:12px 0 0;max-width:68ch}
+    #last-key-cast summary:focus-visible{outline:3px solid #518c36;outline-offset:3px}
     label{display:block;font-weight:650;margin:15px 0 8px}textarea{width:100%;min-height:230px;resize:vertical;background:#fafcf8;color:var(--ink);border:1px solid #aebfba;border-radius:10px;padding:14px;font:14px/1.6 ui-monospace,Consolas,monospace}#review-notes{min-height:200px}
     ul{padding-left:23px}li{margin:8px 0}#download-status{font-size:14px;align-self:center}footer{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;font-size:13px;color:var(--muted)}
     a:focus-visible,button:focus-visible,textarea:focus{outline:3px solid #518c36;outline-offset:3px}
@@ -138,6 +142,31 @@ Decision and one next change: [...]
 Saved source files and editor project: [...]</textarea>
       <div class="actions"><button type="button" id="download-plan">Download my plan and review</button><span id="download-status" role="status" aria-live="polite"></span></div>
       <p class="muted" style="font-size:14px">Your edits stay in this page until you download them. Reloading or closing can lose them. Nothing here sends your notes or starts a generation.</p>
+    </section>
+
+    <section class="card" id="last-key-cast" aria-labelledby="last-key-cast-heading">
+      <h2 id="last-key-cast-heading">Keep the cast. Change the action.</h2>
+      <p>In <cite>The Last Key</cite>, Maya and Nico return to the same station bench. Maya keeps her cobalt cardigan and Nico keeps his cream jacket. What changes is the object they handle, from a closed green tin to the red toy train inside.</p>
+      <div class="actions">
+        <a class="button secondary" href="./last-key-maya.character.json" download>Download Maya’s sheet</a>
+        <a class="button secondary" href="./last-key-nico.character.json" download>Download Nico’s sheet</a>
+      </div>
+      <ol>
+        <li>Open the free builder and choose <strong>Load sheet</strong>. Import one JSON file at a time.</li>
+        <li>Write the first shot with the closed tin on the bench. In the second shot, open it and reveal one red toy train. Keep the station, wardrobe and screen positions the same across the cut.</li>
+        <li>Copy the resulting prompt or download the sheet after editing. For a two-person prompt, add the second character’s details to the scene separately.</li>
+      </ol>
+      <details>
+        <summary>Read the two sample scene instructions</summary>
+        <p><strong>Shot A · The closed tin.</strong> At a quiet railway station at dusk, Maya stands screen-left beside a green wooden bench. Nico stands screen-right in a cream denim jacket and forest-green T-shirt. He sets one closed green metal tin on the bench. Maya studies the lid. End with her hand hovering just above it.</p>
+        <p><strong>Shot B · The reveal.</strong> At the same station bench, Maya begins with her hand hovering above the same closed green tin. Nico stays screen-right in his cream denim jacket and forest-green T-shirt. Maya lifts the lid and reveals one red toy train. Hold on the train long enough to read the reveal.</p>
+        <p><strong>Camera, lighting and sound.</strong> Locked medium two-shot, camera on the same side of the bench in both shots. Warm station lamp and quiet platform ambience. Keep the hand and lid in view.</p>
+      </details>
+      <p class="muted">The sheets contain editable text descriptions of two fictional adults. The original shots used visual references. This exercise uses the same wardrobe and props to plan a new cut.</p>
+      <div class="actions">
+        <a class="button" data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=two_shot_continuity&amp;utm_content=last_key_cast#builder">Open the free character builder</a>
+        <a class="button secondary" href="https://www.youtube.com/playlist?list=PLbN1MXC41eaA">Watch The Last Key</a>
+      </div>
     </section>
 
     <section class="card" aria-labelledby="next-heading">
