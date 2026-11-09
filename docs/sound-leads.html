@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hear the next shot first | A J-cut you can replay</title>
+<meta name="description" content="Compare a hard sound cut with a 300 ms J-cut using the same action footage. Watch both passes and see the exact source ranges.">
+  <!-- Discovery metadata: maintained by scripts/update-discovery.mjs -->
+  <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sound-leads.html">
+  <link rel="icon" type="image/png" href="brand-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SeedanceCheap Creator Cookbook">
+  <meta property="og:title" content="Hear the next shot first | A J-cut you can replay">
+  <meta property="og:description" content="Compare a hard sound cut with a 300 ms J-cut using the same action footage. Watch both passes and see the exact source ranges.">
+  <meta property="og:url" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sound-leads.html">
+  <meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sound-leads-poster.jpg">
+  <meta property="og:image:alt" content="A fictional courier vaults over a black car. The timeline marks where picture and sound change.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hear the next shot first | A J-cut you can replay">
+  <meta name="twitter:description" content="Compare a hard sound cut with a 300 ms J-cut using the same action footage. Watch both passes and see the exact source ranges.">
+  <meta name="twitter:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sound-leads-poster.jpg">
+  <!-- /Discovery metadata -->
+<meta name="share-image" content="sound-leads-poster.jpg">
+<meta name="share-image-alt" content="A fictional courier vaults over a black car. The timeline marks where picture and sound change.">
+<style>
+  :root{color-scheme:dark;--ink:#f7f4e8;--muted:#b7c6bd;--bg:#121d19;--panel:#203029;--rule:#4e6358;--accent:#c3f39a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.55 system-ui,sans-serif}
+  .wrap{width:min(calc(100% - 32px),1050px);margin-inline:auto}
+  header,footer{padding:16px 0;border-bottom:1px solid var(--rule)}
+  footer{border-top:1px solid var(--rule);border-bottom:0;color:var(--muted)}
+  a{color:var(--accent);text-underline-offset:.22em}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  main{padding:clamp(22px,5vw,54px) 0}
+  .hero{display:grid;grid-template-columns:minmax(240px,340px) minmax(0,1fr);gap:clamp(20px,4vw,50px);align-items:start}
+  video{display:block;max-width:100%;width:100%;height:auto;background:#0a100d;border:1px solid var(--rule);border-radius:10px}
+  .kicker{letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font:700 .86rem/1.5 system-ui}
+  h1,h2{line-height:1.08;margin:.24em 0 .42em}
+  h1{font-size:clamp(2.3rem,6vw,4.8rem);letter-spacing:-.05em}
+  h2{font-size:1.55rem}
+  p{margin:.6em 0 1em}
+  .muted{color:var(--muted)}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+  button{min-height:44px;padding:8px 15px;font:inherit;font-weight:720;background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:6px;cursor:pointer}
+  button:first-child{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+  button:disabled{opacity:.54;cursor:default}
+  .timing{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:19px 0}
+  .timing div{border:1px solid var(--rule);border-radius:6px;padding:12px;background:var(--panel)}
+  .timing strong{display:block}
+  .timing span{color:var(--muted)}
+  .recipe{margin-top:28px;border-top:1px solid var(--rule);padding-top:17px}
+  li{margin:.5em 0}
+  @media(max-width:650px){.hero{grid-template-columns:1fr}.hero video{max-width:310px;margin-inline:auto}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoObject", "name": "Sound Leads the Cut", "description": "A 7.5-second J-cut comparison. Two identical picture edits of our earlier AI chase footage, with the incoming sound starting 300 milliseconds earlier in the second pass.", "thumbnailUrl": "https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sound-leads-poster.jpg", "contentUrl": "https://pesoszpesosz.github.io/seedancecheap-video-cookbook/sound-leads-the-cut.mp4", "uploadDate": "2026-11-09T06:20:11Z", "duration": "PT7.5S"}</script>
+</head>
+<body>
+<header class="wrap"><a data-companion-link href="./">SeedanceCheap Creator Cookbook</a></header>
+<main class="wrap">
+  <section class="hero" id="watch" aria-labelledby="title">
+    <video id="chase" controls playsinline preload="metadata" width="1080" height="1920" poster="sound-leads-poster.jpg" aria-label="Sound Leads the Cut, two chase edits with different sound timing">
+      <source src="sound-leads-the-cut.mp4" type="video/mp4">
+      <a href="sound-leads-the-cut.mp4">Open the video</a>
+    </video>
+    <div>
+      <p class="kicker">Edit lab · 7.5 seconds</p>
+      <h1 id="title">Hear the next shot first.</h1>
+      <p>A vault cuts to a spinning wheel. Both passes use the same picture frames. In pass B, the next shot’s audio fades in 300 milliseconds before the cut.</p>
+      <div class="actions" aria-label="Playback shortcuts">
+        <button type="button" data-start="0" disabled>Play from start</button>
+        <button type="button" data-start="3" disabled>Jump to pass B</button>
+      </div>
+      <div class="timing">
+        <div><strong>Pass A · 0:00</strong><span>Picture and incoming sound change together.</span></div>
+        <div><strong>Pass B · 0:03</strong><span>Incoming sound begins at 4.200 s. Picture cuts at 4.500 s.</span></div>
+      </div>
+      <p class="muted">Earlier Seedance 2.5 clips with staged action and fictional adults. Original generated audio, cut and level-matched locally. The source files are 720 × 1280 and the annotated export is 1080 × 1920.</p>
+      <p><a href="sound-leads-the-cut.mp4" download>Download the comparison</a></p>
+    </div>
+  </section>
+  <section class="recipe" aria-labelledby="recipe">
+    <h2 id="recipe">Make the same J-cut</h2>
+    <ol>
+      <li>Keep 0.250–1.750 s from <a data-companion-link href="./green-means-go.html">Green Means Go</a> and 1.000–2.500 s from <a data-companion-link href="./night-run.html">Night Run</a>. Use the source files linked on those pages.</li>
+      <li>Keep the picture cut at 1.500 s. In pass B, extend the incoming audio edge to include its source from 0.700 s. Keep the original sound in sync once the second shot is on screen.</li>
+      <li>Blend the two audio tracks over the 300 ms overlap. Compare at the same playback volume. Extend or shorten the overlap if it steps on dialogue.</li>
+    </ol>
+    <p>Planning an action shot? <a data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=sound_leads_the_cut&amp;utm_content=free_builder#builder">Open the free prompt planner</a>. Generation is a separate step.</p>
+  </section>
+</main>
+<footer class="wrap">An editing demonstration from the SeedanceCheap team, with Codex.</footer>
+<script type="module">
+  import {applyWorksheetLinks} from './links.mjs?v=220b7f2bbc8f';
+  applyWorksheetLinks(document, location.search);
+  const video = document.querySelector('#chase');
+  const buttons = document.querySelectorAll('[data-start]');
+  function enable() { for (const button of buttons) button.disabled = false; }
+  if (video.readyState >= 1) enable();
+  else video.addEventListener('loadedmetadata', enable, {once:true});
+  for (const button of buttons) button.addEventListener('click', () => {
+    video.currentTime = Number(button.dataset.start);
+    video.play().catch(() => video.focus());
+  });
+</script>
+</body>
+</html>
