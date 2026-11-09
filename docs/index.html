@@ -97,6 +97,7 @@
     <div class="watch-actions"><a class="primary" href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v2/seedancecheap-action-starter-v2.zip">Download free Action Starter v2 · 13.8 MB ZIP</a><a data-companion-link href="make-a-scene.html#make-yours">See the films and inputs</a></div>
     <p style="margin:12px 0 28px"><small>Four exact prompts, our actual Genjutsu inputs, and three editing recipes. Includes the complete cake comedy, clean 720p master and Kokoro WAV to try the edit offline. Extract the ZIP and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate.</small></p>
     <section class="budget-intro" id="budget" aria-labelledby="budget-heading"><h2 id="budget-heading">Budget the footage you keep.</h2><p>Count discarded takes, confirmed restored credits and approved seconds. This free usable-footage calculator separates allocated usage from the upfront pack purchase.</p><p><a data-site-link href="https://seedancecheap.com/calculator?utm_source=other&amp;utm_medium=calculator&amp;utm_campaign=usable_footage_calculator&amp;utm_content=reviewed_costs#usable-costs">Compare workflows and editing time</a></p><p><a data-companion-link href="genjutsu-cost.html">Genjutsu pricing: billed input + output seconds, retakes and selected competitor plans →</a><small>Use the metered-seconds worksheet for an API quote. Credit-pack calculations remain below.</small></p></section>
+    <p><a href="#pack-planner">Already have a quote? Compare packs against your balance →</a></p>
     <div class="layout">
       <section class="card" aria-labelledby="input-heading">
         <h2 id="input-heading">Enter a small paid batch</h2>
@@ -128,6 +129,31 @@
       </section>
     </div>
     <p style="margin-top:24px"><a data-companion-link href="./first-scene.html">New to AI video? Follow the free first-scene guide →</a><br><a data-companion-link href="./continuity.html">Characters or cuts drifting? Plan two connected shots →</a><br><a data-companion-link href="./car-shot.html">Planning an AI car video? Inspect the original prompt and review one shot →</a><br><a data-companion-link href="./product-label.html">Product lettering changing? Plan the shot and add approved artwork in the edit →</a><br><a data-companion-link href="./api-request.html">Building with the API? Save one request and recover the same job →</a></p>
+    <section class="budget-intro" id="pack-planner" aria-labelledby="pack-planner-heading">
+      <h2 id="pack-planner-heading">Which packs cover your quote?</h2>
+      <p>Use the credit total from Studio for one request. Enter how many identical requests you plan and how many credits you already have. For a mixed batch, add up its separate quotes and enter the total as one request.</p>
+      <div class="layout">
+        <form class="card" id="pack-planner-form">
+          <div class="field"><label for="planner-quote">Quoted credits per request</label><input id="planner-quote" type="number" min="0.000001" max="10000" step="0.000001" value="7" required></div>
+          <div class="row">
+            <div class="field"><label for="planner-attempts">Planned requests</label><input id="planner-attempts" type="number" min="1" max="1000" step="1" value="3" required></div>
+            <div class="field"><label for="planner-balance">Available credit balance</label><input id="planner-balance" type="number" min="0" max="100000" step="0.000001" value="0" required></div>
+          </div>
+          <p class="hint">The starting values are an example. This worksheet stays in your browser and does not submit a request or open a checkout.</p>
+        </form>
+        <div class="card">
+          <p id="pack-plan-error" class="error" role="alert" hidden></p>
+          <div id="pack-plan-result" role="status" aria-live="polite" aria-atomic="true">
+            <p class="eyebrow">Lowest pack total at published prices</p>
+            <p class="metric-number" id="pack-plan-cash">—</p>
+            <p id="pack-plan-requirement"></p><p id="pack-plan-mix"></p><p id="pack-plan-remaining"></p>
+          </div>
+          <p class="hint">Based on the six one-time packs checked on November 9, 2026, assuming packs can be bought and combined at the listed prices. Fees and taxes are separate. Review availability and the exact quote before buying.</p>
+          <p><a data-site-link href="https://seedancecheap.com/studio2/?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=quote_pack_planner&amp;utm_content=review_quote#generate">Sign in to review your live quote</a> · <a data-site-link href="https://seedancecheap.com/buy?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=quote_pack_planner&amp;utm_content=live_packs">Check live pack prices</a></p>
+        </div>
+      </div>
+      <p><a data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=quote_pack_planner&amp;utm_content=free_builder#builder">Plan your prompt for free first</a>. Video generation is separate.</p>
+    </section>
     <section class="notes" aria-label="How to use the worksheet">
       <div><h2>Budget the take you keep</h2><p>Enter your reviewed credits per request and clip length. With the $99 upfront / 100-credit pack, each used credit allocates $0.99. This worksheet does not identify or verify a generation model.</p><p>For an illustrative one-credit-per-request batch of three 15-second takes with one kept, three credits allocate $2.97 from that pack and leave 97 credits. The purchase remains $99. These are example numbers, not a current model quote.</p><p>These are hypothetical budgets, not measured success rates. A delivered take you reject is still a paid attempt. Count editing, reference images and other production expenses separately. Check the live quote and capacity before purchasing.</p><p><a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/blob/main/templates/shot-review.txt">Use the shot-review template</a> to record picture, sound and continuity separately.</p></div>
       <div><h2>Inspect an entire result</h2><p>A thumbnail cannot show whether a moving shot keeps its subject, action and story beats. <a data-companion-link href="./watch-delivery.html">Watch the full 720p action scene and read its actual prompt →</a></p><p><a data-companion-link href="./chorus-pilot.html">Plan a music-video chorus before spending on animation →</a></p><p><a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">Open the prompt cookbook and review templates →</a></p><p><a data-site-link href="https://seedancecheap.com/characters?utm_source=other&utm_medium=calculator&utm_campaign=usable_footage_calculator&utm_content=free_builder#builder">Write a character and scene with the free prompt builder →</a><br>Text prompt writing is free. Video generation is separate; check live availability before generating or purchasing.</p></div>
@@ -135,6 +161,6 @@
   </main>
   <footer>Published by SeedanceCheap, an independent studio. Prepared with Codex. This is a free educational companion to the public cookbook. It does not accept payments, submit generations or predict quality. <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/tree/main/docs">Inspect the calculator source</a>. <a id="cookbook-updates" href="feed.xml">Subscribe to Cookbook updates (Atom)</a>.</footer>
 </div>
-<script type="module" src="./app.mjs?v=8eac57cfa9a8"></script>
+<script type="module" src="./app.mjs?v=1e7c447d0146"></script>
 </body>
 </html>

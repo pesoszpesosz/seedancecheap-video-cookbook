@@ -4,6 +4,58 @@ export const packs = [
   { credits: 20, cents: 3000 }, { credits: 100, cents: 9900 },
 ];
 
+export function planCreditPacks({ creditsPerRequest, attempts, balance }) {
+  const scale = 1_000_000;
+  const quote = Math.round(creditsPerRequest * scale);
+  const owned = Math.round(balance * scale);
+  if (!Number.isFinite(creditsPerRequest) || quote < 1 || quote > 10_000 * scale || Math.abs(creditsPerRequest * scale - quote) > 0.00001)
+    throw new Error('Enter a positive quote up to 10,000 credits, with at most six decimal places.');
+  if (!Number.isInteger(attempts) || attempts < 1 || attempts > 1_000)
+    throw new Error('Enter 1 to 1,000 planned requests.');
+  if (!Number.isFinite(balance) || balance < 0 || owned > 100_000 * scale || Math.abs(balance * scale - owned) > 0.0001)
+    throw new Error('Enter an existing balance from 0 to 100,000 credits, with at most six decimal places.');
+
+  const total = quote * attempts;
+  if (total > 10_000 * scale) throw new Error('Plan a batch totaling 10,000 credits or fewer.');
+  const missing = Math.max(0, total - owned);
+  const needed = Math.ceil(missing / scale);
+  const counts = packs.map(() => 0);
+  if (needed === 0) {
+    return { requiredCredits: total / scale, boughtCredits: 0, remainingCredits: (owned - total) / scale, cashCents: 0, counts };
+  }
+
+  // A cheapest combination cannot overshoot by a full largest pack. Removing
+  // any pack in that case would still meet the quote and reduce the cost.
+  const limit = needed + packs.at(-1).credits - 1;
+  const cost = new Float64Array(limit + 1).fill(Infinity);
+  const count = new Uint32Array(limit + 1);
+  const last = new Int8Array(limit + 1);
+  cost[0] = 0;
+  for (let credits = 1; credits <= limit; credits++) {
+    for (const [index, pack] of packs.entries()) {
+      const previous = credits - pack.credits;
+      if (previous < 0) continue;
+      const candidateCost = cost[previous] + pack.cents;
+      const candidateCount = count[previous] + 1;
+      if (candidateCost < cost[credits] || (candidateCost === cost[credits] && candidateCount < count[credits])) {
+        cost[credits] = candidateCost;
+        count[credits] = candidateCount;
+        last[credits] = index;
+      }
+    }
+  }
+  let best = needed;
+  for (let credits = needed + 1; credits <= limit; credits++) {
+    if (cost[credits] < cost[best]) best = credits;
+  }
+  for (let credits = best; credits > 0;) {
+    const index = last[credits];
+    counts[index]++;
+    credits -= packs[index].credits;
+  }
+  return { requiredCredits: total / scale, boughtCredits: best, remainingCredits: (owned + best * scale - total) / scale, cashCents: cost[best], counts };
+}
+
 // Archived numeric terms preserve earlier calculations, not current model identity or availability.
 export const clipTerms = {
   'seedance-2.5-720p-15s-nov4': { duration: 15, creditsPerClip: 0.5 },

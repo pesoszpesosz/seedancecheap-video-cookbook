@@ -1,9 +1,39 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { calculate, packs, clipTerms } from '../docs/cost.mjs';
+import { calculate, packs, clipTerms, planCreditPacks } from '../docs/cost.mjs';
 import { readSharedBudget, sharedBudgetLink } from '../docs/share.mjs';
 
 const halfCredit = { credits:5, cents:1125, attempts:6, restored:1, seconds:18, duration:15, creditsPerClip:0.5 };
+
+test('plans a mixed 21-credit batch at lower upfront cash than either large pack alone', () => {
+  assert.deepEqual(planCreditPacks({ creditsPerRequest: 7, attempts: 3, balance: 0 }), {
+    requiredCredits: 21, boughtCredits: 21, remainingCredits: 0, cashCents: 3250, counts: [1, 0, 0, 0, 1, 0],
+  });
+});
+
+test('may buy a larger pack only when its upfront cash is lower', () => {
+  assert.equal(planCreditPacks({ creditsPerRequest: 63, attempts: 1, balance: 0 }).cashCents, 9750);
+  assert.deepEqual(planCreditPacks({ creditsPerRequest: 64, attempts: 1, balance: 0 }), {
+    requiredCredits: 64, boughtCredits: 100, remainingCredits: 36, cashCents: 9900, counts: [0, 0, 0, 0, 0, 1],
+  });
+});
+
+test('uses precise fractional balances and combines equal-cost singles into fewer packs', () => {
+  assert.deepEqual(planCreditPacks({ creditsPerRequest: 0.75, attempts: 3, balance: 0.25 }), {
+    requiredCredits: 2.25, boughtCredits: 2, remainingCredits: 0, cashCents: 500, counts: [0, 1, 0, 0, 0, 0],
+  });
+  assert.deepEqual(planCreditPacks({ creditsPerRequest: 0.1, attempts: 3, balance: 0.3 }), {
+    requiredCredits: 0.3, boughtCredits: 0, remainingCredits: 0, cashCents: 0, counts: [0, 0, 0, 0, 0, 0],
+  });
+});
+
+test('rejects missing, over-precise and oversized quote inputs', () => {
+  assert.throws(() => planCreditPacks({ creditsPerRequest: NaN, attempts: 1, balance: 0 }), /positive quote/);
+  assert.throws(() => planCreditPacks({ creditsPerRequest: 0.25000001, attempts: 1, balance: 0 }), /six decimal places/);
+  assert.throws(() => planCreditPacks({ creditsPerRequest: 1, attempts: 1.5, balance: 0 }), /planned requests/);
+  assert.throws(() => planCreditPacks({ creditsPerRequest: 1, attempts: 1, balance: -1 }), /existing balance/);
+  assert.throws(() => planCreditPacks({ creditsPerRequest: 100, attempts: 101, balance: 0 }), /batch totaling/);
+});
 
 test('earlier Studio 2 format snapshots retain their original rates and shared budgets', () => {
   const batch = { ...clipTerms['seedance-2.5-15s-720p'], attempts:3, restored:0, seconds:15 };

@@ -1,6 +1,6 @@
-import { packs, clipTerms, calculate } from './cost.mjs?v=8eac57cfa9a8';
-import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=8eac57cfa9a8';
-import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=8eac57cfa9a8';
+import { packs, clipTerms, calculate, planCreditPacks } from './cost.mjs?v=1e7c447d0146';
+import { applyWorksheetLinks, worksheetLink } from './links.mjs?v=1e7c447d0146';
+import { readSharedBudget, sharedBudgetLink } from './share.mjs?v=1e7c447d0146';
 
 applyWorksheetLinks(document, location.search);
 
@@ -105,3 +105,27 @@ window.addEventListener('hashchange', () => {
 });
 loadSharedBudget();
 render();
+
+const packForm = $('pack-planner-form');
+const formatCredits = new Intl.NumberFormat('en-US', { maximumFractionDigits: 6 }).format;
+function renderPackPlan() {
+  try {
+    const result = planCreditPacks({ creditsPerRequest: number('planner-quote'), attempts: number('planner-attempts'), balance: number('planner-balance') });
+    $('pack-plan-error').hidden = true;
+    $('pack-plan-result').hidden = false;
+    $('pack-plan-cash').textContent = money(result.cashCents);
+    $('pack-plan-requirement').textContent = `Your batch uses ${formatCredits(result.requiredCredits)} credits.`;
+    const mix = result.counts.flatMap((count, index) => count ? [`${count} × ${packs[index].credits}-credit pack`] : []);
+    $('pack-plan-mix').textContent = mix.length
+      ? `This combination uses ${mix.join(' + ')}.`
+      : 'Your current balance covers this batch.';
+    $('pack-plan-remaining').textContent = `${formatCredits(result.remainingCredits)} credits left after the planned requests.`;
+  } catch (error) {
+    $('pack-plan-result').hidden = true;
+    $('pack-plan-error').hidden = false;
+    $('pack-plan-error').textContent = error.message;
+  }
+}
+packForm.addEventListener('submit', event => event.preventDefault());
+packForm.addEventListener('input', renderPackPlan);
+renderPackPlan();
