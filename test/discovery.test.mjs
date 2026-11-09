@@ -30,6 +30,12 @@ test('discovery update preserves literal prices, page body and repeat-run output
     assert.equal(once.slice(once.indexOf('</head>')), fixture.slice(fixture.indexOf('</head>')));
     await run(process.execPath, [script]);
     assert.equal(await readFile(page, 'utf8'), once);
+    const fallback = path.join(root, 'docs', 'sitemap-pages.txt');
+    const canonical = 'https://pesoszpesosz.github.io/seedancecheap-video-cookbook/\n';
+    assert.equal(await readFile(fallback, 'utf8'), canonical);
+    await writeFile(fallback, 'interrupted output');
+    await run(process.execPath, [script]);
+    assert.equal(await readFile(fallback, 'utf8'), canonical);
   } finally {
     assert.equal(path.dirname(path.resolve(root)), parent);
     assert.ok(path.basename(root).startsWith('seedancecheap-discovery-'));

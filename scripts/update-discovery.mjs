@@ -76,10 +76,16 @@ const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
     return `  <url><loc>${escape(p.canonical)}</loc>${entries}</url>`;
   }).join('\n')
   + '\n</urlset>\n';
-const sitemapPath = path.join(docs, 'sitemap.xml');
-const previousSitemap = await readFile(sitemapPath, 'utf8').catch(e => {
-  if (e.code === 'ENOENT') return '';
-  throw e;
-});
-if (previousSitemap !== sitemap) await writeFile(sitemapPath, sitemap);
-console.log(JSON.stringify({ pages: pages.length, videos: videos.length, sitemap: base + 'sitemap.xml', bodyChanges: 0 }));
+const pageSitemap = pages.map(page => page.canonical).join('\n') + '\n';
+for (const [name, content] of [['sitemap.xml', sitemap], ['sitemap-pages.txt', pageSitemap]]) {
+  const file = path.join(docs, name);
+  const previous = await readFile(file, 'utf8').catch(error => {
+    if (error.code === 'ENOENT') return '';
+    throw error;
+  });
+  if (previous !== content) await writeFile(file, content);
+}
+console.log(JSON.stringify({
+  pages: pages.length, videos: videos.length, sitemap: base + 'sitemap.xml',
+  pageSitemap: base + 'sitemap-pages.txt', bodyChanges: 0,
+}));
