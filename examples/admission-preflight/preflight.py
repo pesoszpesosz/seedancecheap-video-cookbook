@@ -2,7 +2,7 @@
 import math
 
 
-def preflight(availability, policy, size, funding, now, references=False):
+def availability_blocker(availability, now):
     if not isinstance(availability, dict):
         return "WAIT_UNVERIFIED"
     checked = availability.get("checked_at")
@@ -14,6 +14,13 @@ def preflight(availability, policy, size, funding, now, references=False):
         return "WAIT_UNVERIFIED"
     if status == "unavailable":
         return "WAIT_CAPACITY"
+    return None
+
+
+def preflight(availability, policy, size, funding, now, references=False):
+    blocker = availability_blocker(availability, now)
+    if blocker is not None:
+        return blocker
     if not isinstance(policy, dict) or policy.get("generation_enabled") is not True:
         return "WAIT_ADMISSION"
     sizes = availability.get("available_sizes")

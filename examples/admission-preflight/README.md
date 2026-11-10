@@ -39,6 +39,24 @@ The suite contains one unittest method with 20 subcases. It uses a synthetic `no
 | 19 | Exactly 120 seconds old | REVIEW_PAID_FUNDING |
 | 20 | Exactly 60 seconds ahead | REVIEW_PAID_FUNDING |
 
+## Check the exact format in a saved request
+
+Save the JSON from the [free API planner](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?model=veo31-text-8s-720&from=github#prepare-heading) as `request.json`. From the repository root, fetch the public catalog and compare it locally.
+
+```sh
+curl --fail --silent --show-error --max-time 15 https://seedancecheap.com/api/availability/catalog | python examples/admission-preflight/check_request.py request.json
+```
+
+On Windows PowerShell, use `curl.exe` in the same command. The only network call is the public GET. The checker reads the saved request and catalog locally. It checks the observation for the exact recipe ID and requires the ratio and size in one `available_formats` row. For example, a portrait size paired with `16:9` needs review even when both the size and ratio appear in different rows.
+
+- `REVIEW_FUNDING` (exit 0) means a fresh observation lists the exact format. [Review the current quote and your funding](https://seedancecheap.com/api?model=veo31-text-8s-720&utm_source=github&utm_medium=code_example&utm_campaign=api_request_guide&utm_content=exact_format#availability) before any separate submit. If you picked a different recipe, select it in the checker.
+- `WAIT_CAPACITY`, `WAIT_FORMAT` or `WAIT_UNVERIFIED` (exit 1) means the catalog does not support continuing on that observation.
+- `INVALID_REQUEST` (exit 2) means the saved file is unreadable, malformed or missing the model, ratio or size.
+
+The checker never opens an account, buys credits, reserves capacity, sends the saved prompt, or submits a job. It checks admission and format only. Review duration, input mode, account eligibility and price separately.
+
+Run both offline test files with `python -m unittest discover -s examples/admission-preflight`.
+
 ## What to add in an actual client
 
 Keep each observation bound to the model URL that produced it. Supply a valid current Unix-seconds `now`, reject failed reads, and avoid accepting a response from an earlier model selection. The two-minute age and one-minute future tolerance mirror the inspected public UI as a teaching example; they are not a capacity reservation or SLA.
