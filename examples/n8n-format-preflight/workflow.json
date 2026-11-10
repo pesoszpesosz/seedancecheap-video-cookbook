@@ -1,0 +1,141 @@
+{
+  "name": "Check a planned AI video format before submitting",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7ac4a021-9012-4999-8dd2-76f1681be9a1",
+      "name": "When clicking Execute workflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7ac4a021-9012-4999-8dd2-76f1681be9b1",
+              "name": "model",
+              "value": "veo31-text-8s-720",
+              "type": "string"
+            },
+            {
+              "id": "7ac4a021-9012-4999-8dd2-76f1681be9b2",
+              "name": "ratio",
+              "value": "9:16",
+              "type": "string"
+            },
+            {
+              "id": "7ac4a021-9012-4999-8dd2-76f1681be9b3",
+              "name": "size",
+              "value": "720x1280",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        0
+      ],
+      "id": "7ac4a021-9012-4999-8dd2-76f1681be9a2",
+      "name": "Choose recipe and format"
+    },
+    {
+      "parameters": {
+        "url": "https://seedancecheap.com/api/availability/catalog",
+        "options": {
+          "timeout": 15000,
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "7ac4a021-9012-4999-8dd2-76f1681be9a3",
+      "name": "Read public availability catalog",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const { model, ratio, size } = $('Choose recipe and format').first().json;\nconst { models, error } = $input.first().json;\n\nif (![model, ratio, size].every(value => typeof value === 'string' && value.trim())) {\n  return [{ json: { decision: 'INVALID_REQUEST' } }];\n}\n\nconst observation = models && Object.hasOwn(models, model) ? models[model] : null;\nconst checkedAt = observation?.checked_at;\nconst now = Date.now() / 1000;\nconst fresh = Number.isFinite(checkedAt) && checkedAt > 0 &&\n  checkedAt >= now - 120 && checkedAt <= now + 60;\n\nlet decision = 'WAIT_UNVERIFIED';\nif (!error && fresh) {\n  if (observation.generation_status === 'unavailable') {\n    decision = 'WAIT_CAPACITY';\n  } else if (observation.generation_status === 'available') {\n    const formats = observation.available_formats;\n    const exact = Array.isArray(formats) &&\n      formats.some(format => format?.ratio === ratio && format?.size === size);\n    decision = exact ? 'REVIEW_FUNDING' : 'WAIT_FORMAT';\n  }\n}\n\nreturn [{ json: { model, ratio, size, checkedAt: fresh ? checkedAt : null, decision } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        0
+      ],
+      "id": "7ac4a021-9012-4999-8dd2-76f1681be9a4",
+      "name": "Review or wait"
+    },
+    {
+      "parameters": {
+        "content": "## Check a planned video format\n\n1. Open **Choose recipe and format**. Copy only the model, ratio and size from a saved SeedanceCheap API request. The defaults use the 8-second, 720p Veo 3.1 text recipe.\n2. Execute manually. The HTTP node fetches the public availability catalog with one GET and no credentials. Keep your prompt and account details outside the workflow.\n3. Inspect **Review or wait**. REVIEW_FUNDING means a fresh observation lists that exact pair for your recipe. Review the live quote, duration, input mode and your funding before a separate submission. WAIT_FORMAT means the pair was not listed. WAIT_CAPACITY means the recipe was unavailable. WAIT_UNVERIFIED covers a stale, missing or failed response. INVALID_REQUEST means a field is missing.\n\nThe workflow does not start a job or reserve credits. Re-running it reads the catalog again. A successful check is a point-in-time observation. From the SeedanceCheap team, with Codex.\n",
+        "height": 420,
+        "width": 780,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -460
+      ],
+      "id": "7ac4a021-9012-4999-8dd2-76f1681be9a5",
+      "name": "Setup and decisions"
+    }
+  ],
+  "connections": {
+    "When clicking Execute workflow": {
+      "main": [
+        [
+          {
+            "node": "Choose recipe and format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Choose recipe and format": {
+      "main": [
+        [
+          {
+            "node": "Read public availability catalog",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read public availability catalog": {
+      "main": [
+        [
+          {
+            "node": "Review or wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}

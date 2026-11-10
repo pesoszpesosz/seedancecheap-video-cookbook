@@ -190,6 +190,8 @@ The builder asks for no API key and sends no generation request. Choose funding 
 
 [Compare a saved request with the public catalog](examples/admission-preflight/#check-the-exact-format-in-a-saved-request). The local checker requires the exact recipe, ratio and size to match before you review funding. It sends no prompt or generation request.
 
+[Import the read-only n8n workflow](examples/n8n-format-preflight/) to run the same format check before an automated job. Tested with n8n 2.46.7.
+
 ## Count original requests separately from retries
 
 [Run the SQLite counting experiment](examples/original-request-metrics/). Four invented original requests and six execution attempts demonstrate how a join can inflate completed-file counts. Seven tests cover retries, expiry, account-scoped request keys and unstarted jobs. The example uses Python's standard library and makes no network or generation calls; completed-file records do not establish downloads, creative acceptance or sales.
