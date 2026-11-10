@@ -2,6 +2,8 @@
 
 Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy the exact prompts, and see how our team edited the results. The [free creator cookbook](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/) also includes shot planners, Genjutsu source/reference/result examples and a video-cost calculator.
 
+**Build an 8-second API pilot.** [Check live availability and the 720p Veo 3.1 text quote](https://seedancecheap.com/api?model=veo31-text-8s-720&utm_source=github&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=availability#availability), then [prepare the exact request in the free planner](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?model=veo31-text-8s-720&from=github#prepare-heading). API execution uses 0.25 credit when available, about $0.25 of the optional $99 upfront pack of 100 credits. The smallest pack is $2.50 for one credit.
+
 **[Check a vertical crop before export](https://seedancecheap.com/tools/rooftop-crop-checker).** The rooftop sample shows a ladder grip that disappears in a 9:16 fill crop and stays visible in fit. Try the sample or open your own clip. Your file stays in the browser.
 
 [Watch the chair-to-buggy editing breakdown](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html?from=github#edit). See what keeps the transformation readable, then try the three-beat exercise in the free text planner.
@@ -12,7 +14,7 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **Published by the SeedanceCheap team, with Codex.** Films feature AI-generated fictional adults and staged action. Each page identifies its model, delivered file and production steps. Prompts describe the intended scene; inspect the entire returned film to judge what happened.
 
-**The new budget generation promotion is paused while its model identity is verified.** The completed earlier AI films, exact prompts, Genjutsu inputs and editing recipes remain available. [Read the current video pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) before choosing a model or buying credits.
+The earlier budget-model promotion remains paused while its model identity is verified. [Read the dated pricing note](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/hd-video-workflows.html#current-price) for that offer.
 
 [Download the free Action Starter v2 (13.8 MB ZIP)](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/download/action-starter-v2/seedancecheap-action-starter-v2.zip): four exact prompts, our actual Genjutsu inputs, and three editing recipes. New: the complete cake comedy, clean 720p master and Kokoro WAV for trying the three-cut edit offline. Extract it and open START-HERE.txt. No account is needed to inspect the pack; generation and editing are separate activities. [See the release and complete films](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/action-starter-v2).
 
@@ -173,8 +175,6 @@ For alternatives you have already reviewed, [compare up to three workflows with 
 ## Recover the same API job
 
 [Open the free API request guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html). Prepare a text-only pilot JSON locally, save its request ID, and use the create, recovery, status and download examples in Bash or Windows PowerShell. If a create response is lost, look up the saved request ID first.
-
-For a smaller text-only test, [open the eight-second 720p recipe](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?model=veo31-text-8s-720&from=github#prepare-heading). The linked recipe selects Veo 3.1 at 0.25 credit. Check admission for free, then choose funding explicitly.
 
 [Run the offline recovery cases](examples/recover-one-job/). The example checks the original request ID and a digest of the saved JSON, then classifies 13 synthetic lookup results without making an API call.
 
