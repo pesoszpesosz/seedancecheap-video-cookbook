@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Check for missing audio after trimming an MP4 | SeedanceCheap</title>
-  <meta name="description" content="Download a small MP4 test fixture and use ffprobe to check whether a stream-copy trim lost audio packets. Includes a verified reference trim.">
+  <meta name="description" content="Check whether an MP4 export has audio tracks and samples. Inspect your file locally in the browser or compare against a verified trim with ffprobe.">
   <!-- Discovery metadata: maintained by scripts/update-discovery.mjs -->
   <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html">
   <link rel="icon" type="image/png" href="brand-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SeedanceCheap Creator Cookbook">
   <meta property="og:title" content="Check for missing audio after trimming an MP4 | SeedanceCheap">
-  <meta property="og:description" content="Download a small MP4 test fixture and use ffprobe to check whether a stream-copy trim lost audio packets. Includes a verified reference trim.">
+  <meta property="og:description" content="Check whether an MP4 export has audio tracks and samples. Inspect your file locally in the browser or compare against a verified trim with ffprobe.">
   <meta property="og:url" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/audio-after-trim.html">
   <meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
   <meta property="og:image:alt" content="SeedanceCheap studio logo">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Check for missing audio after trimming an MP4 | SeedanceCheap">
-  <meta name="twitter:description" content="Download a small MP4 test fixture and use ffprobe to check whether a stream-copy trim lost audio packets. Includes a verified reference trim.">
+  <meta name="twitter:description" content="Check whether an MP4 export has audio tracks and samples. Inspect your file locally in the browser or compare against a verified trim with ffprobe.">
   <meta name="twitter:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
   <!-- /Discovery metadata -->
   <style>
@@ -50,10 +50,10 @@
     .audio-reports {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
     .audio-reports label {font-weight:650}
     .audio-reports input {display:block;max-width:100%;margin-top:6px;font:inherit}
-    #audio-match button {min-height:44px;font:inherit;font-weight:650;padding:8px 12px;border:1px solid #8dab55;border-radius:8px;background:var(--green);color:var(--ink)}
+    #audio-match button, #mp4-audio button {min-height:44px;font:inherit;font-weight:650;padding:8px 12px;border:1px solid #8dab55;border-radius:8px;background:var(--green);color:var(--ink)}
     #audio-match button + button {background:white;border-color:var(--line)}
-    #audio-match button:focus-visible,#audio-match input:focus-visible {outline:3px solid #518c36;outline-offset:3px}
-    #audio-match output {display:block;padding:10px 12px;background:#f4f8ed;border-left:3px solid #7ca652;white-space:pre-wrap;overflow-wrap:anywhere}
+    #audio-match button:focus-visible,#audio-match input:focus-visible,#mp4-audio button:focus-visible,#mp4-audio input:focus-visible {outline:3px solid #518c36;outline-offset:3px}
+    #audio-match output, #mp4-audio output {display:block;padding:10px 12px;background:#f4f8ed;border-left:3px solid #7ca652;white-space:pre-wrap;overflow-wrap:anywhere}
   </style>
 </head>
 <body>
@@ -61,7 +61,17 @@
   <header><a class="brand" data-companion-link href="./">SeedanceCheap Cookbook</a><span>Video delivery check</span></header>
   <main>
     <h1>Did the trim drop the audio?</h1>
-    <p class="lead">Picture can survive a stream-copy trim while sound disappears. This small test checks whether a trimmer keeps audio packets that arrive after the video cutoff.</p>
+    <p class="lead">A stream-copy trim can keep the picture and lose the sound. Check your export for audio tracks, then use the test files to trace what happened.</p>
+    <section class="card" id="mp4-audio" aria-labelledby="mp4-audio-heading">
+      <h2 id="mp4-audio-heading">Check the audio in an MP4</h2>
+      <p>Choose a finished MP4 export to read its audio track and sample counts. Your file stays in this browser.</p>
+      <div class="audio-reports">
+        <label>MP4 export <input type="file" accept=".mp4,.m4v,video/mp4"></label>
+      </div>
+      <div class="actions"><button type="button">Try the reference trim</button></div>
+      <output aria-live="polite" aria-atomic="true">Choose an export or try the reference trim.</output>
+      <p>This reads the file’s track tables. Play the export to verify audible sound and sync.</p>
+    </section>
     <div class="actions">
       <a href="./trim-audio-test-source.mp4" download>Download test input (80 KB)</a>
       <a href="./trim-audio-test-reference.mp4" download>Download reference trim (15 KB)</a>
@@ -77,7 +87,7 @@
       <div>
         <h2 id="demo-heading">Same frames. One goes silent.</h2>
         <p>Play with sound to hear a brief tone in the reference pass. Both passes use the same 12 decoded picture frames. The reference has 24 audio packets. The simulated drop copies just the picture stream and has zero audio packets.</p>
-        <p><a href="#test">Try the packet check on your export.</a> <a href="#audio-track-match">Compare copied audio tracks.</a></p>
+        <p><a href="#mp4-audio">Check your MP4 here.</a> <a href="#test">Run the ffprobe packet check.</a> <a href="#audio-track-match">Compare copied audio tracks.</a></p>
       </div>
     </section>
 
@@ -126,9 +136,11 @@
   <footer>Published by the SeedanceCheap team, with Codex. <a href="https://ffmpeg.org/ffprobe.html">Official ffprobe documentation</a>.</footer>
 </div>
 <script type="module">
-  import { applyWorksheetLinks } from './links.mjs?v=cfa7e1c447ac';
-  import { setupAudioPacketMatch } from './audio-packet-match.mjs?v=cfa7e1c447ac';
+  import { applyWorksheetLinks } from './links.mjs?v=8b39337ac0b0';
+  import { setupAudioPacketMatch } from './audio-packet-match.mjs?v=8b39337ac0b0';
+  import { setupMp4Audio } from './mp4-audio.mjs?v=8b39337ac0b0';
   applyWorksheetLinks(document, location.search);
+  setupMp4Audio(document.querySelector('#mp4-audio'));
   setupAudioPacketMatch(document.querySelector('#audio-match'));
 </script>
 </body>

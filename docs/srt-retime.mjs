@@ -1,4 +1,4 @@
-import { applyWorksheetLinks } from './links.mjs?v=cfa7e1c447ac';
+import { applyWorksheetLinks } from './links.mjs?v=8b39337ac0b0';
 
 const messages = {
   en: {

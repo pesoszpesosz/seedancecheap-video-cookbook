@@ -1,5 +1,5 @@
-import { calculateMetered } from './metered-cost.mjs?v=cfa7e1c447ac';
-import { applyWorksheetLinks } from './links.mjs?v=cfa7e1c447ac';
+import { calculateMetered } from './metered-cost.mjs?v=8b39337ac0b0';
+import { applyWorksheetLinks } from './links.mjs?v=8b39337ac0b0';
 
 applyWorksheetLinks(document, location.search);
 
