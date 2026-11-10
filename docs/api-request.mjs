@@ -1,4 +1,4 @@
-import { applyWorksheetLinks } from './links.mjs?v=8b39337ac0b0';
+import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=c190d914aeb3';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
@@ -63,12 +63,23 @@ export function commandExamples(requestId, shell, model='seedance-2.5') {
 }
 
 if (typeof document !== 'undefined') {
+  const entry = new URLSearchParams(location.search);
   applyWorksheetLinks(document, location.search);
+  const sources = entry.getAll('from');
+  const campaigns = entry.getAll('campaign');
+  if (sources.length === 1 && (isWorksheetChannel(sources[0]) || sources[0] === 'other') &&
+      campaigns.length === 1 && /^[a-zA-Z0-9_-]{1,100}$/.test(campaigns[0])) {
+    for (const link of document.querySelectorAll('[data-site-link]')) {
+      const destination = new URL(link.href);
+      destination.searchParams.set('utm_campaign', campaigns[0]);
+      link.href = destination.href;
+    }
+  }
   const requestId = document.getElementById('request-id');
   const prompt = document.getElementById('pilot-prompt');
   const shell = document.getElementById('command-shell');
   const model = document.getElementById('pilot-model');
-  const linkedModels = new URLSearchParams(location.search).getAll('model');
+  const linkedModels = entry.getAll('model');
   if (linkedModels.length === 1 && Object.hasOwn(pilotModels, linkedModels[0])) {
     model.value = linkedModels[0];
   }

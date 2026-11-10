@@ -9,13 +9,14 @@ test('Back-restored fields reconcile with JSON and the availability route after 
   Object.assign(nodes['command-shell'],{value:'bash'});
   Object.assign(nodes['pilot-model'],{value:'seedance-2.5'});
   Object.assign(nodes['pilot-format'],{value:'16:9'});
-  nodes['model-availability'].href='https://seedancecheap.com/api?model=seedance-2.5&utm_source=facebook#availability';
+  nodes['model-availability'].href='https://seedancecheap.com/api?model=seedance-2.5&utm_source=facebook&utm_campaign=api_request_guide#availability';
+  const accountLink={href:'https://seedancecheap.com/app?classic=1&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=api_access#api-access'};
   const saved={document:globalThis.document,window:globalThis.window,location:globalThis.location,fetch:globalThis.fetch,history:globalThis.history};
   const handlers={};let networkCalls=0;
   try {
-    globalThis.document={getElementById:name=>nodes[name],querySelectorAll:()=>[]};
+    globalThis.document={getElementById:name=>nodes[name],querySelectorAll:selector=>selector==='[data-site-link]'?[nodes['model-availability'],accountLink]:[]};
     globalThis.window={addEventListener:(name,callback)=>{handlers[name]=callback;}};
-    globalThis.location={search:'?from=facebook&model=veo31-text-8s-720&funding=paid&prompt=ignored'};
+    globalThis.location={search:'?from=facebook&campaign=featured_veo_recipe_nov10&model=veo31-text-8s-720&funding=paid&prompt=ignored'};
     globalThis.history={state:{unrelated:'retained'},replaceState(value){this.state=value;}};
     globalThis.fetch=()=>{networkCalls++;throw new Error('This builder must remain local.');};
     await import('../docs/api-request.mjs?history-test');
@@ -31,6 +32,13 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     const linkedAvailability=new URL(nodes['model-availability'].href);
     assert.equal(linkedAvailability.pathname,'/api/availability');
     assert.equal(linkedAvailability.searchParams.get('utm_source'),'facebook');
+    assert.equal(linkedAvailability.searchParams.get('utm_campaign'),'featured_veo_recipe_nov10');
+    const accountDestination=new URL(accountLink.href);
+    assert.equal(accountDestination.searchParams.get('utm_source'),'facebook');
+    assert.equal(accountDestination.searchParams.get('utm_campaign'),'featured_veo_recipe_nov10');
+    assert.equal(accountDestination.searchParams.get('utm_content'),'api_access');
+    assert.equal(accountDestination.searchParams.has('funding'),false);
+    assert.equal(accountDestination.hash,'#api-access');
     assert.equal(networkCalls,0);
     nodes['pilot-model'].value='seedance-2.5';
     nodes['pilot-funding'].value='trial';
