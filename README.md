@@ -10,6 +10,8 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **[Check a vertical crop before export](https://seedancecheap.com/tools/rooftop-crop-checker).** The rooftop sample shows a ladder grip that disappears in a 9:16 fill crop and stays visible in fit. Try the sample or open your own clip. Your file stays in the browser.
 
+**[Compare two camera choices in Outside Line](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/outside-line-camera-workshop-v1).** Scrub the same race from two synchronized views. At 6.20 seconds, the locked camera clips the finish while the tracking camera keeps the crossing visible. Download the free HTML and open it in your browser to try the exercise offline.
+
 [Watch the chair-to-buggy editing breakdown](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html?from=github#edit). See what keeps the transformation readable, then try the three-beat exercise in the free text planner.
 
 [Compare packs against your quote and current balance](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/?from=github#pack-planner). The free planner shows upfront cash and leftover credits separately.
