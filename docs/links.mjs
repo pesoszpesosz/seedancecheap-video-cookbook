@@ -1,4 +1,4 @@
-const channels = new Set(['facebook', 'instagram', 'tiktok', 'reddit', 'youtube', 'quora', 'producthunt', 'github', 'flipboard', 'stackblitz', 'itchio', 'postman', 'mastodon', 'blogger', 'wordpress', 'pinterest', 'linkedin', 'bluesky', 'libhunt', 'google', 'bing', 'huggingface', 'medium', 'artificane']);
+const channels = new Set(['facebook', 'instagram', 'tiktok', 'reddit', 'youtube', 'quora', 'producthunt', 'github', 'flipboard', 'stackblitz', 'itchio', 'postman', 'mastodon', 'blogger', 'wordpress', 'substack', 'pinterest', 'linkedin', 'bluesky', 'libhunt', 'google', 'bing', 'huggingface', 'medium', 'artificane']);
 const referralOrigins = new Map([
   ['https://github.com', 'github'], ['https://www.github.com', 'github'],
   ['https://libhunt.com', 'libhunt'], ['https://www.libhunt.com', 'libhunt'],
