@@ -100,6 +100,9 @@
         <div><dt>Audio packets in the FFmpeg trim</dt><dd>24</dd></div>
       </dl>
       <p>These values come from FFmpeg and ffprobe 8.1.2 on this exact fixture. File and pipe reads gave the same order. The reproduction evaluates the early-stop rule against that packet order. <a href="https://github.com/yuroyami/KiteFFmpeg/issues/233#issuecomment-6729246536">See the fixture recipe and upstream discussion</a>.</p>
+      <h3 id="kiteffmpeg-release-check">What the released KiteFFmpeg trim did</h3>
+      <p>On Windows, we ran the published KiteFFmpeg JVM 0.5.1 remuxer on the test input, from 0 to 500,000 microseconds. The result had no audio track. Its 12 decoded picture frames matched the FFmpeg reference frame by frame. The reference kept 24 audio packets.</p>
+      <p>The maintainer’s fix is in the project’s source. Each timed stream gets its own stopping point, so the remuxer can still read audio packets that arrive after the first late video packet. The published JVM version we checked on November 10, 2026 predates that fix. <a href="https://central.sonatype.com/artifact/io.github.yuroyami/kiteffmpeg-jvm/0.5.1">Published package</a> · <a href="https://github.com/yuroyami/KiteFFmpeg/commit/63d12c7991ffe1e0cd8a7caf3126fb47e0de2432">Upstream fix</a></p>
     </section>
 
     <section class="card" aria-labelledby="test">
