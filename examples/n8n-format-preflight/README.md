@@ -2,7 +2,7 @@
 
 Use this read-only workflow before starting an automated video job. It catches a common setup error. A size and aspect ratio can each appear in the public catalog while their combination is unavailable for your recipe.
 
-1. Save [workflow.json](workflow.json) and import it as a new, inactive workflow in n8n.
+1. [Open the browser guide](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?from=github#n8n-preflight) for the pinned import URL, or save [workflow.json](workflow.json) and import it as a new, inactive workflow in n8n.
 2. Open **Choose recipe and format**. Copy only `model`, `ratio` and `size` from your saved request. The example uses `veo31-text-8s-720`, `9:16` and `720x1280`. Leave the prompt and account details in your own saved file.
 3. Click **Execute workflow** manually and inspect **Review or wait**. The workflow reads the public catalog once per execution with an unauthenticated GET.
 

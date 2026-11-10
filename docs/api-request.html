@@ -58,6 +58,8 @@
       <li><strong>4. Review</strong><span>Ready file + full playback</span></li>
     </ol>
 
+    <p>Already using n8n? <a href="#n8n-preflight">Check your format before running a paid step</a>.</p>
+
     <section class="card" aria-labelledby="prepare-heading">
       <h2 id="prepare-heading">Prepare a small text-only pilot</h2>
       <p>Define what a usable result must show before trying it. The proposed paper-boat test below is a simple geometry, water-contact and camera-motion exercise; this particular request has not been generated.</p>
@@ -98,6 +100,18 @@
       <button type="button" id="download-request">Download request.json</button>
       <p id="request-status" class="status" role="status" aria-live="polite"></p>
       <p class="muted">Edits update the preview. Save your chosen version before submitting. If you change the model, prompt or settings for another attempt, use a new ID and keep both records. Changing this local preview does not change a previously submitted job.</p>
+    </section>
+
+    <section class="card" aria-labelledby="n8n-preflight">
+      <h2 id="n8n-preflight">Check your planned format in n8n</h2>
+      <p>A ratio and size can each look valid and still be wrong together. Run this free, read-only workflow before adding a generation step.</p>
+      <ol>
+        <li>In a new n8n workflow, choose <strong>Import from URL</strong> and paste the address of the <a href="https://raw.githubusercontent.com/pesoszpesosz/seedancecheap-video-cookbook/0c0612df605796144fc7b3e5f1b7561d298a49e4/examples/n8n-format-preflight/workflow.json">tested workflow JSON</a>. You can also save it as <code>workflow.json</code> and choose <strong>Import from File</strong>.</li>
+        <li>In <strong>Choose recipe and format</strong>, set the exact <code>model</code>, <code>ratio</code> and <code>size</code> you plan to use. Leave your prompt, API key and account details out of the workflow.</li>
+        <li>Run it manually and inspect <strong>Review or wait</strong>. <code>REVIEW_FUNDING</code> means the current catalog lists the pair. Review the live price and your funding separately. <code>WAIT_FORMAT</code> means the pair is missing.</li>
+      </ol>
+      <p>Try <code>veo31-text-8s-720</code> with <code>9:16</code> and <code>720x1280</code>. Then change only the ratio to <code>16:9</code>. When both original format rows are available, the first run passes the format check and the second returns <code>WAIT_FORMAT</code>.</p>
+      <p class="muted">Each run reads the public catalog once. It makes no generation or purchase request and does not reserve capacity. <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/tree/main/examples/n8n-format-preflight#readme">Read all workflow decisions and inspect the source</a>.</p>
     </section>
 
     <section class="card" aria-labelledby="commands-heading">
