@@ -6,7 +6,7 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **[Plan an eight-second video from private image references](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?model=veo31-ingredients-8s-720&from=github#prepare-heading).** Add one to three owned reference IDs in order and save the exact 720p request locally. Check the current format and the 0.25-credit recipe before deciding whether to run it.
 
-**[Download the read-only Postman portrait checks](docs/seedancecheap-video-preflight.postman_collection.json).** Pick the text or image-reference recipe and check whether the exact 9:16 format is listed before reviewing funding. [Import and run the checks](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?from=github#postman-preflight).
+**[Download the read-only n8n and Postman preflight files](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/releases/tag/video-format-preflight-v1).** Check a saved recipe in n8n or run the [Postman portrait collection](docs/seedancecheap-video-preflight.postman_collection.json) for text and image-reference recipes. Both check the exact aspect ratio and size before you review funding. [Watch the demo and follow the setup](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?from=github#format-gate).
 
 **[Check a vertical crop before export](https://seedancecheap.com/tools/rooftop-crop-checker).** The rooftop sample shows a ladder grip that disappears in a 9:16 fill crop and stays visible in fit. Try the sample or open your own clip. Your file stays in the browser.
 
