@@ -154,6 +154,7 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     for (const [index, query] of [
       '?starter=outside-line&from=mastodon&campaign=outside_line_nov10&funding=paid&prompt=ignored',
       '?starter=outside-line&starter=outside-line',
+      '?starter=the-catch&from=github&campaign=the_catch_nov10&funding=paid',
     ].entries()) {
       globalThis.location.search = query;
       Object.assign(nodes['pilot-prompt'], {value:'Original paper-boat scene.', defaultValue:'Original paper-boat scene.'});
@@ -172,6 +173,15 @@ test('Back-restored fields reconcile with JSON and the availability route after 
         const quote=new URL(nodes['model-availability'].href);
         assert.equal(quote.searchParams.get('utm_source'),'mastodon');
         assert.equal(quote.searchParams.get('utm_campaign'),'outside_line_nov10');
+      } else if (index === 2) {
+        assert.match(intro.textContent,/gap before impact/);
+        assert.match(nodes['pilot-prompt'].value,/the foot lands on top of the pin/);
+        assert.match(nodes['request-id'].value,/^the_catch_[0-9a-f-]{36}$/);
+        assert.equal(nodes['pilot-model'].value,'veo31-text-8s-720');
+        assert.equal(nodes['pilot-format'].value,'9:16');
+        const quote=new URL(nodes['model-availability'].href);
+        assert.equal(quote.searchParams.get('utm_source'),'github');
+        assert.equal(quote.searchParams.get('utm_campaign'),'the_catch_nov10');
       } else {
         assert.equal(nodes['pilot-prompt'].value,'Original paper-boat scene.');
         assert.equal(nodes['request-id'].value,'paper_boat_pilot_001');

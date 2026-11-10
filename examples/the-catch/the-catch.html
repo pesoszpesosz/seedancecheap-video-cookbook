@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Catch | SeedanceCheap</title>
+<style>
+  html,body{margin:0;background:#081012}
+  canvas{display:block;width:1080px;height:1920px}
+</style>
+</head>
+<body>
+<canvas id="stage" width="1080" height="1920" aria-label="A freight cage is caught by its emergency safety pin"></canvas>
+<script>
+'use strict';
+const canvas = document.querySelector('#stage');
+const c = canvas.getContext('2d');
+const width = canvas.width;
+const height = canvas.height;
+const snap = .52;
+const impact = 3.46;
+const cageX = 525;
+const topY = 640;
+const stopY = 1810;
+const foot = 232;
+const pinTop = stopY + foot;
+const pinLeft = 729;
+const pinRight = 962;
+const metal = '#3d5157';
+
+const clamp = (n, a = 0, b = 1) => Math.max(a, Math.min(b, n));
+const mix = (a,b,t) => a + (b - a) * t;
+const ease = t => { const u = clamp(t); return u * u * (3 - 2 * u); };
+function state(t) {
+  const fall = clamp((t - snap) / (impact - snap));
+  const rebound = clamp((t - impact) / .42);
+  return {
+    y: mix(topY, stopY, fall ** 2) - 19 * Math.sin(Math.PI * rebound) * (1 - rebound),
+    nose: mix(pinRight - 8, pinLeft, ease((t - 2.59) / .59)),
+    locked: t >= impact,
+    pulse: t >= impact ? Math.exp(-(t - impact) * 11) : 0,
+  };
+}
+function box(x,y,w,h,fill) {
+  c.fillStyle = fill;
+  c.fillRect(x,y,w,h);
+}
+function line(x1,y1,x2,y2,stroke,weight = 1) {
+  c.strokeStyle = stroke;
+  c.lineWidth = weight;
+  c.beginPath();
+  c.moveTo(x1,y1);
+  c.lineTo(x2,y2);
+  c.stroke();
+}
+function label(copy,x,y,size,fill,weight = 600,align = 'left') {
+  c.textAlign = align;
+  c.font = weight + ' ' + size + 'px "Segoe UI",Arial,sans-serif';
+  c.fillStyle = fill;
+  c.fillText(copy,x,y);
+}
+function lamp(x,y,r,color,strength) {
+  const gradient = c.createRadialGradient(x,y,3,x,y,r*4);
+  gradient.addColorStop(0,color);
+  gradient.addColorStop(1,'transparent');
+  c.globalAlpha = strength;
+  box(x-r*4,y-r*4,r*8,r*8,gradient);
+  c.globalAlpha = 1;
+  c.beginPath();
+  c.fillStyle = color;
+  c.arc(x,y,r,0,Math.PI*2);
+  c.fill();
+}
+
+function shaft() {
+  const depth = c.createLinearGradient(0,0,1080,0);
+  depth.addColorStop(0,'#151e23');
+  depth.addColorStop(.23,'#273b3e');
+  depth.addColorStop(.5,'#0b1b1e');
+  depth.addColorStop(.77,'#203336');
+  depth.addColorStop(1,'#10181d');
+  box(-500,-1600,2080,5100,depth);
+  for(let level=-6;level<=13;level++) {
+    const y = level*270;
+    box(104,y,856,7,'#26363b');
+    box(105,y+8,854,15,'#0b1316');
+    for(const x of [166,914]) {
+      box(x-18,y-15,36,67,'#17272b');
+      box(x-11,y-10,22,56,metal);
+      box(x-4,y+8,8,8,'#93a7a9');
+    }
+    if(level >= 0) label(String(12-level).padStart(2,'0'),93,y-20,30,'#607879',600,'center');
+  }
+  for(const x of [190,856]) {
+    box(x-8,-1400,30,5100,'#0a1418');
+    box(x,-1400,8,5100,'#52686e');
+    box(x+10,-1400,3,5100,'#829298');
+  }
+  box(202,-1400,19,5100,'#263538');
+  box(841,-1400,14,5100,'#283d41');
+  const pool = c.createRadialGradient(506,626,120,506,626,680);
+  pool.addColorStop(0,'rgba(75,154,150,.20)');
+  pool.addColorStop(1,'rgba(0,0,0,0)');
+  box(-50,0,1180,1650,pool);
+}
+function cable(t,y) {
+  if(t < snap){
+    const sway = Math.sin(t*42)*8;
+    line(524,-1500,524+sway,y-262,'#20181b',18);
+    line(524,-1500,524+sway,y-262,'#db7351',9);
+  } else {
+    const elapsed = t-snap;
+    const recoil = ease(elapsed/.31)*110;
+    line(524,-1500,524+Math.sin(elapsed*48)*7*Math.exp(-elapsed*8),topY-410-recoil,'#c35f49',9);
+    line(524,y-262,529+Math.sin(elapsed*38)*13*Math.exp(-elapsed*8),y-370+recoil*.44,'#bc624f',8);
+  }
+}
+function cage(y) {
+  c.save();
+  c.translate(cageX,y);
+  box(-257,-217,514,445,'#0a1318');
+  const interior = c.createLinearGradient(0,-210,0,220);
+  interior.addColorStop(0,'#52656c');
+  interior.addColorStop(.58,'#273b43');
+  interior.addColorStop(1,'#0a1318');
+  box(-220,-194,440,380,interior);
+  box(-226,136,452,64,'#33474e');
+  for(let x=-210;x<225;x+=37) line(x,137,x-7,200,'#18272c',4);
+
+  c.save();
+  c.translate(-128,-31);
+  box(0,0,256,166,'#926344');
+  box(8,8,240,21,'#b08259');
+  box(16,29,224,110,'#bb865c');
+  box(28,37,198,93,'#9c6b48');
+  line(35,45,215,121,'#ce986a',13);
+  line(218,45,35,120,'#b1835c',11);
+  box(86,61,84,36,'#dac8a0');
+  label('09',128,89,26,'#302a22',700,'center');
+  c.restore();
+
+  for(const side of [-1,1]) {
+    box(side*244-15,-203,30,410,metal);
+    box(side*244-8,-198,5,394,'#9aafae');
+    box(side*272-17,-143,29,292,'#0e181c');
+    box(side*272-11,-130,8,264,'#486066');
+    for(const rivetY of [-164,158]) {
+      box(side*244-4,rivetY,9,9,'#d4d9d1');
+    }
+  }
+  box(-259,-223,518,35,'#566970');
+  box(-249,-221,498,8,'#91a0a4');
+  box(-43,-262,86,41,'#4b5a5d');
+  box(-14,-259,28,27,'#111c20');
+  box(-261,193,522,39,'#45565b');
+  box(-252,196,504,8,'#82999b');
+  box(203,193,49,39,'#d5aa62');
+  box(212,201,35,7,'#ffe8a6');
+  c.restore();
+}
+function latch(nose,locked) {
+  box(888,pinTop-61,92,149,'#0b1a20');
+  box(897,pinTop-54,68,139,'#51636a');
+  box(902,pinTop-48,53,128,'#273b42');
+  box(nose,pinTop,pinRight-nose,29,'#e48e3e');
+  box(nose,pinTop,pinRight-nose,6,'#ffd79d');
+  box(nose,pinTop+25,pinRight-nose,4,'#8f4d24');
+  box(918,pinTop+42,55,29,'#111c20');
+  lamp(939,pinTop+57,8,locked?'#a6f3c7':'#ffc079',.48);
+}
+function sparks(t,at,x,y,count) {
+  const dt=t-at;
+  if(dt<0 || dt>.37) return;
+  c.save();
+  c.globalAlpha=(1-dt/.37)**2;
+  for(let i=0;i<count;i++){
+    const angle=1.12+i*2.37;
+    const velocity=200+(i%5)*130;
+    const sx=x+Math.cos(angle)*dt*velocity;
+    const sy=y+Math.sin(angle)*dt*velocity+dt*dt*230;
+    line(sx,sy,sx-Math.cos(angle)*19,sy-Math.sin(angle)*19,i%3?'#ffe9b1':'#ef8156',i%4?3:6);
+  }
+  c.restore();
+}
+function titles(t,locked) {
+  const vignette=c.createRadialGradient(540,960,590,540,960,1210);
+  vignette.addColorStop(0,'transparent');
+  vignette.addColorStop(1,'#060c10');
+  box(0,0,width,height,vignette);
+  box(118,134,405,65,'rgba(8,20,22,.93)');
+  box(118,134,6,65,'#dca77b');
+  label('SeedanceCheap.com',145,178,33,'#f7efe0',700);
+  if(t<5.55) {
+    const opacity = t<5.16 ? 1 : 1-ease((t-5.16)/.39);
+    c.globalAlpha = opacity;
+    label('FREIGHT SHAFT',120,1430,43,'#eee8da',650);
+    label(locked?'SAFETY PIN LOCKED':t<snap?'LIFT 09':'CABLE FAILURE',122,1485,26,locked?'#a6f3c7':'#fbc394',700);
+    c.globalAlpha = 1;
+  }
+  if(t>=5.42){
+    const enter=ease((t-5.42)/.43);
+    c.globalAlpha=enter;
+    const offset=mix(20,0,enter);
+    box(118,1397+offset,7,120,'#a6f3c7');
+    label('THE CATCH',145,1462+offset,87,'#f3ead9',800);
+    label('AN ORIGINAL MOTION STUDY',151,1510+offset,25,'#a6d4cb',650);
+    c.globalAlpha=1;
+  }
+}
+function seek(t) {
+  const s = state(t);
+  const shake = s.pulse*13*Math.sin((t-impact)*67);
+  const fall = clamp((t - snap) / (impact - snap));
+  const settle = ease((t - impact) / .56);
+  const lag = 151 * fall ** 2 * (1 - settle);
+  const close = ease((t - impact - .15) / .74) * (1 - ease((t - 5.15) / .97));
+  const wide = ease((t - 5.15) / .97);
+  const zoom = 1.08 + .31 * close - .12 * wide;
+  const camY = mix(topY + 72, s.y + 95, ease((t - .26) / .62)) - lag + 90 * close + shake;
+  const camX = 527 + 132 * close + 32 * wide;
+  c.setTransform(1,0,0,1,0,0);
+  box(0,0,width,height,'#081012');
+  c.save();
+  c.translate(width/2,height/2-35);
+  c.scale(zoom,zoom);
+  c.translate(-camX,-camY);
+  shaft();
+  cable(t,s.y);
+  cage(s.y);
+  latch(s.nose,s.locked);
+  sparks(t,snap,524,topY-410,12);
+  sparks(t,impact,pinLeft+17,pinTop,19);
+  c.restore();
+  titles(t,s.locked);
+}
+const geometry = {
+  samples:961,
+  pinAtContact:state(impact).nose,
+  contactGap:pinTop-(state(impact).y+foot),
+  noInterpenetration:Array.from({length:961},(_,i)=>state(i/120)).every(s=>s.y+foot<=pinTop),
+  pinInsideCageFoot:pinLeft<cageX+252 && pinRight>cageX+203,
+  snap,
+  impact
+};
+window.__catchGeometry=geometry;
+window.__seek=seek;
+seek(0);
+window.__simReady=true;
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=037967bd30a8';
+import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=201614d83327';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
@@ -9,6 +9,19 @@ export const pilotModels = {
 };
 
 const pilotSizes = {'16:9':'1280x720', '9:16':'720x1280'};
+
+const pilotStarters = {
+  'outside-line': {
+    idPrefix: 'outside_line_',
+    intro: 'Outside Line starter. This proposed text-to-video prompt adapts an original code-rendered race. On a returned take, check that both cars stay visible and the overtake is clear before the finish.',
+    prompt: 'Eight seconds, vertical 9:16, one overhead tracking shot of a floodlit closed racetrack. From the first frame a teal car brakes into a hairpin while a slightly trailing amber car stays on the wider line. At 1–4 seconds keep both cars and both lane edges visible as they round the bend, wheels gripping the road and bodywork clear of the barriers. At 4–6 seconds both cars straighten and the amber car draws level, then edges ahead. Track the gap without cutting away. At 6–8 seconds the amber car crosses a painted finish stripe first. Keep both cars on the road with a visible gap between them. Engine and tire sound, a short chime at the crossing, no speech or on-screen text.'
+  },
+  'the-catch': {
+    idPrefix: 'the_catch_',
+    intro: 'The Catch starter. This proposed text-to-video prompt adapts an original code-rendered suspense short. Review the gap before impact and the cage foot meeting the pin on a returned take.',
+    prompt: 'Eight seconds, vertical 9:16, a single tracking shot inside a dark industrial freight shaft with no people. In the first half-second a taut cable snaps and the steel cage begins to drop. Follow the cage downward while the evenly spaced wall ribs sweep upward. Between seconds 2 and 3 an orange safety pin extends from the right wall below the cage foot. Frame both the pin and the falling foot with a visible gap before contact. Around second 3.5 the foot lands on top of the pin and the cage stops with one brief rattle. Keep the foot resting on the pin, with no overlap or clipping. Hold on the contact and pull back slightly as a small green latch light comes on. Cable snap, rushing air and one metal impact, no speech, no music, no text.'
+  }
+};
 
 function referenceError(ids, max) {
   if (!Array.isArray(ids)) return 'Use an ordered list of private image reference IDs.';
@@ -96,17 +109,18 @@ if (typeof document !== 'undefined') {
   const model = document.getElementById('pilot-model');
   const format = document.getElementById('pilot-format');
   const starters = entry.getAll('starter');
-  if (starters.length === 1 && starters[0] === 'outside-line') {
+  const starter = starters.length === 1 && Object.hasOwn(pilotStarters, starters[0]) ? pilotStarters[starters[0]] : null;
+  if (starter) {
     model.value = 'veo31-text-8s-720';
     format.value = '9:16';
     document.getElementById('pilot-intro').textContent =
-      'Outside Line starter. This proposed text-to-video prompt adapts an original code-rendered race. On a returned take, check that both cars stay visible and the overtake is clear before the finish.';
+      starter.intro;
     if (prompt.value === prompt.defaultValue) {
-      prompt.value = 'Eight seconds, vertical 9:16, one overhead tracking shot of a floodlit closed racetrack. From the first frame a teal car brakes into a hairpin while a slightly trailing amber car stays on the wider line. At 1–4 seconds keep both cars and both lane edges visible as they round the bend, wheels gripping the road and bodywork clear of the barriers. At 4–6 seconds both cars straighten and the amber car draws level, then edges ahead. Track the gap without cutting away. At 6–8 seconds the amber car crosses a painted finish stripe first. Keep both cars on the road with a visible gap between them. Engine and tire sound, a short chime at the crossing, no speech or on-screen text.';
+      prompt.value = starter.prompt;
     }
     if (requestId.value === requestId.defaultValue) {
       const id = globalThis.crypto?.randomUUID?.();
-      requestId.value = id ? 'outside_line_' + id : '';
+      requestId.value = id ? starter.idPrefix + id : '';
     }
   }
   const linkedModels = entry.getAll('model');
