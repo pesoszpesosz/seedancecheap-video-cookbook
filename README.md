@@ -2,6 +2,8 @@
 
 Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy the exact prompts, and see how our team edited the results. The [free creator cookbook](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/) also includes shot planners, Genjutsu source/reference/result examples and a video-cost calculator.
 
+**[Check a vertical crop before export](https://seedancecheap.com/tools/rooftop-crop-checker).** The rooftop sample shows a ladder grip that disappears in a 9:16 fill crop and stays visible in fit. Try the sample or open your own clip. Your file stays in the browser.
+
 [Watch the chair-to-buggy editing breakdown](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html?from=github#edit). See what keeps the transformation readable, then try the three-beat exercise in the free text planner.
 
 [Compare packs against your quote and current balance](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/?from=github#pack-planner). The free planner shows upfront cash and leftover credits separately.
