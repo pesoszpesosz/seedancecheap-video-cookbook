@@ -10,6 +10,8 @@ test('Back-restored fields reconcile with JSON and the availability route after 
   Object.assign(nodes['pilot-model'],{value:'seedance-2.5'});
   Object.assign(nodes['pilot-format'],{value:'16:9'});
   nodes['model-availability'].href='https://seedancecheap.com/api?model=seedance-2.5&utm_source=facebook&utm_campaign=api_request_guide#availability';
+  const rawLink={href:''};
+  nodes['raw-availability']={hidden:true,querySelector:()=>rawLink};
   const accountLink={href:'https://seedancecheap.com/app?classic=1&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=api_access#api-access'};
   const saved={document:globalThis.document,window:globalThis.window,location:globalThis.location,fetch:globalThis.fetch,history:globalThis.history};
   const handlers={};let networkCalls=0;
@@ -31,9 +33,25 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     assert.match(nodes['pilot-terms'].textContent,/8-second.*0\.25 credit.*9:16.*720×1280/);
     assert.match(nodes['availability-command'].textContent,/model=veo31-text-8s-720/);
     const linkedAvailability=new URL(nodes['model-availability'].href);
-    assert.equal(linkedAvailability.pathname,'/api/availability');
+    assert.equal(linkedAvailability.pathname,'/api');
+    assert.equal(linkedAvailability.hash,'#availability');
+    assert.equal(linkedAvailability.searchParams.get('model'),'veo31-text-8s-720');
+    assert.equal(linkedAvailability.searchParams.get('ratio'),'9:16');
     assert.equal(linkedAvailability.searchParams.get('utm_source'),'facebook');
     assert.equal(linkedAvailability.searchParams.get('utm_campaign'),'featured_veo_recipe_nov10');
+    assert.equal(linkedAvailability.searchParams.get('utm_content'),'quote_review');
+    for (const privateField of ['request_id','reference_ids','funding','prompt']) {
+      assert.equal(linkedAvailability.searchParams.has(privateField),false);
+    }
+    const rawDestination=new URL(rawLink.href);
+    assert.equal(rawDestination.pathname,'/api/availability');
+    assert.equal(rawDestination.searchParams.get('model'),'veo31-text-8s-720');
+    assert.equal(rawDestination.searchParams.has('ratio'),false);
+    assert.equal(nodes['raw-availability'].hidden,false);
+    nodes['pilot-format'].value='16:9';
+    for(const callback of nodes['pilot-format'].handlers.change)callback();
+    assert.equal(new URL(nodes['model-availability'].href).searchParams.get('ratio'),'16:9');
+    nodes['pilot-format'].value='9:16';
     const accountDestination=new URL(accountLink.href);
     assert.equal(accountDestination.searchParams.get('utm_source'),'facebook');
     assert.equal(accountDestination.searchParams.get('utm_campaign'),'featured_veo_recipe_nov10');
@@ -85,10 +103,11 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     nodes['pilot-model'].value='veo31-text-8s-720';
     for(const callback of nodes['pilot-model'].handlers.change)callback();
     const exactAvailability=new URL(nodes['model-availability'].href);
-    assert.equal(exactAvailability.pathname,'/api/availability');
+    assert.equal(exactAvailability.pathname,'/api');
     assert.equal(exactAvailability.searchParams.get('model'),'veo31-text-8s-720');
     assert.equal(exactAvailability.searchParams.get('utm_source'),'facebook');
-    assert.equal(exactAvailability.hash,'');
+    assert.equal(exactAvailability.hash,'#availability');
+    assert.equal(new URL(rawLink.href).pathname,'/api/availability');
     assert.equal(JSON.parse(nodes['request-json'].textContent).request_id,'restored_original_id');
     assert.match(nodes['pilot-terms'].textContent,/0\.25 credit/);
     nodes['pilot-model'].value='veo-3.1';
@@ -97,6 +116,8 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     assert.equal(legacyAvailability.pathname,'/api');
     assert.equal(legacyAvailability.hash,'#availability');
     assert.equal(legacyAvailability.searchParams.get('model'),'veo-3.1');
+    assert.equal(legacyAvailability.searchParams.has('ratio'),false);
+    assert.equal(nodes['raw-availability'].hidden,true);
     assert.equal(networkCalls,0);
     nodes['pilot-model'].value='veo31-ingredients-8s-720';
     for(const callback of nodes['pilot-model'].handlers.change)callback();
@@ -109,6 +130,9 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     assert.deepEqual(JSON.parse(nodes['request-json'].textContent).reference_ids,refs);
     assert.equal(nodes['ingredient-ids']['aria-invalid'],'false');
     assert.match(nodes['model-availability'].href,/model=veo31-ingredients-8s-720/);
+    assert.equal(new URL(rawLink.href).searchParams.get('model'),'veo31-ingredients-8s-720');
+    assert.equal(nodes['model-availability'].href.includes(refs[0]),false);
+    assert.equal(rawLink.href.includes(refs[0]),false);
     nodes['pilot-model'].value='veo31-text-8s-720';
     for(const callback of nodes['pilot-model'].handlers.change)callback();
     assert.equal(nodes['ingredient-fields'].hidden,true);

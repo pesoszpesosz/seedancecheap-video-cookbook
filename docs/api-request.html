@@ -91,8 +91,9 @@
       <label for="pilot-format">720p format</label>
       <select id="pilot-format"><option value="16:9">Landscape · 1280×720</option><option value="9:16">Portrait · 720×1280</option></select>
       <p style="margin-top:12px"><span id="pilot-terms" class="pill">30-second request · 1 credit if paid · 16:9 · requested 1280×720</span></p>
-      <p><strong>Before submitting or buying credits:</strong> <a id="model-availability" data-site-link href="https://seedancecheap.com/api?model=seedance-2.5&amp;utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=availability#availability">Check this model’s live availability without signing in →</a> Confirm that the selected orientation and size are listed. If capacity or the exact format cannot be verified, wait before starting a new request. Keep any existing job’s request ID and settings unchanged.</p>
-      <p class="muted">The quarter-credit Veo 3.1 option allocates about $0.25 from the $99 upfront 100-credit pack, or about $0.63 from one $2.50 credit. The Veo options require paid funding. For either quarter-credit recipe, the availability link opens its exact API response. Check <code>generation_status</code> and <code>available_formats</code> before submitting. Output dimensions, delivery and creative quality can vary.</p>
+      <p><strong>Before submitting or buying credits:</strong> <a id="model-availability" data-site-link target="_blank" rel="noopener" href="https://seedancecheap.com/api?model=seedance-2.5&amp;utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=availability#availability">Review the live quote and formats (new tab)</a>. Confirm that the selected orientation and size are listed. If capacity or the exact format cannot be verified, wait before starting a new request. Keep any existing job’s request ID and settings unchanged.</p>
+      <p id="raw-availability" class="muted" hidden><a target="_blank" rel="noopener">Open the raw availability JSON (new tab)</a>. Check <code>generation_status</code> and <code>available_formats</code> before submitting.</p>
+      <p class="muted">The quarter-credit Veo 3.1 option allocates about $0.25 from the $99 upfront 100-credit pack, or about $0.63 from one $2.50 credit. The Veo options require paid funding. Output dimensions, delivery and creative quality can vary.</p>
       <details id="six-request-budget" class="stunt-study">
         <summary>Budget a 30-second edit from eight-second requests</summary>
         <p>In this example, six charged requests at 0.25 credits use 1.5 credits. Keep five shots and trim each to six seconds for a 30-second edit. On the two-credit pack, the upfront purchase is $5, the requests use $3.75 worth of credits, and 0.5 credits remain.</p>
@@ -198,7 +199,7 @@
   </main>
   <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. The ingredient recipe was verified on November 10, 2026. See the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> for current terms. The guide prepares sample commands without executing them. Earlier films in the cookbook identify their own models and settings. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
 </div>
-<script type="module" src="./api-request.mjs?v=f662e9692f7d"></script>
-<script type="module" src="./png-reference.mjs?v=f662e9692f7d"></script>
+<script type="module" src="./api-request.mjs?v=0a0c6f2febb8"></script>
+<script type="module" src="./png-reference.mjs?v=0a0c6f2febb8"></script>
 </body>
 </html>

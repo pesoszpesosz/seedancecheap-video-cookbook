@@ -1,4 +1,4 @@
-import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=f662e9692f7d';
+import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=0a0c6f2febb8';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
@@ -109,6 +109,8 @@ if (typeof document !== 'undefined') {
   const referenceInput = document.getElementById('ingredient-ids');
   const referenceStatus = document.getElementById('ingredient-error');
   const availability = document.getElementById('model-availability');
+  const rawAvailability = document.getElementById('raw-availability');
+  const rawLink = rawAvailability.querySelector('a');
   const preflight = document.getElementById('availability-command');
   const availabilityPage = new URL(availability.href);
   const terms = document.getElementById('pilot-terms');
@@ -127,14 +129,19 @@ if (typeof document !== 'undefined') {
       preflight.textContent = availabilityCommand(model.value, shell.value);
       trialOption.disabled = details.paidOnly === true;
       if (trialOption.disabled && funding.value === 'trial') funding.value = '';
-      const availabilityUrl = new URL(availabilityPage);
-      if (details.availabilityJson) {
-        availabilityUrl.pathname = '/api/availability';
-        availabilityUrl.hash = '';
-      }
-      availabilityUrl.searchParams.set('model', model.value);
-      availability.href = availabilityUrl.toString();
       if (!Object.hasOwn(pilotSizes, format.value)) throw new Error('Choose a listed 720p format.');
+      const availabilityUrl = new URL(availabilityPage);
+      availabilityUrl.searchParams.set('model', model.value);
+      rawAvailability.hidden = !details.availabilityJson;
+      if (details.availabilityJson) {
+        const jsonUrl = new URL(availabilityUrl);
+        jsonUrl.pathname = '/api/availability';
+        jsonUrl.hash = '';
+        rawLink.href = jsonUrl.href;
+        availabilityUrl.searchParams.set('ratio', format.value);
+        availabilityUrl.searchParams.set('utm_content', 'quote_review');
+      }
+      availability.href = availabilityUrl.href;
       const needsReferences = Boolean(details.maxReferences);
       referenceFields.hidden = !needsReferences;
       referenceInput.disabled = !needsReferences;
