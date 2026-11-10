@@ -1,0 +1,107 @@
+name: Check a SeedanceCheap video format
+run-name: Video format preflight · ${{ github.run_number }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: Exact model ID
+        type: string
+        required: true
+        default: veo31-text-8s-720
+      ratio:
+        description: Exact aspect ratio
+        type: string
+        required: true
+        default: '9:16'
+      size:
+        description: Exact output dimensions
+        type: string
+        required: true
+        default: 720x1280
+  workflow_call:
+    inputs:
+      model:
+        type: string
+        required: true
+      ratio:
+        type: string
+        required: true
+      size:
+        type: string
+        required: true
+    outputs:
+      decision:
+        description: Admission and exact-format decision
+        value: ${{ jobs.check.outputs.decision }}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      decision: ${{ steps.admission.outputs.decision }}
+    steps:
+      - name: Check out the reviewed preflight helper
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: pesoszpesosz/seedancecheap-video-cookbook
+          ref: 44a8528eb17931da153fe7394c1c144102d1e813
+          persist-credentials: false
+      - name: Check live admission and exact format
+        id: admission
+        env:
+          PREFLIGHT_MODEL: ${{ inputs.model }}
+          PREFLIGHT_RATIO: ${{ inputs.ratio }}
+          PREFLIGHT_SIZE: ${{ inputs.size }}
+        run: |
+          python3 - <<'PY'
+          import contextlib
+          import http.client
+          import json
+          import os
+          import re
+          import sys
+          import time
+          from urllib.parse import urlencode
+
+          sys.path.insert(0, "examples/admission-preflight")
+          from check_request import check_request
+
+          request = {
+              key: os.environ["PREFLIGHT_" + key.upper()]
+              for key in ("model", "ratio", "size")
+          }
+          patterns = (r"[a-z0-9][a-z0-9_.-]{0,79}", r"[1-9][0-9]{0,2}:[1-9][0-9]{0,2}", r"[1-9][0-9]{0,4}x[1-9][0-9]{0,4}")
+          if not all(re.fullmatch(pattern, value) for pattern, value in zip(patterns, request.values())):
+              decision = "INVALID_REQUEST"
+          else:
+              catalog = None
+              try:
+                  with contextlib.closing(http.client.HTTPSConnection("seedancecheap.com", timeout=12)) as client:
+                      client.request("GET", "/api/availability/catalog", headers={
+                          "Accept": "application/json",
+                          "Cache-Control": "no-cache",
+                      })
+                      response = client.getresponse()
+                      if response.status == 200:
+                          catalog = json.loads(response.read(1_048_576))
+              except (OSError, ValueError, http.client.HTTPException):
+                  pass
+              decision = check_request(request, catalog, time.time())
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              print(f"decision={decision}", file=output)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              print("## Video format preflight", file=summary)
+              print(f"**{decision}**\n", file=summary)
+              if decision != "INVALID_REQUEST":
+                  query = urlencode({"model": request["model"]})
+                  print(f"[Read the exact model status](https://seedancecheap.com/api/availability?{query})", file=summary)
+              print("This check uses public admission data. Review price, input mode and funding before a separate submission.", file=summary)
+          print(decision)
+          sys.exit(0 if decision == "REVIEW_FUNDING" else 1)
+          PY

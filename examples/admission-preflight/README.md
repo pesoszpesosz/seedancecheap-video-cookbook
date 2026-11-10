@@ -57,6 +57,26 @@ The checker never opens an account, buys credits, reserves capacity, sends the s
 
 Run both offline test files with `python -m unittest discover -s examples/admission-preflight`.
 
+## Check a planned format in GitHub Actions
+
+Open [Check a SeedanceCheap video format](https://github.com/pesoszpesosz/seedancecheap-video-cookbook/actions/workflows/video-format-preflight.yml). Select **Run workflow** from a repository where you have write access. The defaults check the 8-second, 720p Veo 3.1 text recipe in portrait. To verify that the gate blocks a mismatch, change the ratio to `16:9` while keeping `720x1280`.
+
+You can call the same workflow from another repository. Pass the recipe and format as ordinary inputs. The workflow checks out only the pinned public helper from this cookbook.
+
+```yaml
+jobs:
+  preflight:
+    uses: pesoszpesosz/seedancecheap-video-cookbook/.github/workflows/video-format-preflight.yml@main
+    permissions:
+      contents: read
+    with:
+      model: veo31-text-8s-720
+      ratio: '9:16'
+      size: 720x1280
+```
+
+Pin a reviewed commit when embedding the example in production. The job succeeds with the output `decision=REVIEW_FUNDING` when a fresh catalog lists the exact pair. A wait decision or invalid input blocks the job. This is a point-in-time preflight with no secret or generation call. Review the actual quote and funding before submitting anything.
+
 ## What to add in an actual client
 
 Keep each observation bound to the model URL that produced it. Supply a valid current Unix-seconds `now`, reject failed reads, and avoid accepting a response from an earlier model selection. The two-minute age and one-minute future tolerance mirror the inspected public UI as a teaching example; they are not a capacity reservation or SLA.
