@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Submit once, recover the same AI video job | SeedanceCheap</title>
-  <meta name="description" content="Prepare AI video API requests locally for text or private image references. Check live formats and pricing, save the exact JSON, and recover a lost response by request ID.">
+  <meta name="description" content="Check a private reference PNG in your browser and prepare AI video API requests locally. Review live formats and pricing, save the JSON, and recover a job by request ID.">
   <!-- Discovery metadata: maintained by scripts/update-discovery.mjs -->
   <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html">
   <link rel="icon" type="image/png" href="brand-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SeedanceCheap Creator Cookbook">
   <meta property="og:title" content="Submit once, recover the same AI video job | SeedanceCheap">
-  <meta property="og:description" content="Prepare AI video API requests locally for text or private image references. Check live formats and pricing, save the exact JSON, and recover a lost response by request ID.">
+  <meta property="og:description" content="Check a private reference PNG in your browser and prepare AI video API requests locally. Review live formats and pricing, save the JSON, and recover a job by request ID.">
   <meta property="og:url" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html">
   <meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
   <meta property="og:image:alt" content="SeedanceCheap studio logo">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Submit once, recover the same AI video job | SeedanceCheap">
-  <meta name="twitter:description" content="Prepare AI video API requests locally for text or private image references. Check live formats and pricing, save the exact JSON, and recover a lost response by request ID.">
+  <meta name="twitter:description" content="Check a private reference PNG in your browser and prepare AI video API requests locally. Review live formats and pricing, save the JSON, and recover a job by request ID.">
   <meta name="twitter:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
   <!-- /Discovery metadata -->
   <style>
@@ -61,6 +61,7 @@
 
     <p>Already using n8n? <a href="#n8n-preflight">Check your format before running a paid step</a>.</p>
     <p>Using Postman? <a href="#postman-preflight">Download the two read-only portrait checks</a>.</p>
+    <p>Using a private image reference? <a href="#png-reference-check">Check your PNG before uploading</a>.</p>
 
     <section class="card" aria-labelledby="prepare-heading">
       <h2 id="prepare-heading">Prepare a small video pilot</h2>
@@ -83,6 +84,7 @@
         <textarea id="ingredient-ids" rows="3" maxlength="240" spellcheck="false" autocomplete="off" aria-describedby="ingredient-help ingredient-error" disabled></textarea>
         <p id="ingredient-help" class="muted">Add one to three IDs, one per line in the order you want to use them. Get these IDs by <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=ingredient_references#references">uploading private PNGs through the API</a>. Use an owned or permitted image of an object, setting or clothing without people or faces. The planner keeps the IDs in this page and your downloaded JSON.</p>
         <p id="ingredient-error" class="error" aria-live="polite"></p>
+        <p><a href="#png-reference-check">Check your PNG locally before requesting a reference ID</a>.</p>
         <p class="muted">Try a picture of your own folded paper boat. Ask for a slow push toward the bow while the folds and colour stay visible. Ingredient images guide what appears in the scene. For timed start and end frames, check that separate recipe.</p>
         <p><a href="https://seedancecheap.com/v1/models">Check the live model catalog and credit price</a>. Find <code>veo31-ingredients-8s-720</code>.</p>
       </div>
@@ -112,6 +114,15 @@
       <p class="muted">Edits update the preview. Save your chosen version before submitting. If you change the model, prompt or settings for another attempt, use a new ID and keep both records. Changing this local preview does not change a previously submitted job.</p>
     </section>
 
+    <section class="card" aria-labelledby="png-reference-check">
+      <h2 id="png-reference-check">Check a private reference PNG</h2>
+      <p>Use this before uploading an image through the SeedanceCheap API. Your image stays in this browser.</p>
+      <label for="reference-png-file">Choose an image file</label>
+      <input id="reference-png-file" type="file" accept="image/*,.png" aria-describedby="reference-png-requirements">
+      <p class="muted" id="reference-png-requirements">Use a still, non-interlaced 8-bit RGB or RGBA PNG, at most 2 MiB. Each side must be 300 to 2,048 pixels.</p>
+      <p id="reference-png-result" class="status" role="status" aria-live="polite" aria-atomic="true">Choose a file to see its result.</p>
+      <p>After the local check, follow the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=png_reference_check#references">private reference upload steps</a>. The API checks the file again and returns the reference ID for your recipe.</p>
+    </section>
     <section class="card" aria-labelledby="postman-preflight">
       <h2 id="postman-preflight">Check a portrait video format in Postman</h2>
       <figure id="format-gate" class="format-gate">
@@ -187,6 +198,7 @@
   </main>
   <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. The ingredient recipe was verified on November 10, 2026. See the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> for current terms. The guide prepares sample commands without executing them. Earlier films in the cookbook identify their own models and settings. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
 </div>
-<script type="module" src="./api-request.mjs?v=51256df92311"></script>
+<script type="module" src="./api-request.mjs?v=f662e9692f7d"></script>
+<script type="module" src="./png-reference.mjs?v=f662e9692f7d"></script>
 </body>
 </html>
