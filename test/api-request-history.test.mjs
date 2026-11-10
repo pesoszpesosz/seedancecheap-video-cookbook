@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 test('Back-restored fields reconcile with JSON and the availability route after pageshow',async()=>{
-  const names=['request-id','pilot-prompt','command-shell','pilot-model','pilot-funding','trial-funding-option','pilot-format','availability-command','model-availability','pilot-terms','request-json','download-request','request-status','submit-command','recover-command','poll-command','download-command'];
-  const nodes=Object.fromEntries(names.map(name=>[name,{value:'',textContent:'',disabled:false,href:'',classList:{add(){},remove(){}},handlers:{},addEventListener(name,callback){(this.handlers[name]??=[]).push(callback);}}]));
+  const names=['request-id','pilot-prompt','command-shell','pilot-model','pilot-funding','trial-funding-option','pilot-format','availability-command','model-availability','pilot-terms','request-json','download-request','request-status','submit-command','recover-command','poll-command','download-command','ingredient-fields','ingredient-ids','ingredient-error'];
+  const nodes=Object.fromEntries(names.map(name=>[name,{value:'',textContent:'',disabled:false,href:'',classList:{add(){},remove(){}},handlers:{},setAttribute(name,value){this[name]=value;},addEventListener(name,callback){(this.handlers[name]??=[]).push(callback);}}]));
   Object.assign(nodes['request-id'],{value:'original_id'});
   Object.assign(nodes['pilot-prompt'],{value:'Original paper-boat scene.'});
   Object.assign(nodes['command-shell'],{value:'bash'});
@@ -96,6 +96,24 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     assert.equal(legacyAvailability.pathname,'/api');
     assert.equal(legacyAvailability.hash,'#availability');
     assert.equal(legacyAvailability.searchParams.get('model'),'veo-3.1');
+    assert.equal(networkCalls,0);
+    nodes['pilot-model'].value='veo31-ingredients-8s-720';
+    for(const callback of nodes['pilot-model'].handlers.change)callback();
+    assert.equal(nodes['ingredient-fields'].hidden,false);
+    assert.equal(nodes['download-request'].disabled,true);
+    assert.match(nodes['ingredient-error'].textContent,/one to three/);
+    const refs=['ref_'+'b'.repeat(32),'ref_'+'a'.repeat(32)];
+    nodes['ingredient-ids'].value=refs.join('\n');
+    for(const callback of nodes['ingredient-ids'].handlers.input)callback();
+    assert.deepEqual(JSON.parse(nodes['request-json'].textContent).reference_ids,refs);
+    assert.equal(nodes['ingredient-ids']['aria-invalid'],'false');
+    assert.match(nodes['model-availability'].href,/model=veo31-ingredients-8s-720/);
+    nodes['pilot-model'].value='veo31-text-8s-720';
+    for(const callback of nodes['pilot-model'].handlers.change)callback();
+    assert.equal(nodes['ingredient-fields'].hidden,true);
+    assert.equal(nodes['ingredient-ids'].disabled,true);
+    assert.equal(Object.hasOwn(JSON.parse(nodes['request-json'].textContent),'reference_ids'),false);
+    assert.equal(JSON.stringify(history.state).includes(refs[0]),false);
     assert.equal(networkCalls,0);
     nodes['pilot-funding'].value='';
     for(const callback of nodes['pilot-funding'].handlers.change)callback();

@@ -68,3 +68,24 @@ test('recovery keeps the original ID in both shells without changing or submitti
     assert.doesNotMatch(command.recover,/--data|POST/);
   }
 });
+
+test('ingredient mode keeps one to three unique private image IDs in input order',()=>{
+  const model = 'veo31-ingredients-8s-720';
+  const first = 'ref_' + 'b'.repeat(32), second = 'ref_' + 'a'.repeat(32), third = 'ref_' + 'c'.repeat(32);
+  const references = [first,second,third];
+  const request = makeRequest('Keep the folds visible.','ingredients_001',model,'paid','9:16',references);
+  assert.deepEqual(request,{
+    model,duration:8,prompt:'Keep the folds visible.',ratio:'9:16',size:'720x1280',
+    request_id:'ingredients_001',free_trial:false,auto_retry:false,reference_ids:references,
+  });
+  references.reverse();
+  assert.deepEqual(request.reference_ids,[first,second,third]);
+  assert.deepEqual(makeRequest('A boat.','one_image',model,'paid','16:9',[first]).reference_ids,[first]);
+  for (const invalid of [[],[first,first],[first,second,third,'ref_'+'d'.repeat(32)],
+    ['https://example.com/image.png'],[null],new Array(1)]) {
+    assert.throws(()=>makeRequest('A boat.','invalid_images',model,'paid','16:9',invalid),/reference ID|ref_ ID/);
+  }
+  assert.throws(()=>makeRequest('A boat.','trial_image',model,'trial','16:9',[first]),/paid funding explicitly/);
+  assert.throws(()=>makeRequest('A boat.','wrong_recipe','veo31-text-8s-720','paid','16:9',[first]),/does not accept/);
+  assert.match(commandExamples('ingredients_001','bash',model).availability,/model=veo31-ingredients-8s-720/);
+});

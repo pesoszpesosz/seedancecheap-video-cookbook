@@ -4,6 +4,8 @@ Watch complete Seedance 2.5 action and Veo 3.1 Lite transformation films, copy t
 
 **Build an 8-second API pilot.** [Check live availability and the 720p Veo 3.1 text quote](https://seedancecheap.com/api?model=veo31-text-8s-720&utm_source=github&utm_medium=cookbook&utm_campaign=api_request_guide&utm_content=availability#availability), then [prepare the exact request in the free planner](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?model=veo31-text-8s-720&from=github#prepare-heading). API execution uses 0.25 credit when available, about $0.25 of the optional $99 upfront pack of 100 credits. The smallest pack is $2.50 for one credit.
 
+**[Plan an eight-second video from private image references](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html?model=veo31-ingredients-8s-720&from=github#prepare-heading).** Add one to three owned reference IDs in order and save the exact 720p request locally. Check the current format and the 0.25-credit recipe before deciding whether to run it.
+
 **[Check a vertical crop before export](https://seedancecheap.com/tools/rooftop-crop-checker).** The rooftop sample shows a ladder grip that disappears in a 9:16 fill crop and stays visible in fit. Try the sample or open your own clip. Your file stays in the browser.
 
 [Watch the chair-to-buggy editing breakdown](https://pesoszpesosz.github.io/seedancecheap-video-cookbook/seat-upgrade.html?from=github#edit). See what keeps the transformation readable, then try the three-beat exercise in the free text planner.

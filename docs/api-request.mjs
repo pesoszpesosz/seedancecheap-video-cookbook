@@ -1,15 +1,27 @@
-import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=c190d914aeb3';
+import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=a5c7cabbaa89';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
   'seedance-2.0': {duration:15, credits:0.5},
   'veo-3.1': {duration:8, credits:0.5, paidOnly:true},
-  'veo31-text-8s-720': {duration:8, credits:0.25, paidOnly:true, availabilityJson:true}
+  'veo31-text-8s-720': {duration:8, credits:0.25, paidOnly:true, availabilityJson:true},
+  'veo31-ingredients-8s-720': {duration:8, credits:0.25, paidOnly:true, availabilityJson:true, maxReferences:3}
 };
 
 const pilotSizes = {'16:9':'1280x720', '9:16':'720x1280'};
 
-export function makeRequest(prompt, requestId, model='seedance-2.5', funding='', ratio='16:9') {
+function referenceError(ids, max) {
+  if (!Array.isArray(ids)) return 'Use an ordered list of private image reference IDs.';
+  if (!max) return ids.length ? 'The selected recipe does not accept these image references.' : '';
+  if (ids.length < 1 || ids.length > max) return 'Enter one to three private image reference IDs.';
+  if ([...ids].some(id => typeof id !== 'string' || !/^ref_[a-f0-9]{32}$/.test(id))) {
+    return 'Enter one valid ref_ ID per line. Use the IDs returned for your private PNG uploads.';
+  }
+  if (new Set(ids).size !== ids.length) return 'Enter each image reference ID once.';
+  return '';
+}
+
+export function makeRequest(prompt, requestId, model='seedance-2.5', funding='', ratio='16:9', referenceIds=[]) {
   if (!/^[A-Za-z0-9_-]{1,80}$/.test(requestId)) {
     throw new Error('Use 1–80 letters, digits, underscores or hyphens for this example ID.');
   }
@@ -23,6 +35,8 @@ export function makeRequest(prompt, requestId, model='seedance-2.5', funding='',
   if (funding === 'trial' && details.paidOnly) {
     throw new Error('Choose paid funding explicitly to prepare the Veo 3.1 recipe.');
   }
+  const problem = referenceError(referenceIds, details.maxReferences);
+  if (problem) throw new Error(problem);
   return {
     model,
     duration:details.duration,
@@ -31,7 +45,8 @@ export function makeRequest(prompt, requestId, model='seedance-2.5', funding='',
     size: pilotSizes[ratio],
     request_id: requestId,
     free_trial: funding === 'trial',
-    auto_retry: false
+    auto_retry: false,
+    ...(referenceIds.length ? {reference_ids:[...referenceIds]} : {})
   };
 }
 
@@ -86,6 +101,9 @@ if (typeof document !== 'undefined') {
   const funding = document.getElementById('pilot-funding');
   const format = document.getElementById('pilot-format');
   const trialOption = document.getElementById('trial-funding-option');
+  const referenceFields = document.getElementById('ingredient-fields');
+  const referenceInput = document.getElementById('ingredient-ids');
+  const referenceStatus = document.getElementById('ingredient-error');
   const availability = document.getElementById('model-availability');
   const preflight = document.getElementById('availability-command');
   const availabilityPage = new URL(availability.href);
@@ -113,9 +131,20 @@ if (typeof document !== 'undefined') {
       availabilityUrl.searchParams.set('model', model.value);
       availability.href = availabilityUrl.toString();
       if (!Object.hasOwn(pilotSizes, format.value)) throw new Error('Choose a listed 720p format.');
+      const needsReferences = Boolean(details.maxReferences);
+      referenceFields.hidden = !needsReferences;
+      referenceInput.disabled = !needsReferences;
+      const referenceIds = needsReferences ? referenceInput.value.split(/\r?\n/).map(id => id.trim()).filter(Boolean) : [];
       const size = pilotSizes[format.value];
       terms.textContent = `${details.duration}-second request · ${details.credits} credit if paid · ${format.value} · requested ${size.replace('x', '×')}`;
-      prepared = makeRequest(prompt.value, requestId.value, model.value, funding.value, format.value);
+      const problem = referenceError(referenceIds, details.maxReferences);
+      const showReferenceError = Boolean(problem && (referenceIds.length || funding.value));
+      referenceStatus.textContent = showReferenceError ? problem : '';
+      referenceInput.setAttribute('aria-invalid', String(showReferenceError));
+      if (problem && (referenceIds.length || funding.value)) {
+        throw new Error('Check the image reference field above.');
+      }
+      prepared = makeRequest(prompt.value, requestId.value, model.value, funding.value, format.value, referenceIds);
       preview.textContent = JSON.stringify(prepared, null, 2);
       const commands = commandExamples(prepared.request_id, shell.value, prepared.model);
       for (const name of Object.keys(commands)) {
@@ -138,7 +167,7 @@ if (typeof document !== 'undefined') {
     }
   }
 
-  for (const field of [requestId, prompt]) field.addEventListener('input', render);
+  for (const field of [requestId, prompt, referenceInput]) field.addEventListener('input', render);
   shell.addEventListener('change', render);
   model.addEventListener('change', render);
   format.addEventListener('change', render);

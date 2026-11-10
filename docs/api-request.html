@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Submit once, recover the same AI video job | SeedanceCheap</title>
-  <meta name="description" content="Choose trial or paid funding, prepare AI video JSON locally, save its request ID, recover a lost response, and download a ready result. Free guide and curl examples.">
+  <meta name="description" content="Prepare AI video API requests locally for text or private image references. Check live formats and pricing, save the exact JSON, and recover a lost response by request ID.">
   <!-- Discovery metadata: maintained by scripts/update-discovery.mjs -->
   <link rel="canonical" href="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html">
   <link rel="icon" type="image/png" href="brand-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SeedanceCheap Creator Cookbook">
   <meta property="og:title" content="Submit once, recover the same AI video job | SeedanceCheap">
-  <meta property="og:description" content="Choose trial or paid funding, prepare AI video JSON locally, save its request ID, recover a lost response, and download a ready result. Free guide and curl examples.">
+  <meta property="og:description" content="Prepare AI video API requests locally for text or private image references. Check live formats and pricing, save the exact JSON, and recover a lost response by request ID.">
   <meta property="og:url" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/api-request.html">
   <meta property="og:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
   <meta property="og:image:alt" content="SeedanceCheap studio logo">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Submit once, recover the same AI video job | SeedanceCheap">
-  <meta name="twitter:description" content="Choose trial or paid funding, prepare AI video JSON locally, save its request ID, recover a lost response, and download a ready result. Free guide and curl examples.">
+  <meta name="twitter:description" content="Prepare AI video API requests locally for text or private image references. Check live formats and pricing, save the exact JSON, and recover a lost response by request ID.">
   <meta name="twitter:image" content="https://pesoszpesosz.github.io/seedancecheap-video-cookbook/brand-icon.png">
   <!-- /Discovery metadata -->
   <style>
@@ -36,6 +36,7 @@
     footer{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;font-size:13px;color:var(--muted)}a:focus-visible,button:focus-visible,input:focus,textarea:focus,select:focus{outline:3px solid #518c36;outline-offset:3px}
     @media(max-width:760px){.shell{padding:20px 18px 35px}.tag{max-width:145px;text-align:right}header{align-items:start;margin-bottom:28px}.flow{grid-template-columns:1fr 1fr}.card{padding:20px}.intro{font-size:17px}.actions .button{width:100%;text-align:center}th,td{padding:9px;font-size:14px}}
     @media print{body{background:white}.shell{padding:0}.actions,button{display:none}.card{break-inside:avoid}pre{border:1px solid #bbb;background:white;color:black}}
+    #ingredient-ids{min-height:88px}
     .stunt-study{margin:16px 0 20px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#f7faf4}.stunt-study summary{font-weight:650;cursor:pointer}.stunt-study[open] summary{margin-bottom:12px}.stunt-study video{display:block;width:min(100%,360px);height:auto;background:#0c151d;border-radius:10px}
   </style>
 </head>
@@ -61,7 +62,7 @@
     <p>Already using n8n? <a href="#n8n-preflight">Check your format before running a paid step</a>.</p>
 
     <section class="card" aria-labelledby="prepare-heading">
-      <h2 id="prepare-heading">Prepare a small text-only pilot</h2>
+      <h2 id="prepare-heading">Prepare a small video pilot</h2>
       <p>Define what a usable result must show before trying it. The proposed paper-boat test below is a simple geometry, water-contact and camera-motion exercise; this particular request has not been generated.</p>
       <details id="stunt-contact" class="stunt-study">
         <summary>Watch the wheel-contact test and copy the eight-second prompt</summary>
@@ -75,12 +76,20 @@
         <p class="muted">For this proposed pilot, select the eight-second Veo 3.1 recipe and Portrait. Check the exact format and live admission below before choosing funding. On playback, check the first second, the wheel’s contact with the wedge, and the timing of the thud.</p>
       </details>
       <label for="pilot-model">Model and length</label>
-      <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option><option value="veo31-text-8s-720">Veo 3.1 · 8s · 0.25 credit</option><option value="veo-3.1">Veo 3.1 legacy · 8 seconds · 0.5 credit</option></select>
+      <select id="pilot-model"><option value="seedance-2.5">Seedance 2.5 · 30 seconds · 1 credit</option><option value="seedance-2.0">Seedance 2.0 · 15 seconds · 0.5 credit</option><option value="veo31-text-8s-720">Veo 3.1 text · 8s · 0.25 credit</option><option value="veo31-ingredients-8s-720">Veo 3.1 images · 8s · 0.25 credit</option><option value="veo-3.1">Veo 3.1 legacy · 8 seconds · 0.5 credit</option></select>
+      <div id="ingredient-fields" hidden>
+        <label for="ingredient-ids">Private image reference IDs</label>
+        <textarea id="ingredient-ids" rows="3" maxlength="240" spellcheck="false" autocomplete="off" aria-describedby="ingredient-help ingredient-error" disabled></textarea>
+        <p id="ingredient-help" class="muted">Add one to three IDs, one per line in the order you want to use them. Get these IDs by <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=ingredient_references#references">uploading private PNGs through the API</a>. Use an owned or permitted image of an object, setting or clothing without people or faces. The planner keeps the IDs in this page and your downloaded JSON.</p>
+        <p id="ingredient-error" class="error" aria-live="polite"></p>
+        <p class="muted">Try a picture of your own folded paper boat. Ask for a slow push toward the bow while the folds and colour stay visible. Ingredient images guide what appears in the scene. For timed start and end frames, check that separate recipe.</p>
+        <p><a href="https://seedancecheap.com/v1/models">Check the live model catalog and credit price</a>. Find <code>veo31-ingredients-8s-720</code>.</p>
+      </div>
       <label for="pilot-format">720p format</label>
       <select id="pilot-format"><option value="16:9">Landscape · 1280×720</option><option value="9:16">Portrait · 720×1280</option></select>
       <p style="margin-top:12px"><span id="pilot-terms" class="pill">30-second request · 1 credit if paid · 16:9 · requested 1280×720</span></p>
       <p><strong>Before submitting or buying credits:</strong> <a id="model-availability" data-site-link href="https://seedancecheap.com/api?model=seedance-2.5&amp;utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=availability#availability">Check this model’s live availability without signing in →</a> Confirm that the selected orientation and size are listed. If capacity or the exact format cannot be verified, wait before starting a new request. Keep any existing job’s request ID and settings unchanged.</p>
-      <p class="muted">The quarter-credit Veo 3.1 option allocates about $0.25 from the $99 upfront 100-credit pack, or about $0.63 from one $2.50 credit. Both Veo options require paid funding. For the quarter-credit option, the availability link opens the exact API response. Check <code>generation_status</code> and <code>available_formats</code> before submitting. Output dimensions, delivery and creative quality can vary.</p>
+      <p class="muted">The quarter-credit Veo 3.1 option allocates about $0.25 from the $99 upfront 100-credit pack, or about $0.63 from one $2.50 credit. The Veo options require paid funding. For either quarter-credit recipe, the availability link opens its exact API response. Check <code>generation_status</code> and <code>available_formats</code> before submitting. Output dimensions, delivery and creative quality can vary.</p>
       <details id="six-request-budget" class="stunt-study">
         <summary>Budget a 30-second edit from eight-second requests</summary>
         <p>In this example, six charged requests at 0.25 credits use 1.5 credits. Keep five shots and trim each to six seconds for a 30-second edit. On the two-credit pack, the upfront purchase is $5, the requests use $3.75 worth of credits, and 0.5 credits remain.</p>
@@ -162,8 +171,8 @@
       <div class="actions"><a class="button" data-site-link href="https://seedancecheap.com/?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=closing_offer">Inspect the examples and current offer →</a></div>
     </section>
   </main>
-  <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. Model and duration fields were checked against the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> on November 8, 2026. The guide prepares sample commands without executing them. Earlier films in the cookbook identify their own models and settings. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
+  <footer>Published by SeedanceCheap, an independent platform. Prepared with Codex. This guide and builder are free; API execution requires your account and applicable entitlement or funding. The ingredient recipe was verified on November 10, 2026. See the <a data-site-link href="https://seedancecheap.com/api?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=api_request_guide&amp;utm_content=source">public API documentation</a> for current terms. The guide prepares sample commands without executing them. Earlier films in the cookbook identify their own models and settings. See the <a href="https://curl.se/docs/manpage.html#--fail-with-body">curl documentation</a> and <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook">inspect the source</a>.</footer>
 </div>
-<script type="module" src="./api-request.mjs?v=c190d914aeb3"></script>
+<script type="module" src="./api-request.mjs?v=a5c7cabbaa89"></script>
 </body>
 </html>
