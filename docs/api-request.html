@@ -61,6 +61,7 @@
 
     <p>Already using n8n? <a href="#n8n-preflight">Check your format before running a paid step</a>.</p>
     <p>Using Postman? <a href="#postman-preflight">Download the two read-only portrait checks</a>.</p>
+    <p>Using GitHub Actions? <a href="#github-actions-preflight">See the passing and blocked hosted runs</a>.</p>
     <p>Using a private image reference? <a href="#png-reference-check">Check your PNG before uploading</a>.</p>
 
     <section class="card" aria-labelledby="prepare-heading">
@@ -147,6 +148,17 @@
       </ol>
       <p>Try <code>veo31-text-8s-720</code> with <code>9:16</code> and <code>720x1280</code>. Then change only the ratio to <code>16:9</code>. When both original format rows are available, the first run passes the format check and the second returns <code>WAIT_FORMAT</code>.</p>
       <p class="muted">Each run reads the public catalog once. It makes no generation or purchase request and does not reserve capacity. <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/tree/main/examples/n8n-format-preflight#readme">Read all workflow decisions and inspect the source</a>.</p>
+    </section>
+
+    <section class="card" aria-labelledby="github-actions-preflight">
+      <h2 id="github-actions-preflight">Check a video format in GitHub Actions</h2>
+      <p>Inspect both hosted runs for the same eight-second Veo 3.1 text recipe. They read the public catalog before a separate funding review.</p>
+      <ul>
+        <li><a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/actions/runs/42886382047">Passing portrait check</a> · <code>9:16</code> with <code>720x1280</code> returned <code>REVIEW_FUNDING</code>.</li>
+        <li><a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/actions/runs/42886419914">Blocked mismatch check</a> · changing only the ratio to <code>16:9</code> returned <code>WAIT_FORMAT</code>.</li>
+      </ul>
+      <p>Copy the <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/blob/b8ddda43bb721d7412639df0944c88cebd60d985/examples/admission-preflight/README.md#check-a-planned-format-in-github-actions">pinned workflow example</a> to call it from your own repository. The manual runs used no API key, account details or generation credits.</p>
+      <p><a data-site-link href="https://seedancecheap.com/api?model=veo31-text-8s-720&amp;ratio=9%3A16&amp;utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=github_actions_preflight_nov10&amp;utm_content=github_actions_quote#availability">Check the current portrait quote</a> before choosing funding. The run results are point-in-time checks.</p>
     </section>
 
     <section class="card" aria-labelledby="commands-heading">
