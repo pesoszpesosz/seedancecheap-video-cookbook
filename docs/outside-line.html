@@ -84,14 +84,19 @@
       <li><time datetime="PT6.1S">6.1 s</time><span>Car 07 reaches the stripe. The chime confirms the finish.</span></li>
     </ol>
     <p class="quiet"><a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/tree/main/examples/outside-line">Open the animation and sound source</a>.</p>
-    <a class="plan" data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=outside_line_nov10&amp;utm_content=free_builder#builder">Plan a chase shot</a>
-    <p class="quiet">Prompt planning is free. Video generation is a separate step.</p>
+    <a id="outside-line-pilot" class="plan" href="api-request.html?starter=outside-line&amp;from=other&amp;campaign=outside_line_nov10#prepare-heading">Open the eight-second shot in the planner</a>
+    <p class="quiet">A proposed portrait prompt based on this code-rendered race. Planning is free. Review the live quote before choosing funding.</p>
+    <p class="quiet"><a data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=outside_line_nov10&amp;utm_content=free_builder#builder">Open the character planner</a>.</p>
   </section>
 </main>
 <footer class="wrap">Original code-rendered animation and synthesized sound by the SeedanceCheap team with Codex.</footer>
 <script type="module">
-  import { applyWorksheetLinks } from './links.mjs?v=16467890bba7';
+  import { applyWorksheetLinks, worksheetSource } from './links.mjs?v=037967bd30a8';
   applyWorksheetLinks(document, location.search);
+  const pilot = document.getElementById('outside-line-pilot');
+  const destination = new URL(pilot.href);
+  destination.searchParams.set('from', worksheetSource(location.search, document.referrer) || 'other');
+  pilot.href = destination.href;
 </script>
 </body>
 </html>

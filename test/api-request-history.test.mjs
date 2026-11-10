@@ -149,6 +149,34 @@ test('Back-restored fields reconcile with JSON and the availability route after 
       await import(`../docs/api-request.mjs?ratio-fallback-${index}`);
       assert.equal(nodes['pilot-format'].value,'16:9');
     }
+    const intro = {textContent: ''};
+    nodes['pilot-intro'] = intro;
+    for (const [index, query] of [
+      '?starter=outside-line&from=mastodon&campaign=outside_line_nov10&funding=paid&prompt=ignored',
+      '?starter=outside-line&starter=outside-line',
+    ].entries()) {
+      globalThis.location.search = query;
+      Object.assign(nodes['pilot-prompt'], {value:'Original paper-boat scene.', defaultValue:'Original paper-boat scene.'});
+      Object.assign(nodes['request-id'], {value:'paper_boat_pilot_001', defaultValue:'paper_boat_pilot_001'});
+      nodes['pilot-model'].value='seedance-2.5';
+      nodes['pilot-format'].value='16:9';
+      await import(`../docs/api-request.mjs?starter-${index}`);
+      assert.equal(nodes['pilot-funding'].value,'');
+      assert.equal(nodes['download-request'].disabled,true);
+      if (index === 0) {
+        assert.match(intro.textContent,/proposed text-to-video prompt/);
+        assert.match(nodes['pilot-prompt'].value,/amber car crosses a painted finish stripe/);
+        assert.match(nodes['request-id'].value,/^outside_line_[0-9a-f-]{36}$/);
+        assert.equal(nodes['pilot-model'].value,'veo31-text-8s-720');
+        assert.equal(nodes['pilot-format'].value,'9:16');
+        const quote=new URL(nodes['model-availability'].href);
+        assert.equal(quote.searchParams.get('utm_source'),'mastodon');
+        assert.equal(quote.searchParams.get('utm_campaign'),'outside_line_nov10');
+      } else {
+        assert.equal(nodes['pilot-prompt'].value,'Original paper-boat scene.');
+        assert.equal(nodes['request-id'].value,'paper_boat_pilot_001');
+      }
+    }
     assert.equal(networkCalls,0);
   } finally {
     for(const [key,value] of Object.entries(saved)){if(value===undefined)delete globalThis[key];else globalThis[key]=value;}

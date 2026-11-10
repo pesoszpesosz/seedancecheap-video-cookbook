@@ -1,4 +1,4 @@
-import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=16467890bba7';
+import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=037967bd30a8';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
@@ -94,12 +94,26 @@ if (typeof document !== 'undefined') {
   const prompt = document.getElementById('pilot-prompt');
   const shell = document.getElementById('command-shell');
   const model = document.getElementById('pilot-model');
+  const format = document.getElementById('pilot-format');
+  const starters = entry.getAll('starter');
+  if (starters.length === 1 && starters[0] === 'outside-line') {
+    model.value = 'veo31-text-8s-720';
+    format.value = '9:16';
+    document.getElementById('pilot-intro').textContent =
+      'Outside Line starter. This proposed text-to-video prompt adapts an original code-rendered race. On a returned take, check that both cars stay visible and the overtake is clear before the finish.';
+    if (prompt.value === prompt.defaultValue) {
+      prompt.value = 'Eight seconds, vertical 9:16, one overhead tracking shot of a floodlit closed racetrack. From the first frame a teal car brakes into a hairpin while a slightly trailing amber car stays on the wider line. At 1–4 seconds keep both cars and both lane edges visible as they round the bend, wheels gripping the road and bodywork clear of the barriers. At 4–6 seconds both cars straighten and the amber car draws level, then edges ahead. Track the gap without cutting away. At 6–8 seconds the amber car crosses a painted finish stripe first. Keep both cars on the road with a visible gap between them. Engine and tire sound, a short chime at the crossing, no speech or on-screen text.';
+    }
+    if (requestId.value === requestId.defaultValue) {
+      const id = globalThis.crypto?.randomUUID?.();
+      requestId.value = id ? 'outside_line_' + id : '';
+    }
+  }
   const linkedModels = entry.getAll('model');
   if (linkedModels.length === 1 && Object.hasOwn(pilotModels, linkedModels[0])) {
     model.value = linkedModels[0];
   }
   const funding = document.getElementById('pilot-funding');
-  const format = document.getElementById('pilot-format');
   const linkedRatios = entry.getAll('ratio');
   if (linkedRatios.length === 1 && Object.hasOwn(pilotSizes, linkedRatios[0])) {
     format.value = linkedRatios[0];
