@@ -37,7 +37,7 @@
     @media(max-width:760px){.shell{padding:20px 18px 35px}.tag{max-width:145px;text-align:right}header{align-items:start;margin-bottom:28px}.flow{grid-template-columns:1fr 1fr}.card{padding:20px}.intro{font-size:17px}.actions .button{width:100%;text-align:center}th,td{padding:9px;font-size:14px}}
     @media print{body{background:white}.shell{padding:0}.actions,button{display:none}.card{break-inside:avoid}pre{border:1px solid #bbb;background:white;color:black}}
     #ingredient-ids{min-height:88px}
-    .stunt-study{margin:16px 0 20px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#f7faf4}.stunt-study summary{font-weight:650;cursor:pointer}.stunt-study[open] summary{margin-bottom:12px}.stunt-study video{display:block;width:min(100%,360px);height:auto;background:#0c151d;border-radius:10px}
+    .stunt-study,.format-gate{margin:16px 0 20px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#f7faf4}.stunt-study summary{font-weight:650;cursor:pointer}.stunt-study[open] summary{margin-bottom:12px}.stunt-study video,.format-gate video{display:block;width:min(100%,360px);height:auto;background:#0c151d;border-radius:10px}.format-gate figcaption{margin-top:12px}
   </style>
 </head>
 <body>
@@ -114,6 +114,13 @@
 
     <section class="card" aria-labelledby="postman-preflight">
       <h2 id="postman-preflight">Check a portrait video format in Postman</h2>
+      <figure id="format-gate" class="format-gate">
+        <video controls playsinline preload="none" width="360" height="640" poster="format-gate-poster.jpg" aria-label="The Format Gate, an eight-second animation" aria-describedby="format-gate-caption">
+          <source src="format-gate.mp4" type="video/mp4">
+          <a href="format-gate.mp4">Open the video</a>.
+        </video>
+        <figcaption id="format-gate-caption"><strong>The Format Gate.</strong> A wide card marked 1280 × 720 jams at the gate. The 720 × 1280 portrait card rolls through. SeedanceCheap made this eight-second illustration with code-rendered animation and synthesized sound. <a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/tree/main/examples/format-gate#readme">Inspect the animation and sound source</a>.</figcaption>
+      </figure>
       <p><a href="seedancecheap-video-preflight.postman_collection.json" download>Download the Postman collection JSON</a> and import the file into your own workspace. Send the text or image-reference GET that matches your scene.</p>
       <p>Look for HTTP 200, a fresh observation, and the exact <code>9:16</code> and <code>720x1280</code> values in the same format row. All three tests must pass before moving on to the live quote and your funding review.</p>
       <p>The checks use no API key, private image IDs or credits. They create no job and reserve no capacity. Each request has a link to its own live quote.</p>
