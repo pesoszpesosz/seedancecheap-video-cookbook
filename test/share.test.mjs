@@ -5,7 +5,7 @@ import { readSharedBudget, sharedBudgetLink } from '../docs/share.mjs';
 import { worksheetLink, applyWorksheetLinks } from '../docs/links.mjs';
 
 test('campaign readers keep a coarse channel through sharing without forwarding private query data', () => {
-  for (const channel of ['mastodon', 'blogger', 'wordpress', 'pinterest']) {
+  for (const channel of ['mastodon', 'blogger', 'wordpress', 'hashnode', 'pinterest']) {
     const destination = new URL(worksheetLink('https://seedancecheap.com/?utm_campaign=one_idea_oct22#draft', `?from=${channel}&email=private@example.test&token=secret`));
     assert.equal(destination.searchParams.get('utm_source'), channel);
     assert.equal(destination.searchParams.get('utm_campaign'), 'one_idea_oct22');
