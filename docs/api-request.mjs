@@ -1,4 +1,4 @@
-import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=a5c7cabbaa89';
+import { applyWorksheetLinks, isWorksheetChannel } from './links.mjs?v=51256df92311';
 
 export const pilotModels = {
   'seedance-2.5': {duration:30, credits:1},
@@ -100,6 +100,10 @@ if (typeof document !== 'undefined') {
   }
   const funding = document.getElementById('pilot-funding');
   const format = document.getElementById('pilot-format');
+  const linkedRatios = entry.getAll('ratio');
+  if (linkedRatios.length === 1 && Object.hasOwn(pilotSizes, linkedRatios[0])) {
+    format.value = linkedRatios[0];
+  }
   const trialOption = document.getElementById('trial-funding-option');
   const referenceFields = document.getElementById('ingredient-fields');
   const referenceInput = document.getElementById('ingredient-ids');

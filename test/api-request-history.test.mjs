@@ -16,7 +16,7 @@ test('Back-restored fields reconcile with JSON and the availability route after 
   try {
     globalThis.document={getElementById:name=>nodes[name],querySelectorAll:selector=>selector==='[data-site-link]'?[nodes['model-availability'],accountLink]:[]};
     globalThis.window={addEventListener:(name,callback)=>{handlers[name]=callback;}};
-    globalThis.location={search:'?from=facebook&campaign=featured_veo_recipe_nov10&model=veo31-text-8s-720&funding=paid&prompt=ignored'};
+    globalThis.location={search:'?from=facebook&campaign=featured_veo_recipe_nov10&model=veo31-text-8s-720&ratio=9%3A16&funding=paid&prompt=ignored'};
     globalThis.history={state:{unrelated:'retained'},replaceState(value){this.state=value;}};
     globalThis.fetch=()=>{networkCalls++;throw new Error('This builder must remain local.');};
     await import('../docs/api-request.mjs?history-test');
@@ -24,10 +24,11 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     assert.equal(nodes['download-request'].disabled,true);
     assert.match(nodes['submit-command'].textContent,/Complete the request fields/);
     assert.equal(nodes['pilot-model'].value,'veo31-text-8s-720');
+    assert.equal(nodes['pilot-format'].value,'9:16');
     assert.equal(nodes['pilot-funding'].value,'');
     assert.equal(nodes['pilot-prompt'].value,'Original paper-boat scene.');
     assert.equal(nodes['trial-funding-option'].disabled,true);
-    assert.match(nodes['pilot-terms'].textContent,/8-second.*0\.25 credit/);
+    assert.match(nodes['pilot-terms'].textContent,/8-second.*0\.25 credit.*9:16.*720×1280/);
     assert.match(nodes['availability-command'].textContent,/model=veo31-text-8s-720/);
     const linkedAvailability=new URL(nodes['model-availability'].href);
     assert.equal(linkedAvailability.pathname,'/api/availability');
@@ -118,6 +119,13 @@ test('Back-restored fields reconcile with JSON and the availability route after 
     nodes['pilot-funding'].value='';
     for(const callback of nodes['pilot-funding'].handlers.change)callback();
     assert.equal(nodes['request-json'].textContent,'');assert.equal(nodes['download-request'].disabled,true);
+    for (const [index, query] of ['','?ratio=1%3A1','?ratio=9%3A16&ratio=16%3A9'].entries()) {
+      globalThis.location.search = query;
+      nodes['pilot-format'].value = '16:9';
+      await import(`../docs/api-request.mjs?ratio-fallback-${index}`);
+      assert.equal(nodes['pilot-format'].value,'16:9');
+    }
+    assert.equal(networkCalls,0);
   } finally {
     for(const [key,value] of Object.entries(saved)){if(value===undefined)delete globalThis[key];else globalThis[key]=value;}
   }
