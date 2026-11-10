@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "SeedanceCheap portrait video preflight",
+    "description": "Two read-only 720p portrait availability checks. Run the one that matches your input mode. No key, private reference, request body or funding is needed. The result can change before you submit a separate request. From the SeedanceCheap team, with Codex.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": { "type": "noauth" },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "let body;",
+          "try { body = pm.response.json(); } catch {}",
+          "const checked = body?.checked_at;",
+          "const age = Math.floor(Date.now() / 1000) - checked;",
+          "const fresh = Number.isInteger(checked) && checked > 0 && age >= -15 && age <= 120;",
+          "const rows = Array.isArray(body?.available_formats) ? body.available_formats : [];",
+          "const portrait = rows.some(row => row?.ratio === '9:16' && row?.size === '720x1280');",
+          "const ok = pm.response.code === 200;",
+          "pm.test('Public endpoint returns HTTP 200', () => pm.expect(ok).to.equal(true));",
+          "pm.test('Availability observation is fresh', () => pm.expect(fresh).to.equal(true));",
+          "pm.test('Exact 9:16 portrait pair is ready for funding review', () => {",
+          "  pm.expect(ok && fresh && body?.generation_status === 'available' && portrait).to.equal(true);",
+          "});"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Veo 3.1 text · 8s · check portrait 720p",
+      "request": {
+        "method": "GET",
+        "url": "https://seedancecheap.com/api/availability?model=veo31-text-8s-720",
+        "description": "Use for an eight-second text-only scene. [Review the live quote](https://seedancecheap.com/api?model=veo31-text-8s-720&ratio=9%3A16&utm_source=postman&utm_medium=collection&utm_campaign=portrait_preflight_download#availability) before preparing a paid request."
+      }
+    },
+    {
+      "name": "Veo 3.1 image references · 8s · check portrait 720p",
+      "request": {
+        "method": "GET",
+        "url": "https://seedancecheap.com/api/availability?model=veo31-ingredients-8s-720",
+        "description": "Use for an eight-second scene with one to three private image references. The check sends no reference IDs. [Review the live quote](https://seedancecheap.com/api?model=veo31-ingredients-8s-720&ratio=9%3A16&utm_source=postman&utm_medium=collection&utm_campaign=portrait_preflight_download#availability) before preparing a paid request."
+      }
+    }
+  ]
+}

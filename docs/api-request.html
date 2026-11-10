@@ -60,6 +60,7 @@
     </ol>
 
     <p>Already using n8n? <a href="#n8n-preflight">Check your format before running a paid step</a>.</p>
+    <p>Using Postman? <a href="#postman-preflight">Download the two read-only portrait checks</a>.</p>
 
     <section class="card" aria-labelledby="prepare-heading">
       <h2 id="prepare-heading">Prepare a small video pilot</h2>
@@ -111,6 +112,12 @@
       <p class="muted">Edits update the preview. Save your chosen version before submitting. If you change the model, prompt or settings for another attempt, use a new ID and keep both records. Changing this local preview does not change a previously submitted job.</p>
     </section>
 
+    <section class="card" aria-labelledby="postman-preflight">
+      <h2 id="postman-preflight">Check a portrait video format in Postman</h2>
+      <p><a href="seedancecheap-video-preflight.postman_collection.json" download>Download the Postman collection JSON</a> and import the file into your own workspace. Send the text or image-reference GET that matches your scene.</p>
+      <p>Look for HTTP 200, a fresh observation, and the exact <code>9:16</code> and <code>720x1280</code> values in the same format row. All three tests must pass before moving on to the live quote and your funding review.</p>
+      <p>The checks use no API key, private image IDs or credits. They create no job and reserve no capacity. Each request has a link to its own live quote.</p>
+    </section>
     <section class="card" aria-labelledby="n8n-preflight">
       <h2 id="n8n-preflight">Check your planned format in n8n</h2>
       <p>A ratio and size can each look valid and still be wrong together. Run this free, read-only workflow before adding a generation step.</p>
