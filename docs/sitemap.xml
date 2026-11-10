@@ -36,6 +36,15 @@
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/casting-reference.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/chorus-pilot.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/continuity.html</loc></url>
+  <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/drop-off.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/drop-off-poster.jpg</video:thumbnail_loc>
+      <video:title>Drop-Off</video:title>
+      <video:description>A parcel hits a dead end. Then the floor moves. An eight-second original by SeedanceCheap.</video:description>
+      <video:content_loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/drop-off.mp4</video:content_loc>
+      <video:publication_date>2026-11-10T13:03:00Z</video:publication_date>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/first-scene.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/genjutsu-cost.html</loc></url>
   <url><loc>https://pesoszpesosz.github.io/seedancecheap-video-cookbook/green-means-go.html</loc>
