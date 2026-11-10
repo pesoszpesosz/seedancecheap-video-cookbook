@@ -47,8 +47,10 @@
   figcaption{padding-top:8px}
   details{border-block:1px solid var(--line);margin:3px 0 17px;padding:6px 0}
   summary{cursor:pointer;min-height:44px;padding:9px 0;color:var(--accent);font-weight:700}
-  ol{margin:0 0 10px;padding-left:22px}
-  li{padding:3px 0}
+  .beat-list{list-style:none;margin:0 0 14px;padding:0}
+  .beat-list li{display:grid;grid-template-columns:6.2rem minmax(0,1fr);align-items:start;gap:5px 12px;padding:8px 0;border-top:1px solid var(--line)}
+  .beat-list a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-variant-numeric:tabular-nums}
+  .beat-list p{margin:0}
   .button{display:inline-flex;align-items:center;min-height:44px;margin-bottom:7px;padding:0 13px;border-radius:7px;background:var(--accent);color:#281725;text-decoration:none;font-weight:750}
   footer{border-top:1px solid var(--line);padding:12px 0 25px}
   @media(max-width:660px){
@@ -80,13 +82,24 @@
   <section class="notes" aria-labelledby="breakdown-title">
     <h2 id="breakdown-title">Stage the reveal</h2>
     <p>Start with the parcel already moving. Give it one obstacle the viewer can read, then use the camera to show what the obstacle was hiding.</p>
-    <details>
-      <summary>See the three beats (spoilers)</summary>
-      <ol>
-        <li><strong>0.58 s.</strong> The parcel hits the striped stop. A sharp knock and short recoil sell the impact.</li>
-        <li><strong>2.68 s.</strong> The deck retracts. The camera follows the parcel down through the opening.</li>
-        <li><strong>3.42–4.52 s.</strong> A padded thud marks the landing. Then a two-note chime and the green panel reveal that the delivery worked.</li>
+    <details id="beat-study">
+      <summary>Replay the three beats (spoilers)</summary>
+      <p class="quiet">Each replay starts just before its cue. Try the landing muted, then with sound.</p>
+      <ol class="beat-list">
+        <li>
+          <a href="drop-off.mp4#t=0.18" aria-label="Replay the impact at 0.58 seconds">0.58 s</a>
+          <p><strong>Impact.</strong> A sharp knock and a short recoil sell the hit against the striped stop.</p>
+        </li>
+        <li>
+          <a href="drop-off.mp4#t=2.22" aria-label="Replay the drop at 2.68 seconds">2.68 s</a>
+          <p><strong>Drop.</strong> A motor starts before the opening is clear. Then the camera follows the parcel down.</p>
+        </li>
+        <li>
+          <a href="drop-off.mp4#t=3.10" aria-label="Replay the landing at 3.42 seconds">3.42 s</a>
+          <p><strong>Landing.</strong> A soft thud puts the parcel in the tray. A two-note chime starts at 4.38 s as the green panel confirms the delivery.</p>
+        </li>
       </ol>
+      <p class="quiet" role="status" id="replay-status"></p>
       <p class="quiet"><a href="https://github.com/pesoszpesosz/seedancecheap-video-cookbook/tree/main/examples/drop-off">Get the scene and sound source</a>.</p>
     </details>
     <a class="button" data-site-link href="https://seedancecheap.com/characters?utm_source=other&amp;utm_medium=cookbook&amp;utm_campaign=drop_off_nov10&amp;utm_content=free_builder#builder">Plan your own suspense shot</a>
@@ -94,6 +107,34 @@
   </section>
 </main>
 <footer class="wrap">Code-rendered animation and synthesized sound by the SeedanceCheap team with Codex.</footer>
+<script>
+  const film = document.querySelector('.film video');
+  const beatStudy = document.getElementById('beat-study');
+  const replayStatus = document.getElementById('replay-status');
+
+  function openBeatStudy() {
+    if (location.hash === '#beat-study') beatStudy.open = true;
+  }
+
+  openBeatStudy();
+  window.addEventListener('hashchange', openBeatStudy);
+
+  beatStudy.querySelectorAll('.beat-list a').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      replayStatus.textContent = '';
+      film.currentTime = Number(link.hash.slice('#t='.length));
+      film.scrollIntoView({ block: 'nearest' });
+      film.focus({ preventScroll: true });
+      film.play().catch(error => {
+        if (error.name !== 'AbortError') {
+          replayStatus.textContent = 'Use the film’s Play control or open the MP4 from the cue in a new tab.';
+        }
+      });
+    });
+  });
+</script>
 <script type="module">
   import { applyWorksheetLinks } from './links.mjs?v=0a0c6f2febb8';
   applyWorksheetLinks(document, location.search);
